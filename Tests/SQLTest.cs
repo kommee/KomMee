@@ -16,7 +16,6 @@ namespace KomMee
             SQL sqlInstance = SQL.getInstance();
             Assert.IsNotNull(sqlInstance);
         }
-        [Test]
-
+        
     }
 }
