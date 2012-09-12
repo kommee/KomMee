@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AdressBookUCtrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdressBookUCtrl.Designer.cs">
+      <DependentUpon>AdressBookUCtrl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainClass.cs" />
     <Compile Include="SQLTest.cs" />
   </ItemGroup>
