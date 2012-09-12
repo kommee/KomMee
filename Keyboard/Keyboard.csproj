@@ -55,7 +55,6 @@
       <DependentUpon>ABCDEFKeyboardView.cs</DependentUpon>
     </Compile>
     <Compile Include="KeyboardButtons.cs" />
-    <Compile Include="KeyboardViewEventArgs.cs" />
     <Compile Include="KeyboardView.cs">
       <SubType>UserControl</SubType>
     </Compile>
