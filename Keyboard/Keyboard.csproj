@@ -55,6 +55,7 @@
       <DependentUpon>ABCDEFKeyboardView.cs</DependentUpon>
     </Compile>
     <Compile Include="KeyboardButtons.cs" />
+    <Compile Include="KeyboardViewEventArgs.cs" />
     <Compile Include="KeyboardView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -77,8 +78,24 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Resources\Backspace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FontSizeDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FontSizeUp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Return.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TextToSpeech.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

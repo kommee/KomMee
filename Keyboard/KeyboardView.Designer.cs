@@ -1,4 +1,4 @@
-﻿namespace KeyboardLayout
+﻿namespace KomMee
 {
     partial class KeyboardView
     {
@@ -35,7 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Name = "KeyboardView";
-            this.Size = new System.Drawing.Size(784, 277);
+            this.Size = new System.Drawing.Size(760, 260);
             this.ResumeLayout(false);
 
         }

@@ -1,4 +1,4 @@
-﻿namespace KeyboardLayout
+﻿namespace KomMee
 {
     partial class ABCDEFKeyboardView
     {
@@ -92,7 +92,8 @@
             // BtMenuClose
             // 
             this.BtMenuClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuClose.Location = new System.Drawing.Point(720, 10);
+            this.BtMenuClose.Image = global::KomMee.Properties.Resources.Close;
+            this.BtMenuClose.Location = new System.Drawing.Point(706, 0);
             this.BtMenuClose.Name = "BtMenuClose";
             this.BtMenuClose.Size = new System.Drawing.Size(50, 50);
             this.BtMenuClose.TabIndex = 255;
@@ -101,7 +102,7 @@
             // BtMenuMessageSent
             // 
             this.BtMenuMessageSent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuMessageSent.Location = new System.Drawing.Point(214, 10);
+            this.BtMenuMessageSent.Location = new System.Drawing.Point(200, 0);
             this.BtMenuMessageSent.Name = "BtMenuMessageSent";
             this.BtMenuMessageSent.Size = new System.Drawing.Size(100, 50);
             this.BtMenuMessageSent.TabIndex = 254;
@@ -112,7 +113,8 @@
             // BtMenuFontSmaller
             // 
             this.BtMenuFontSmaller.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuFontSmaller.Location = new System.Drawing.Point(720, 116);
+            this.BtMenuFontSmaller.Image = global::KomMee.Properties.Resources.FontSizeDown;
+            this.BtMenuFontSmaller.Location = new System.Drawing.Point(706, 106);
             this.BtMenuFontSmaller.Name = "BtMenuFontSmaller";
             this.BtMenuFontSmaller.Size = new System.Drawing.Size(50, 50);
             this.BtMenuFontSmaller.TabIndex = 253;
@@ -121,7 +123,8 @@
             // BtMenuFontBigger
             // 
             this.BtMenuFontBigger.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuFontBigger.Location = new System.Drawing.Point(720, 66);
+            this.BtMenuFontBigger.Image = global::KomMee.Properties.Resources.FontSizeUp;
+            this.BtMenuFontBigger.Location = new System.Drawing.Point(706, 56);
             this.BtMenuFontBigger.Name = "BtMenuFontBigger";
             this.BtMenuFontBigger.Size = new System.Drawing.Size(50, 50);
             this.BtMenuFontBigger.TabIndex = 252;
@@ -130,7 +133,8 @@
             // BtMenuTextToSpeech
             // 
             this.BtMenuTextToSpeech.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuTextToSpeech.Location = new System.Drawing.Point(720, 166);
+            this.BtMenuTextToSpeech.Image = global::KomMee.Properties.Resources.TextToSpeech;
+            this.BtMenuTextToSpeech.Location = new System.Drawing.Point(706, 156);
             this.BtMenuTextToSpeech.Name = "BtMenuTextToSpeech";
             this.BtMenuTextToSpeech.Size = new System.Drawing.Size(50, 50);
             this.BtMenuTextToSpeech.TabIndex = 251;
@@ -139,7 +143,7 @@
             // BtMenuSend
             // 
             this.BtMenuSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuSend.Location = new System.Drawing.Point(614, 10);
+            this.BtMenuSend.Location = new System.Drawing.Point(600, 0);
             this.BtMenuSend.Name = "BtMenuSend";
             this.BtMenuSend.Size = new System.Drawing.Size(100, 50);
             this.BtMenuSend.TabIndex = 250;
@@ -149,7 +153,7 @@
             // BtMenuMessageNew
             // 
             this.BtMenuMessageNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuMessageNew.Location = new System.Drawing.Point(14, 10);
+            this.BtMenuMessageNew.Location = new System.Drawing.Point(0, 0);
             this.BtMenuMessageNew.Name = "BtMenuMessageNew";
             this.BtMenuMessageNew.Size = new System.Drawing.Size(100, 50);
             this.BtMenuMessageNew.TabIndex = 249;
@@ -159,7 +163,7 @@
             // BtMenuMessageRecv
             // 
             this.BtMenuMessageRecv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuMessageRecv.Location = new System.Drawing.Point(114, 10);
+            this.BtMenuMessageRecv.Location = new System.Drawing.Point(100, 0);
             this.BtMenuMessageRecv.Name = "BtMenuMessageRecv";
             this.BtMenuMessageRecv.Size = new System.Drawing.Size(100, 50);
             this.BtMenuMessageRecv.TabIndex = 248;
@@ -169,7 +173,7 @@
             // BtMenuContactDelete
             // 
             this.BtMenuContactDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuContactDelete.Location = new System.Drawing.Point(514, 10);
+            this.BtMenuContactDelete.Location = new System.Drawing.Point(500, 0);
             this.BtMenuContactDelete.Name = "BtMenuContactDelete";
             this.BtMenuContactDelete.Size = new System.Drawing.Size(100, 50);
             this.BtMenuContactDelete.TabIndex = 247;
@@ -179,7 +183,7 @@
             // BtMenuContactEdit
             // 
             this.BtMenuContactEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuContactEdit.Location = new System.Drawing.Point(414, 10);
+            this.BtMenuContactEdit.Location = new System.Drawing.Point(400, 0);
             this.BtMenuContactEdit.Name = "BtMenuContactEdit";
             this.BtMenuContactEdit.Size = new System.Drawing.Size(100, 50);
             this.BtMenuContactEdit.TabIndex = 246;
@@ -189,7 +193,7 @@
             // BtMenuContactAdd
             // 
             this.BtMenuContactAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtMenuContactAdd.Location = new System.Drawing.Point(314, 10);
+            this.BtMenuContactAdd.Location = new System.Drawing.Point(300, 0);
             this.BtMenuContactAdd.Name = "BtMenuContactAdd";
             this.BtMenuContactAdd.Size = new System.Drawing.Size(100, 50);
             this.BtMenuContactAdd.TabIndex = 245;
@@ -199,7 +203,7 @@
             // BtPunctComma
             // 
             this.BtPunctComma.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtPunctComma.Location = new System.Drawing.Point(564, 216);
+            this.BtPunctComma.Location = new System.Drawing.Point(550, 206);
             this.BtPunctComma.Name = "BtPunctComma";
             this.BtPunctComma.Size = new System.Drawing.Size(50, 50);
             this.BtPunctComma.TabIndex = 244;
@@ -209,7 +213,7 @@
             // BtAlphaY
             // 
             this.BtAlphaY.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaY.Location = new System.Drawing.Point(564, 166);
+            this.BtAlphaY.Location = new System.Drawing.Point(550, 156);
             this.BtAlphaY.Name = "BtAlphaY";
             this.BtAlphaY.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaY.TabIndex = 243;
@@ -219,7 +223,7 @@
             // BtUmlA
             // 
             this.BtUmlA.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtUmlA.Location = new System.Drawing.Point(14, 216);
+            this.BtUmlA.Location = new System.Drawing.Point(0, 206);
             this.BtUmlA.Name = "BtUmlA";
             this.BtUmlA.Size = new System.Drawing.Size(50, 50);
             this.BtUmlA.TabIndex = 242;
@@ -229,7 +233,7 @@
             // BtAlphaN
             // 
             this.BtAlphaN.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaN.Location = new System.Drawing.Point(14, 166);
+            this.BtAlphaN.Location = new System.Drawing.Point(0, 156);
             this.BtAlphaN.Name = "BtAlphaN";
             this.BtAlphaN.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaN.TabIndex = 241;
@@ -239,7 +243,8 @@
             // BtSpecReturn
             // 
             this.BtSpecReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtSpecReturn.Location = new System.Drawing.Point(664, 116);
+            this.BtSpecReturn.Image = global::KomMee.Properties.Resources.Return;
+            this.BtSpecReturn.Location = new System.Drawing.Point(650, 106);
             this.BtSpecReturn.Name = "BtSpecReturn";
             this.BtSpecReturn.Size = new System.Drawing.Size(50, 100);
             this.BtSpecReturn.TabIndex = 240;
@@ -248,7 +253,8 @@
             // BtSpecBackspace
             // 
             this.BtSpecBackspace.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtSpecBackspace.Location = new System.Drawing.Point(614, 66);
+            this.BtSpecBackspace.Image = global::KomMee.Properties.Resources.Backspace;
+            this.BtSpecBackspace.Location = new System.Drawing.Point(600, 56);
             this.BtSpecBackspace.Name = "BtSpecBackspace";
             this.BtSpecBackspace.Size = new System.Drawing.Size(100, 50);
             this.BtSpecBackspace.TabIndex = 239;
@@ -257,7 +263,7 @@
             // BtAlphaM
             // 
             this.BtAlphaM.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaM.Location = new System.Drawing.Point(614, 116);
+            this.BtAlphaM.Location = new System.Drawing.Point(600, 106);
             this.BtAlphaM.Name = "BtAlphaM";
             this.BtAlphaM.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaM.TabIndex = 238;
@@ -267,7 +273,7 @@
             // BtPunctExclamation
             // 
             this.BtPunctExclamation.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtPunctExclamation.Location = new System.Drawing.Point(664, 216);
+            this.BtPunctExclamation.Location = new System.Drawing.Point(650, 206);
             this.BtPunctExclamation.Name = "BtPunctExclamation";
             this.BtPunctExclamation.Size = new System.Drawing.Size(50, 50);
             this.BtPunctExclamation.TabIndex = 237;
@@ -277,7 +283,7 @@
             // BtPunctQuestion
             // 
             this.BtPunctQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtPunctQuestion.Location = new System.Drawing.Point(614, 216);
+            this.BtPunctQuestion.Location = new System.Drawing.Point(600, 206);
             this.BtPunctQuestion.Name = "BtPunctQuestion";
             this.BtPunctQuestion.Size = new System.Drawing.Size(50, 50);
             this.BtPunctQuestion.TabIndex = 236;
@@ -287,7 +293,7 @@
             // BtAlphaZ
             // 
             this.BtAlphaZ.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaZ.Location = new System.Drawing.Point(614, 166);
+            this.BtAlphaZ.Location = new System.Drawing.Point(600, 156);
             this.BtAlphaZ.Name = "BtAlphaZ";
             this.BtAlphaZ.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaZ.TabIndex = 235;
@@ -297,7 +303,7 @@
             // BtAlphaL
             // 
             this.BtAlphaL.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaL.Location = new System.Drawing.Point(564, 116);
+            this.BtAlphaL.Location = new System.Drawing.Point(550, 106);
             this.BtAlphaL.Name = "BtAlphaL";
             this.BtAlphaL.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaL.TabIndex = 234;
@@ -307,7 +313,7 @@
             // BtAlphaK
             // 
             this.BtAlphaK.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaK.Location = new System.Drawing.Point(514, 116);
+            this.BtAlphaK.Location = new System.Drawing.Point(500, 106);
             this.BtAlphaK.Name = "BtAlphaK";
             this.BtAlphaK.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaK.TabIndex = 233;
@@ -317,7 +323,7 @@
             // BtSpecAt
             // 
             this.BtSpecAt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtSpecAt.Location = new System.Drawing.Point(564, 66);
+            this.BtSpecAt.Location = new System.Drawing.Point(550, 56);
             this.BtSpecAt.Name = "BtSpecAt";
             this.BtSpecAt.Size = new System.Drawing.Size(50, 50);
             this.BtSpecAt.TabIndex = 232;
@@ -327,7 +333,7 @@
             // BtUmlS
             // 
             this.BtUmlS.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtUmlS.Location = new System.Drawing.Point(514, 66);
+            this.BtUmlS.Location = new System.Drawing.Point(500, 56);
             this.BtUmlS.Name = "BtUmlS";
             this.BtUmlS.Size = new System.Drawing.Size(50, 50);
             this.BtUmlS.TabIndex = 231;
@@ -337,7 +343,7 @@
             // BtAlphaJ
             // 
             this.BtAlphaJ.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaJ.Location = new System.Drawing.Point(464, 116);
+            this.BtAlphaJ.Location = new System.Drawing.Point(450, 106);
             this.BtAlphaJ.Name = "BtAlphaJ";
             this.BtAlphaJ.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaJ.TabIndex = 230;
@@ -347,7 +353,7 @@
             // BtAlphaI
             // 
             this.BtAlphaI.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaI.Location = new System.Drawing.Point(414, 116);
+            this.BtAlphaI.Location = new System.Drawing.Point(400, 106);
             this.BtAlphaI.Name = "BtAlphaI";
             this.BtAlphaI.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaI.TabIndex = 229;
@@ -357,7 +363,7 @@
             // BtNum0
             // 
             this.BtNum0.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum0.Location = new System.Drawing.Point(464, 66);
+            this.BtNum0.Location = new System.Drawing.Point(450, 56);
             this.BtNum0.Name = "BtNum0";
             this.BtNum0.Size = new System.Drawing.Size(50, 50);
             this.BtNum0.TabIndex = 228;
@@ -367,7 +373,7 @@
             // BtNum9
             // 
             this.BtNum9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum9.Location = new System.Drawing.Point(414, 66);
+            this.BtNum9.Location = new System.Drawing.Point(400, 56);
             this.BtNum9.Name = "BtNum9";
             this.BtNum9.Size = new System.Drawing.Size(50, 50);
             this.BtNum9.TabIndex = 227;
@@ -377,7 +383,7 @@
             // BtPunctDot
             // 
             this.BtPunctDot.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtPunctDot.Location = new System.Drawing.Point(514, 216);
+            this.BtPunctDot.Location = new System.Drawing.Point(500, 206);
             this.BtPunctDot.Name = "BtPunctDot";
             this.BtPunctDot.Size = new System.Drawing.Size(50, 50);
             this.BtPunctDot.TabIndex = 226;
@@ -387,7 +393,7 @@
             // BtAlphaX
             // 
             this.BtAlphaX.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaX.Location = new System.Drawing.Point(514, 166);
+            this.BtAlphaX.Location = new System.Drawing.Point(500, 156);
             this.BtAlphaX.Name = "BtAlphaX";
             this.BtAlphaX.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaX.TabIndex = 225;
@@ -397,7 +403,7 @@
             // BtAlphaW
             // 
             this.BtAlphaW.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaW.Location = new System.Drawing.Point(464, 166);
+            this.BtAlphaW.Location = new System.Drawing.Point(450, 156);
             this.BtAlphaW.Name = "BtAlphaW";
             this.BtAlphaW.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaW.TabIndex = 224;
@@ -407,7 +413,7 @@
             // BtAlphaV
             // 
             this.BtAlphaV.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaV.Location = new System.Drawing.Point(414, 166);
+            this.BtAlphaV.Location = new System.Drawing.Point(400, 156);
             this.BtAlphaV.Name = "BtAlphaV";
             this.BtAlphaV.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaV.TabIndex = 223;
@@ -417,7 +423,7 @@
             // BtAlphaU
             // 
             this.BtAlphaU.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaU.Location = new System.Drawing.Point(364, 166);
+            this.BtAlphaU.Location = new System.Drawing.Point(350, 156);
             this.BtAlphaU.Name = "BtAlphaU";
             this.BtAlphaU.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaU.TabIndex = 222;
@@ -427,7 +433,7 @@
             // BtAlphaH
             // 
             this.BtAlphaH.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaH.Location = new System.Drawing.Point(364, 116);
+            this.BtAlphaH.Location = new System.Drawing.Point(350, 106);
             this.BtAlphaH.Name = "BtAlphaH";
             this.BtAlphaH.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaH.TabIndex = 221;
@@ -437,7 +443,7 @@
             // BtAlphaG
             // 
             this.BtAlphaG.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaG.Location = new System.Drawing.Point(314, 116);
+            this.BtAlphaG.Location = new System.Drawing.Point(300, 106);
             this.BtAlphaG.Name = "BtAlphaG";
             this.BtAlphaG.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaG.TabIndex = 220;
@@ -447,7 +453,7 @@
             // BtNum8
             // 
             this.BtNum8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum8.Location = new System.Drawing.Point(364, 66);
+            this.BtNum8.Location = new System.Drawing.Point(350, 56);
             this.BtNum8.Name = "BtNum8";
             this.BtNum8.Size = new System.Drawing.Size(50, 50);
             this.BtNum8.TabIndex = 219;
@@ -457,7 +463,7 @@
             // BtNum7
             // 
             this.BtNum7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum7.Location = new System.Drawing.Point(314, 66);
+            this.BtNum7.Location = new System.Drawing.Point(300, 56);
             this.BtNum7.Name = "BtNum7";
             this.BtNum7.Size = new System.Drawing.Size(50, 50);
             this.BtNum7.TabIndex = 218;
@@ -467,7 +473,7 @@
             // BtAlphaF
             // 
             this.BtAlphaF.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaF.Location = new System.Drawing.Point(264, 116);
+            this.BtAlphaF.Location = new System.Drawing.Point(250, 106);
             this.BtAlphaF.Name = "BtAlphaF";
             this.BtAlphaF.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaF.TabIndex = 217;
@@ -477,7 +483,7 @@
             // BtAlphaE
             // 
             this.BtAlphaE.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaE.Location = new System.Drawing.Point(214, 116);
+            this.BtAlphaE.Location = new System.Drawing.Point(200, 106);
             this.BtAlphaE.Name = "BtAlphaE";
             this.BtAlphaE.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaE.TabIndex = 216;
@@ -487,7 +493,7 @@
             // BtNum6
             // 
             this.BtNum6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum6.Location = new System.Drawing.Point(264, 66);
+            this.BtNum6.Location = new System.Drawing.Point(250, 56);
             this.BtNum6.Name = "BtNum6";
             this.BtNum6.Size = new System.Drawing.Size(50, 50);
             this.BtNum6.TabIndex = 215;
@@ -497,7 +503,7 @@
             // BtNum5
             // 
             this.BtNum5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum5.Location = new System.Drawing.Point(214, 66);
+            this.BtNum5.Location = new System.Drawing.Point(200, 56);
             this.BtNum5.Name = "BtNum5";
             this.BtNum5.Size = new System.Drawing.Size(50, 50);
             this.BtNum5.TabIndex = 214;
@@ -507,7 +513,7 @@
             // BtAlphaT
             // 
             this.BtAlphaT.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaT.Location = new System.Drawing.Point(314, 166);
+            this.BtAlphaT.Location = new System.Drawing.Point(300, 156);
             this.BtAlphaT.Name = "BtAlphaT";
             this.BtAlphaT.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaT.TabIndex = 213;
@@ -517,7 +523,7 @@
             // BtAlphaS
             // 
             this.BtAlphaS.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaS.Location = new System.Drawing.Point(264, 166);
+            this.BtAlphaS.Location = new System.Drawing.Point(250, 156);
             this.BtAlphaS.Name = "BtAlphaS";
             this.BtAlphaS.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaS.TabIndex = 212;
@@ -527,7 +533,7 @@
             // BtSpecSpace
             // 
             this.BtSpecSpace.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtSpecSpace.Location = new System.Drawing.Point(164, 216);
+            this.BtSpecSpace.Location = new System.Drawing.Point(150, 206);
             this.BtSpecSpace.Name = "BtSpecSpace";
             this.BtSpecSpace.Size = new System.Drawing.Size(350, 50);
             this.BtSpecSpace.TabIndex = 211;
@@ -537,7 +543,7 @@
             // BtAlphaR
             // 
             this.BtAlphaR.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaR.Location = new System.Drawing.Point(214, 166);
+            this.BtAlphaR.Location = new System.Drawing.Point(200, 156);
             this.BtAlphaR.Name = "BtAlphaR";
             this.BtAlphaR.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaR.TabIndex = 210;
@@ -547,7 +553,7 @@
             // BtAlphaQ
             // 
             this.BtAlphaQ.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaQ.Location = new System.Drawing.Point(164, 166);
+            this.BtAlphaQ.Location = new System.Drawing.Point(150, 156);
             this.BtAlphaQ.Name = "BtAlphaQ";
             this.BtAlphaQ.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaQ.TabIndex = 209;
@@ -557,7 +563,7 @@
             // BtAlphaD
             // 
             this.BtAlphaD.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaD.Location = new System.Drawing.Point(164, 116);
+            this.BtAlphaD.Location = new System.Drawing.Point(150, 106);
             this.BtAlphaD.Name = "BtAlphaD";
             this.BtAlphaD.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaD.TabIndex = 208;
@@ -567,7 +573,7 @@
             // BtAlphaC
             // 
             this.BtAlphaC.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaC.Location = new System.Drawing.Point(114, 116);
+            this.BtAlphaC.Location = new System.Drawing.Point(100, 106);
             this.BtAlphaC.Name = "BtAlphaC";
             this.BtAlphaC.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaC.TabIndex = 207;
@@ -577,7 +583,7 @@
             // BtNum4
             // 
             this.BtNum4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum4.Location = new System.Drawing.Point(164, 66);
+            this.BtNum4.Location = new System.Drawing.Point(150, 56);
             this.BtNum4.Name = "BtNum4";
             this.BtNum4.Size = new System.Drawing.Size(50, 50);
             this.BtNum4.TabIndex = 206;
@@ -587,7 +593,7 @@
             // BtNum3
             // 
             this.BtNum3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum3.Location = new System.Drawing.Point(114, 66);
+            this.BtNum3.Location = new System.Drawing.Point(100, 56);
             this.BtNum3.Name = "BtNum3";
             this.BtNum3.Size = new System.Drawing.Size(50, 50);
             this.BtNum3.TabIndex = 205;
@@ -597,7 +603,7 @@
             // BtUmlU
             // 
             this.BtUmlU.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtUmlU.Location = new System.Drawing.Point(114, 216);
+            this.BtUmlU.Location = new System.Drawing.Point(100, 206);
             this.BtUmlU.Name = "BtUmlU";
             this.BtUmlU.Size = new System.Drawing.Size(50, 50);
             this.BtUmlU.TabIndex = 204;
@@ -607,7 +613,7 @@
             // BtUmlO
             // 
             this.BtUmlO.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtUmlO.Location = new System.Drawing.Point(64, 216);
+            this.BtUmlO.Location = new System.Drawing.Point(50, 206);
             this.BtUmlO.Name = "BtUmlO";
             this.BtUmlO.Size = new System.Drawing.Size(50, 50);
             this.BtUmlO.TabIndex = 203;
@@ -617,7 +623,7 @@
             // BtAlphaP
             // 
             this.BtAlphaP.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaP.Location = new System.Drawing.Point(114, 166);
+            this.BtAlphaP.Location = new System.Drawing.Point(100, 156);
             this.BtAlphaP.Name = "BtAlphaP";
             this.BtAlphaP.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaP.TabIndex = 202;
@@ -627,7 +633,7 @@
             // BtAlphaO
             // 
             this.BtAlphaO.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaO.Location = new System.Drawing.Point(64, 166);
+            this.BtAlphaO.Location = new System.Drawing.Point(50, 156);
             this.BtAlphaO.Name = "BtAlphaO";
             this.BtAlphaO.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaO.TabIndex = 201;
@@ -637,7 +643,7 @@
             // BtAlphaB
             // 
             this.BtAlphaB.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaB.Location = new System.Drawing.Point(64, 116);
+            this.BtAlphaB.Location = new System.Drawing.Point(50, 106);
             this.BtAlphaB.Name = "BtAlphaB";
             this.BtAlphaB.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaB.TabIndex = 200;
@@ -647,7 +653,7 @@
             // BtAlphaA
             // 
             this.BtAlphaA.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtAlphaA.Location = new System.Drawing.Point(14, 116);
+            this.BtAlphaA.Location = new System.Drawing.Point(0, 106);
             this.BtAlphaA.Name = "BtAlphaA";
             this.BtAlphaA.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaA.TabIndex = 199;
@@ -657,7 +663,7 @@
             // BtNum2
             // 
             this.BtNum2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum2.Location = new System.Drawing.Point(64, 66);
+            this.BtNum2.Location = new System.Drawing.Point(50, 56);
             this.BtNum2.Name = "BtNum2";
             this.BtNum2.Size = new System.Drawing.Size(50, 50);
             this.BtNum2.TabIndex = 198;
@@ -667,7 +673,7 @@
             // BtNum1
             // 
             this.BtNum1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtNum1.Location = new System.Drawing.Point(14, 66);
+            this.BtNum1.Location = new System.Drawing.Point(0, 56);
             this.BtNum1.Name = "BtNum1";
             this.BtNum1.Size = new System.Drawing.Size(50, 50);
             this.BtNum1.TabIndex = 197;
@@ -737,6 +743,7 @@
             this.Controls.Add(this.BtNum2);
             this.Controls.Add(this.BtNum1);
             this.Name = "ABCDEFKeyboardView";
+            this.Size = new System.Drawing.Size(760, 260);
             this.ResumeLayout(false);
 
         }

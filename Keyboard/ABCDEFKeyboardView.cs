@@ -6,12 +6,12 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace KeyboardLayout
+namespace KomMee
 {
     /// <summary>
     /// Simple alphabetic ordered keyboard layout
     /// </summary>
-    public partial class ABCDEFKeyboardView : KeyboardLayout.KeyboardView
+    public partial class ABCDEFKeyboardView : KomMee.KeyboardView
     {
         /// <summary>
         /// Text color of the focused buttons
