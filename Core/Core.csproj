@@ -41,6 +41,8 @@
     <Compile Include="Contact.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="IViewContainer.cs" />
+    <Compile Include="KeyboardButtons.cs" />
+    <Compile Include="KeyboardViewEventArgs.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Settings.cs" />
   </ItemGroup>
