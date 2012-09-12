@@ -11,9 +11,21 @@ namespace KomMee_Tests
 {
     public partial class AdressBookUCtrl : Form
     {
+        private KomMee.AddressBookView adrView;
+
         public AdressBookUCtrl()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+                this.adrView = new KomMee.AddressBookView();
+                this.Controls.Add(this.adrView);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }

@@ -32,6 +32,34 @@ namespace KomMee
         public event EventHandler Canceled;
 
         /// <summary>
+        /// Eventhandler for pressing the up-key.
+        /// </summary>
+        public event EventHandler UpPressed;
+
+        /// <summary>
+        /// Eventhandler for pressing the Down-key.
+        /// </summary>
+        public event EventHandler DownPressed;
+
+        /// <summary>
+        /// Eventhandler for pressing the up-key.
+        /// </summary>
+        public event EventHandler LeftPressed;
+
+        /// <summary>
+        /// Eventhandler for pressing the up-key.
+        /// </summary>
+        public event EventHandler RightPressed;
+
+        protected virtual void OnRight(Button sender, KeyboardViewEventArgs e)
+        {
+            if (RightPressed != null)
+            {
+                RightPressed(this, e);
+            }
+        }
+
+        /// <summary>
         /// Is raised when the apply-button was pushed.
         /// </summary>
         /// <param name="sender">Button which was applied</param>

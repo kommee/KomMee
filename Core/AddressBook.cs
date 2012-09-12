@@ -33,12 +33,27 @@ namespace KomMee
 
         private AddressBook()
         {
+            this.listOfContacts = new Dictionary<int, Contact>();
             // connect to database
-            SQL sqlInstance = SQL.getInstance();
+            //SQL sqlInstance = SQL.getInstance();
             // Get all contacts
             //List<Hashtable> data = sqlInstance.Read(Tables.Contact);
 
             // fill the Addressbook
+            int i = 0;
+            do
+            {
+                try
+                {
+                    this.listOfContacts.Add(i, new Contact("Harald_" + i.ToString(), "Petersen"));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
+                i++;
+            } while (i <= 3);
           /*  foreach (Hashtable table in data)
             {
                 this.listOfContacts.Add((int)table["contactID"], new Contact((int)table["contactID"], (string)table["firstname"], (string)table["lastname"]));

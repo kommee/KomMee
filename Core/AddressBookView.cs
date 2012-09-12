@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KomMee
 {
-    class AddressBookView : UctrlDialog
+    public class AddressBookView : UctrlDialog
     {
         public AddressBookView()
             :base()
@@ -20,6 +20,7 @@ namespace KomMee
             }
             
         }
+
 
         /// <summary>
         /// Call from Key applay
