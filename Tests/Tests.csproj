@@ -55,6 +55,7 @@
     <Reference Include="System.Data.SQLite.Linq">
       <HintPath>..\Database\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
