@@ -1,0 +1,175 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data.SQLite;
+using System.Data;
+
+namespace KomMee
+{
+    public class SQL
+    {
+        private string pathOfDatabase = "kommee.db";
+
+        public string PathOfDatabase
+        {
+            get { return pathOfDatabase; }
+        }
+        private SQLiteConnection sqliteConnection;
+        private static SQL sqlInstance = new SQL();
+        private Dictionary<Tables, string> tableDefinitions = new Dictionary<Tables, string>();
+        
+        private SQL()
+        {
+            this.sqliteConnection = new SQLiteConnection("Data Source=" + this.pathOfDatabase);
+            Console.WriteLine("Im Konstruktor!!!");
+            this.sqliteConnection.Open();
+
+            this.initTableDefs();
+
+
+            SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
+
+            command.CommandText = this.tableDefinitions[Tables.MessageType];
+            command.ExecuteNonQuery();
+
+
+            command.CommandText = this.tableDefinitions[Tables.Setting];
+            command.ExecuteNonQuery();
+
+            command.CommandText = this.tableDefinitions[Tables.Contact];
+            command.ExecuteNonQuery();
+
+            command.CommandText = this.tableDefinitions[Tables.SMSContact];
+            command.ExecuteNonQuery();
+
+            command.CommandText = this.tableDefinitions[Tables.EMailContact];
+            command.ExecuteNonQuery();
+
+            command.CommandText = this.tableDefinitions[Tables.SMS];
+            command.ExecuteNonQuery();
+
+            command.CommandText = this.tableDefinitions[Tables.EMail];
+            command.ExecuteNonQuery();
+        }
+
+        ~SQL()
+        {
+            this.sqliteConnection.Close();
+        }
+
+        public static SQL getInstance()
+        {
+            return sqlInstance;
+        }
+
+        public int Insert(DataTable data)
+        {
+            SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
+            return -1;
+        }
+
+        public bool Update(DataTable data)
+        {
+            SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
+            return false;
+        }
+
+        public bool Delete(DataTable data)
+        {
+            SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
+
+            return false;
+        }
+
+        public bool Read(DataTable data)
+        {
+            SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
+            string table = data.TableName, query = "", cols = "";
+
+            foreach (DataColumn dc in data.Columns)
+            {
+                cols += dc.ColumnName + ", ";
+            }
+            cols = cols.Substring(0, (cols.Length - 2));
+
+
+            query = string.Format("SELECT {0} FROM {1} WHERE deleteDate ISNULL", cols, table);
+           return false;
+        }
+
+        private void initTableDefs()
+        {
+            this.tableDefinitions.Add(Tables.MessageType, "CREATE TABLE IF NOT EXISTS MessageType(" +
+                                                        "messageTypeID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                        "typeName TEXT NOT NULL, " +
+                                                        "className TEXT NOT NULL);");
+
+
+            this.tableDefinitions.Add(Tables.Setting, "CREATE TABLE IF NOT EXISTS Setting(" +
+                                                    "key TEXT PRIMARY KEY, " +
+                                                    "value TEXT NOT NULL);");
+
+            this.tableDefinitions.Add(Tables.Contact, "CREATE TABLE IF NOT EXISTS Contact(" +
+                                                    "contactID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                    "firstName TEXT NOT NULL, " +
+                                                    "lastName TEXT NOT NULL, " +
+                                                    "deleteDate INTEGER DEFAULT NULL, " +
+                                                    "messageTypeID INTEGER NOT NULL REFERENCES MessageType(messageTypeID) ON DELETE SET NULL ON UPDATE CASCADE, " +
+                                                    "image BLOB DEFAULT NULL);");
+
+            this.tableDefinitions.Add(Tables.SMSContact, "CREATE TABLE IF NOT EXISTS SMSContact(" +
+                                                        "smsContactID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                        "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE CASCADE ON UPDATE CASCADE, " +
+                                                        "address TEXT NOT NULL);");
+
+            this.tableDefinitions.Add(Tables.EMailContact, "CREATE TABLE IF NOT EXISTS EMailContact(" +
+                                                        "emailContactID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                        "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE CASCADE ON UPDATE CASCADE, " +
+                                                        "address TEXT NOT NULL);");
+
+            this.tableDefinitions.Add(Tables.EMail, "CREATE TABLE IF NOT EXISTS EMail(" +
+                                                "emailID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                "subject TEXT NOT NULL DEFAULT \"\", " +
+                                                "text TEXT NOT NULL, " +
+                                                "senderAddress TEXT NOT NULL, " +
+                                                "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE SET NULL ON UPDATE CASCADE, " +
+                                                "isSent INTEGER NOT NULL DEFAULT 0, " +
+                                                "isRead INTEGER NOT NULL DEFAULT 0, " +
+                                                "deleteDate INTEGER DEFAULT NULL);");
+
+            this.tableDefinitions.Add(Tables.SMS, "CREATE TABLE IF NOT EXISTS SMS(" +
+                                                "smsID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                "text TEXT NOT NULL, " +
+                                                "senderAddress TEXT NOT NULL, " +
+                                                "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE SET NULL ON UPDATE CASCADE, " +
+                                                "isSent INTEGER NOT NULL DEFAULT 0, " +
+                                                "isRead INTEGER NOT NULL DEFAULT 0, " +
+                                                "deleteDate INTEGER DEFAULT NULL);");
+        }
+
+        private int boolToInt(Boolean toConvert)
+        {
+            if (toConvert)
+            {
+                return 1;
+            }
+            else return 0;
+        }
+
+        private bool intToBool(int toConvert)
+        {
+            if (toConvert > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private enum Tables
+        {
+            Contact, EMail, EMailContact, MessageType, Setting, SMS, SMSContact
+        }
+    }
+}

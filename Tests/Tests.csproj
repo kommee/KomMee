@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FEDEEEB4-75C0-4218-A32A-C10A724822E0}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KomMee_Tests</RootNamespace>
+    <AssemblyName>KomMee-Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="MainClass.cs" />
+    <Compile Include="SQLTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SQLite.Designer">
+      <HintPath>D:\Git\Kommee\KomMee\Database\SQLite.Designer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>D:\Git\Kommee\KomMee\Database\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq">
+      <HintPath>D:\Git\Kommee\KomMee\Database\System.Data.SQLite.Linq.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\Git\Kommee\KomMee\Core\Core.csproj">
+      <Project>{D7CEC472-4566-4A8E-9928-11034A8160F3}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Git\Kommee\KomMee\Database\Database.csproj">
+      <Project>{386EB105-83CE-410D-B409-6E59B81794F5}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Git\Kommee\KomMee\EMail\EMail.csproj">
+      <Project>{FCCA003E-748B-4ADC-8CFD-535D0045C6F7}</Project>
+      <Name>EMail</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Git\Kommee\KomMee\Form\Form.csproj">
+      <Project>{643ACD3E-F9A5-4EA6-9A77-C7895BBAB327}</Project>
+      <Name>Form</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Git\Kommee\KomMee\Keyboard\Keyboard.csproj">
+      <Project>{25AC93A4-1D07-4088-B7C8-B168845563E2}</Project>
+      <Name>Keyboard</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\Git\Kommee\KomMee\SMS\SMS.csproj">
+      <Project>{1EC218FF-64B9-463C-A64F-86D2943CFCE5}</Project>
+      <Name>SMS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
