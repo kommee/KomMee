@@ -38,6 +38,9 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="AddressBook.cs" />
+    <Compile Include="AddressBookView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Contact.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="IViewContainer.cs" />

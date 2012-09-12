@@ -11,12 +11,15 @@ namespace KomMee
 {
     public partial class UctrlDialog : UserControl
     {
+
+        
+
         public UctrlDialog()
         {
             InitializeComponent();
             // Same size as the Usercontrol
-            this.LbChoice.Width = this.Width;
-            this.LbChoice.Height = this.Height;
+            this.lbChoice.Width = this.Width;
+            this.lbChoice.Height = this.Height;
         }
 
         /// <summary>
