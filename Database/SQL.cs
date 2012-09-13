@@ -79,13 +79,28 @@ namespace KomMee
         public bool Delete(DataTable data)
         {
             SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
+            string tableID = data.TableName + "ID", insert = null, currDate = null ;
+            DataRow row = data.Rows[0];
+            currDate = DateTime.Now.ToString("yyyyMMDD");
 
+            insert = string.Format("UPDATE {0} SET deleteDate = {1} WHERE {2} = {3}", data.TableName, currDate, tableID, row[tableID]);
+            command.CommandText = insert;
+            switch (command.ExecuteNonQuery())
+            {
+                case 0:
+                    throw new Exception("Error deleting entry in table {0}! 0 Rows affected!",);
+                case 1:
+                    break;
+                default:
+                    throw new Exception("Error deleting entry in table {0}! More than one row affected!",);
+            }
             return false;
         }
 
         public bool Read(DataTable data)
         {
             SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
+            SQLiteDataReader reader = null;
             string table = data.TableName, query = "", cols = "";
 
             foreach (DataColumn dc in data.Columns)
@@ -93,10 +108,43 @@ namespace KomMee
                 cols += dc.ColumnName + ", ";
             }
             cols = cols.Substring(0, (cols.Length - 2));
-
-
             query = string.Format("SELECT {0} FROM {1} WHERE deleteDate ISNULL", cols, table);
-           return false;
+            command.CommandText = query;
+            reader = command.ExecuteReader();
+
+            if(reader.HasRows)
+            {
+                DataRow row;
+                while(reader.Read())
+                {
+                    row = data.NewRow();
+                    foreach(DataColumn col in data.Columns)
+                    {
+                        if(col.GetType().Equals(typeof(int)))
+                        {
+                            row[col.ColumnName] = reader.GetInt32(reader.GetOrdinal(col.ColumnName));
+                        }
+                        else if(col.GetType().Equals(typeof(string)))
+                        {
+                            row[col.ColumnName] = reader.GetString(reader.GetOrdinal(col.ColumnName));
+                        }
+                        else if(col.GetType().Equals(typeof(bool)))
+                        {
+                            row[col.ColumnName] = Convert.ToBoolean(reader.GetInt32(reader.GetOrdinal(col.ColumnName)));
+                        }
+                        else
+                        {
+                            throw new Exception(string.Format("Invalid Datatype: {0}", col.GetType().FullName));
+                        }
+                    }
+                    data.Rows.Add(row);
+                }
+            }
+            else
+            {
+                throw new Exception(string.Format("Table {} is empty, or doesn't exist!", data.TableName));
+            }
+           return true;
         }
 
         private void initTableDefs()
@@ -137,7 +185,8 @@ namespace KomMee
                                                 "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE SET NULL ON UPDATE CASCADE, " +
                                                 "isSent INTEGER NOT NULL DEFAULT 0, " +
                                                 "isRead INTEGER NOT NULL DEFAULT 0, " +
-                                                "deleteDate INTEGER DEFAULT NULL);");
+                                                "deleteDate TEXTs DEFAULT NULL," +
+                                                "creationDate TEXT NOT NULL);");
 
             this.tableDefinitions.Add(Tables.SMS, "CREATE TABLE IF NOT EXISTS SMS(" +
                                                 "smsID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -146,30 +195,28 @@ namespace KomMee
                                                 "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE SET NULL ON UPDATE CASCADE, " +
                                                 "isSent INTEGER NOT NULL DEFAULT 0, " +
                                                 "isRead INTEGER NOT NULL DEFAULT 0, " +
-                                                "deleteDate INTEGER DEFAULT NULL);");
-        }
-
-        private int boolToInt(Boolean toConvert)
-        {
-            if (toConvert)
-            {
-                return 1;
-            }
-            else return 0;
-        }
-
-        private bool intToBool(int toConvert)
-        {
-            if (toConvert > 0)
-            {
-                return true;
-            }
-            return false;
+                                                "deleteDate TEXT DEFAULT NULL," +
+                                                "creationDate TEXT NOT NULL);");
         }
 
         private enum Tables
         {
             Contact, EMail, EMailContact, MessageType, Setting, SMS, SMSContact
+        }
+
+        private int getCurrentTimestamp()
+        {
+            int currentTimestamp = 0;
+            DateTime now, unixTime;
+            TimeSpan span;
+
+            now = DateTime.Now;
+            unixTime = new DateTime(1970,1,1);
+            span = new TimeSpan(now.Ticks - unixTime.Ticks);
+
+            currentTimestamp = (int)(span.TotalSeconds);
+
+            return currentTimestamp;
         }
     }
 }
