@@ -65,25 +65,107 @@ namespace KomMee
 
         public int Insert(DataTable data)
         {
+            if (data.Rows.Count != 1)
+            {
+                throw new Exception("The given DataTable is empty, or has more than one row!");
+            }
             SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
-            return -1;
+            string insert = null, cols = null, values = null;
+
+            foreach (DataColumn col in data.Columns)
+            {
+                if (data.Rows[0][col.ColumnName] != null)
+                {
+                    cols += col.ColumnName + ", ";
+                    if (col.DataType.Equals(typeof(int)))
+                    {
+                        values += data.Rows[0][col.ColumnName] + ", ";
+                    }
+                    else if (col.DataType.Equals(typeof(string)))
+                    {
+                        values += "'" + data.Rows[0][col.ColumnName] + "', ";
+                    }
+                    else if (col.DataType.Equals(typeof(bool)))
+                    {
+                        values += Convert.ToInt32(data.Rows[0][col.ColumnName]) + ", ";
+                    }
+                }
+            }
+            cols = cols.Substring(0, (cols.Length - 2));
+            values = values.Substring(0, (values.Length - 2));
+
+            insert = string.Format("INSERT INTO {0}({1}) VALUES({2})", data.TableName, cols, values);
+            command.CommandText = insert;
+            int rc = command.ExecuteNonQuery();
+            if (rc == 1)
+            {
+                command.CommandText = string.Format("SELECT {0} FROM {1}  ORDER BY {0} DESC", (data.TableName + "ID"), data.TableName);
+                SQLiteDataReader reader = command.ExecuteReader();
+                reader.Read();
+                return reader.GetInt32(0);
+            }
+            else if (rc == 0)
+            {
+                throw new Exception(string.Format("Error inserting new data into table {0}! No data inserted!", data.TableName));
+            }
+            else
+            {
+                throw new Exception(string.Format("Error inserting new data into table {0}! More than {1} rows inserted!", data.TableName, rc));
+            }
         }
 
         public bool Update(DataTable data)
         {
+            if (data.Rows.Count != 1)
+            {
+                throw new Exception("The given DataTable is empty, or has more than one row!");
+            }
             SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
+            string tableID = data.TableName + "ID", update = null, set = null ;
+
+            foreach (DataColumn col in data.Columns)
+            {
+                if (data.Rows[0][col.ColumnName] != null)
+                {
+                    set += col.ColumnName + " = ";
+                    if (col.DataType.Equals(typeof(int)))
+                    {
+                        set += data.Rows[0][col.ColumnName] + ", ";
+                    }
+                    else if (col.DataType.Equals(typeof(string)))
+                    {
+                        set += "'" + data.Rows[0][col.ColumnName] + "', ";
+                    }
+                    else if (col.DataType.Equals(typeof(bool)))
+                    {
+                        set += Convert.ToInt32(data.Rows[0][col.ColumnName]) + ", ";
+                    }
+                }
+            }
+            set = set.Substring(0, (set.Length - 2));
+
+            update = string.Format("UPDATE {0} SET {1] WHERE {2} = {3}", data.TableName, set, tableID, data.Rows[0][tableID]);
+            command.CommandText = update;
+            command.ExecuteNonQuery();
             return false;
         }
 
         public bool Delete(DataTable data)
         {
+            if (!isDeletable(data.TableName))
+            {
+                throw new Exception(string.Format("You are not allowed to delete datasets in table {}", data.TableName));
+            }
+            else if (data.Rows.Count != 1)
+            {
+                throw new Exception("The given DataTable is empty, or has more than one row!");
+            }
             SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
-            string tableID = data.TableName + "ID", insert = null, currDate = null ;
-            DataRow row = data.Rows[0];
+            string tableID = data.TableName + "ID", delete = null, currDate = null ;
             currDate = DateTime.Now.ToString("yyyyMMDD");
 
-            insert = string.Format("UPDATE {0} SET deleteDate = {1} WHERE {2} = {3}", data.TableName, currDate, tableID, row[tableID]);
-            command.CommandText = insert;
+            delete = string.Format("UPDATE {0} SET deleteDate = {1} WHERE {2} = {3}", data.TableName, currDate, tableID, data.Rows[0][tableID]);
+            command.CommandText = delete;
             switch (command.ExecuteNonQuery())
             {
                 case 0:
@@ -98,16 +180,26 @@ namespace KomMee
 
         public bool Read(DataTable data)
         {
+            if (data.Rows.Count != 0)
+            { 
+                throw new Exception("The given DataTable must be empty!");
+            }
             SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
             SQLiteDataReader reader = null;
             string table = data.TableName, query = "", cols = "";
+            bool deleteDate = this.isDeletable(data.TableName);
 
             foreach (DataColumn dc in data.Columns)
             {
                 cols += dc.ColumnName + ", ";
             }
             cols = cols.Substring(0, (cols.Length - 2));
-            query = string.Format("SELECT {0} FROM {1} WHERE deleteDate ISNULL", cols, table);
+            query = string.Format("SELECT {0} FROM {1}", cols, table);
+            if (deleteDate)
+            {
+                query += "WHERE deleteDate ISNULL";
+            }
+            
             command.CommandText = query;
             reader = command.ExecuteReader();
 
@@ -169,12 +261,14 @@ namespace KomMee
             this.tableDefinitions.Add(Tables.SMSContact, "CREATE TABLE IF NOT EXISTS SMSContact(" +
                                                         "smsContactID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                         "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE CASCADE ON UPDATE CASCADE, " +
-                                                        "address TEXT NOT NULL);");
+                                                        "address TEXT NOT NULL," +
+                                                        "deleteDate TEXT DEFAULT NULL);");
 
             this.tableDefinitions.Add(Tables.EMailContact, "CREATE TABLE IF NOT EXISTS EMailContact(" +
                                                         "emailContactID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                         "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE CASCADE ON UPDATE CASCADE, " +
-                                                        "address TEXT NOT NULL);");
+                                                        "address TEXT NOT NULL," +
+                                                        "deleteDate TEXT DEFAULT NULL);");
 
             this.tableDefinitions.Add(Tables.EMail, "CREATE TABLE IF NOT EXISTS EMail(" +
                                                 "emailID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -203,19 +297,21 @@ namespace KomMee
             Contact, EMail, EMailContact, MessageType, Setting, SMS, SMSContact
         }
 
-        private int getCurrentTimestamp()
+        private bool isDeletable(string tableName)
         {
-            int currentTimestamp = 0;
-            DateTime now, unixTime;
-            TimeSpan span;
-
-            now = DateTime.Now;
-            unixTime = new DateTime(1970,1,1);
-            span = new TimeSpan(now.Ticks - unixTime.Ticks);
-
-            currentTimestamp = (int)(span.TotalSeconds);
-
-            return currentTimestamp;
+            SQLiteCommand command = new SQLiteCommand(string.Format("pragma table_info({0})", tableName), this.sqliteConnection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            { 
+                while (reader.Read())
+                {
+                    if (reader.GetString(reader.GetOrdinal("name")) == "deletDate")
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }
