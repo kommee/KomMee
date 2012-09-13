@@ -38,21 +38,31 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="AddressBook.cs" />
-    <Compile Include="AddressBookView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Contact.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="IViewContainer.cs" />
     <Compile Include="KeyboardButtons.cs" />
     <Compile Include="KeyboardViewEventArgs.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="MessageList.cs" />
+    <Compile Include="MessageListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MessageListView.Designer.cs">
+      <DependentUpon>MessageListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="UctrlDialog.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UctrlDialog.Designer.cs">
       <DependentUpon>UctrlDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdressBookView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdressBookView.Designer.cs">
+      <DependentUpon>AdressBookView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

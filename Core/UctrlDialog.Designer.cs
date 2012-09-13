@@ -38,6 +38,7 @@
             this.lbChoice.Name = "lbChoice";
             this.lbChoice.Size = new System.Drawing.Size(120, 95);
             this.lbChoice.TabIndex = 0;
+            this.lbChoice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lbChoice_KeyPress);
             // 
             // UctrlDialog
             // 

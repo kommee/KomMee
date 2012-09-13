@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace KomMee
 {
@@ -33,7 +34,7 @@ namespace KomMee
 
         private Contact contact;
 
-        internal Contact Contact
+        public Contact Contact
         {
             get { return contact; }
             set { contact = value; }
@@ -58,10 +59,18 @@ namespace KomMee
         public abstract bool send();
 
         // Muss vermutlich in ein Interface
-        //public abstract static List<Message> recieve();
+        //public virtual static List<Message> recieve()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public Message(object data)
         {
+        }
+
+        public Message(DataTable data)
+        {
+
         }
     }
 }

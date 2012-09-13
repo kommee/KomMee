@@ -31,32 +31,17 @@ namespace KomMee
         /// </summary>
         public event EventHandler Canceled;
 
-        /// <summary>
-        /// Eventhandler for pressing the up-key.
-        /// </summary>
         public event EventHandler UpPressed;
-
-        /// <summary>
-        /// Eventhandler for pressing the Down-key.
-        /// </summary>
+        
         public event EventHandler DownPressed;
-
-        /// <summary>
-        /// Eventhandler for pressing the up-key.
-        /// </summary>
-        public event EventHandler LeftPressed;
-
-        /// <summary>
-        /// Eventhandler for pressing the up-key.
-        /// </summary>
+        
         public event EventHandler RightPressed;
 
-        protected virtual void OnRight(Button sender, KeyboardViewEventArgs e)
+        public event EventHandler LeftPressed;
+
+        public virtual void OnUpPress(Button sender, KeyboardViewEventArgs e)
         {
-            if (RightPressed != null)
-            {
-                RightPressed(this, e);
-            }
+            this.up();
         }
 
         /// <summary>
@@ -64,7 +49,7 @@ namespace KomMee
         /// </summary>
         /// <param name="sender">Button which was applied</param>
         /// <param name="e">The specific button which was applied</param>
-        protected virtual void OnApply(Button sender, KeyboardViewEventArgs e)
+        public virtual void OnApply(Button sender, KeyboardViewEventArgs e)
         {
             if (Applied != null)
             {
@@ -77,7 +62,7 @@ namespace KomMee
         /// </summary>
         /// <param name="sender">Button which was canceled</param>
         /// <param name="e">The specific button which was canceled</param>
-        protected virtual void OnCancel(Button sender, KeyboardViewEventArgs e)
+        public virtual void OnCancel(Button sender, KeyboardViewEventArgs e)
         {
             if (Canceled != null)
             {
@@ -114,5 +99,10 @@ namespace KomMee
         /// This procedure is called when the user pressed the "Cancel" button.
         /// </summary>
         public virtual void cancel() { }
+
+        private void lbChoice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
     }
 }

@@ -84,7 +84,10 @@ namespace KomMee
         /// <returns>contact-object</returns>
         public Contact getContact(int contactID)
         {
-            return this.listOfContacts[contactID];
+            if (this.listOfContacts[contactID] != null)
+                return this.listOfContacts[contactID];
+            else
+                return null;
         }
 
         /// <summary>
