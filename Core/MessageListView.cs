@@ -15,7 +15,7 @@ namespace KomMee
             InitializeComponent();
             MessageList msgList = MessageList.getInstance();
 
-            // Add the Messages to list
+            // Add the Messages to list 
             foreach(Message msg in msgList)
             {
                 this.LbChoice.Items.Add(msg);

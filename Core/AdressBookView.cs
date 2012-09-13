@@ -14,7 +14,7 @@ namespace KomMee
             :base()
         {
             InitializeComponent();
-            // Load addressbook
+            // Load addressbook 
             AddressBook adrBook = AddressBook.getInstance();
 
             // Add Contact to the Listbox

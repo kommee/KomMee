@@ -23,7 +23,6 @@ namespace KomMee
         private SQL()
         {
             this.sqliteConnection = new SQLiteConnection("Data Source=" + this.pathOfDatabase);
-            Console.WriteLine("Im Konstruktor!!!");
             this.sqliteConnection.Open();
 
             this.initTableDefs();
@@ -88,11 +87,11 @@ namespace KomMee
             switch (command.ExecuteNonQuery())
             {
                 case 0:
-                    throw new Exception("Error deleting entry in table {0}! 0 Rows affected!",);
+                    throw new Exception(string.Format("Error deleting entry in table {0}! 0 Rows affected!", data.TableName));
                 case 1:
                     break;
                 default:
-                    throw new Exception("Error deleting entry in table {0}! More than one row affected!",);
+                    throw new Exception(string.Format("Error deleting entry in table {0}! More than one row affected!", data.TableName));
             }
             return false;
         }
