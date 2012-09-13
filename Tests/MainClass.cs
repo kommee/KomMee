@@ -13,12 +13,19 @@ namespace KomMee_Tests
         [STAThread]
         public static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            // AddressbookView Test
-            //Application.Run(new AdressBookUCtrl());
-            // MessageListView Test
-            Application.Run(new MessageListViewTest());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                // AddressbookView Test
+                //Application.Run(new AdressBookUCtrl());
+                // MessageListView Test
+                Application.Run(new MessageListViewTest());
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message,"ERROR",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
     }
 }
