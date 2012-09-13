@@ -54,6 +54,10 @@
     <ApplicationIcon>KomMee.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{D7CEC472-4566-4A8E-9928-11034A8160F3}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Database\Database.csproj">
       <Project>{386EB105-83CE-410D-B409-6E59B81794F5}</Project>
       <Name>Database</Name>
@@ -65,10 +69,6 @@
     <ProjectReference Include="..\Keyboard\Keyboard.csproj">
       <Project>{25AC93A4-1D07-4088-B7C8-B168845563E2}</Project>
       <Name>Keyboard</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{D7CEC472-4566-4A8E-9928-11034A8160F3}</Project>
-      <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\SMS\SMS.csproj">
       <Project>{1EC218FF-64B9-463C-A64F-86D2943CFCE5}</Project>

@@ -15,11 +15,27 @@ namespace KomMee_Tests
         {
             InitializeComponent();
             // Just for debuggin
-            DataTable data;
-            //MessageList msgList = KomMee.M
-            for (int i = 0; i <= 3; i++)
+            DataTable data = new DataTable();
+            data.Columns.Add("smsID", typeof(int));
+            data.Columns.Add("text", typeof(string));
+            data.Columns.Add("senderAddress", typeof(string));
+            data.Columns.Add("contactID", typeof(int));
+            data.Columns.Add("isSent", typeof(int));
+            data.Columns.Add("isRead", typeof(int));
+
+
+
+            data.Rows.Add(0, "bla hkjsdf ansdljsd nlkddmsm", "bla@example.com", 12, 0, 1);
+            MessageList msgList = MessageList.getInstance();
+
+            for (int i = 0; i < data.Rows.Count; i++)
             {
-                //this.Add(new )
+                msgList.Add(new SMSMessage(data));
+            }
+
+            foreach (SMSMessage sms in msgList)
+            {
+                this.messageListView1.LbChoice.Items.Add(sms);
             }
         }
 

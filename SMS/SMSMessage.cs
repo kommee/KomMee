@@ -18,8 +18,8 @@ namespace KomMee
         {
             AddressBook adr = AddressBook.getInstance();
             this.Text = data.Rows[0]["text"].ToString();
-            this.Read = (bool)data.Rows[0]["isRead"];
-            this.Sent = (bool)data.Rows[0]["isSent"];
+            this.Read = Convert.ToBoolean(data.Rows[0]["isRead"]);
+            this.Sent = Convert.ToBoolean(data.Rows[0]["isSent"]);
             this.Sender = data.Rows[0]["senderAddress"].ToString();
             this.Contact = adr.getContact((int)data.Rows[0]["contactID"]);
         }
@@ -27,6 +27,12 @@ namespace KomMee
         public override bool send()
         {
             throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            string shown_text = string.Format("{0} - {1}",this.Sender,this.Text);
+            return shown_text;
         }
     }
 }
