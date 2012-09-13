@@ -84,7 +84,7 @@ namespace KomMee
         /// <returns>contact-object</returns>
         public Contact getContact(int contactID)
         {
-            if (this.listOfContacts[contactID] != null)
+            if (this.listOfContacts.ContainsKey(contactID))
                 return this.listOfContacts[contactID];
             else
                 return null;

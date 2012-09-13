@@ -23,7 +23,7 @@ namespace KomMee
         }
 
         /// <summary>
-        /// Eventhandler for applying.
+        /// Eventhandler for applying. 
         /// </summary>
         public event EventHandler Applied;
         /// <summary>

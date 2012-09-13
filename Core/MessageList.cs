@@ -6,7 +6,7 @@ using System.Data;
 
 namespace KomMee
 {
-    class MessageList : List<Message>
+    public class MessageList : List<Message>
     {
         private static MessageList msgListInstance = new MessageList();
 

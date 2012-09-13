@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace KomMee
 {
     /// <summary>
-    /// Empty keyboardlayout for the input device.
+    /// Empty keyboardlayout for the input device. 
     /// </summary>
     public partial class KeyboardView : UserControl
     {

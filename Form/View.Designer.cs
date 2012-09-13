@@ -2,6 +2,9 @@
 {
     partial class View
     {
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private ABCDEFKeyboardView abcdefKeyboardView1;
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -77,8 +80,5 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private ABCDEFKeyboardView abcdefKeyboardView1;
     }
 }
