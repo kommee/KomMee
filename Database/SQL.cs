@@ -79,11 +79,21 @@ namespace KomMee
         public bool Delete(DataTable data)
         {
             SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
-            string tableID = data.TableName + "ID", insert = null;
-            int currTimestamp = this.getCurrentTimestamp();
+            string tableID = data.TableName + "ID", insert = null, currDate = null ;
+            DataRow row = data.Rows[0];
+            currDate = DateTime.Now.ToString("yyyyMMDD");
 
-
-            insert = string.Format("")
+            insert = string.Format("UPDATE {0} SET deleteDate = {1} WHERE {2} = {3}", data.TableName, currDate, tableID, row[tableID]);
+            command.CommandText = insert;
+            switch (command.ExecuteNonQuery())
+            {
+                case 0:
+                    throw new Exception("Error deleting entry in table {0}! 0 Rows affected!",);
+                case 1:
+                    break;
+                default:
+                    throw new Exception("Error deleting entry in table {0}! More than one row affected!",);
+            }
             return false;
         }
 
@@ -117,6 +127,10 @@ namespace KomMee
                         else if(col.GetType().Equals(typeof(string)))
                         {
                             row[col.ColumnName] = reader.GetString(reader.GetOrdinal(col.ColumnName));
+                        }
+                        else if(col.GetType().Equals(typeof(bool)))
+                        {
+                            row[col.ColumnName] = Convert.ToBoolean(reader.GetInt32(reader.GetOrdinal(col.ColumnName)));
                         }
                         else
                         {
@@ -171,7 +185,8 @@ namespace KomMee
                                                 "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE SET NULL ON UPDATE CASCADE, " +
                                                 "isSent INTEGER NOT NULL DEFAULT 0, " +
                                                 "isRead INTEGER NOT NULL DEFAULT 0, " +
-                                                "deleteDate INTEGER DEFAULT NULL);");
+                                                "deleteDate TEXTs DEFAULT NULL," +
+                                                "creationDate TEXT NOT NULL);");
 
             this.tableDefinitions.Add(Tables.SMS, "CREATE TABLE IF NOT EXISTS SMS(" +
                                                 "smsID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -180,25 +195,8 @@ namespace KomMee
                                                 "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE SET NULL ON UPDATE CASCADE, " +
                                                 "isSent INTEGER NOT NULL DEFAULT 0, " +
                                                 "isRead INTEGER NOT NULL DEFAULT 0, " +
-                                                "deleteDate INTEGER DEFAULT NULL);");
-        }
-
-        private int boolToInt(Boolean toConvert)
-        {
-            if (toConvert)
-            {
-                return 1;
-            }
-            else return 0;
-        }
-
-        private bool intToBool(int toConvert)
-        {
-            if (toConvert > 0)
-            {
-                return true;
-            }
-            return false;
+                                                "deleteDate TEXT DEFAULT NULL," +
+                                                "creationDate TEXT NOT NULL);");
         }
 
         private enum Tables
