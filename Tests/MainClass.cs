@@ -15,7 +15,10 @@ namespace KomMee_Tests
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AdressBookUCtrl());
+            // AddressbookView Test
+            //Application.Run(new AdressBookUCtrl());
+            // MessageListView Test
+            Application.Run(new MessageListViewTest());
         }
     }
 }
