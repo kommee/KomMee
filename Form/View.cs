@@ -28,12 +28,18 @@ namespace KomMee
             set { addressBook = value; }
         }
 
+        internal KeyboardView KeyboardView
+        {
+            get { return (KeyboardView)this.abcdefKeyboardView1;  }
+        }
+
         public View()
         {
             InitializeComponent();
 
             //init Input
-            Input.init();
+            Settings.init();
+            Input.init(this);
         }
 
         [STAThread]

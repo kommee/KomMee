@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SQLite;
 using System.Data;
+using System.IO;
 
 namespace KomMee
 {
@@ -18,51 +19,28 @@ namespace KomMee
         }
         private SQLiteConnection sqliteConnection;
         private static SQL sqlInstance = null;
-        private Dictionary<Tables, string> tableDefinitions = new Dictionary<Tables, string>();
+        private ArrayList tableDefinitions = new ArrayList();
         
         private SQL()
         {
+            bool needToInitialize = !File.Exists(this.pathOfDatabase);
             Console.WriteLine("Im Konstruktor!");
             this.sqliteConnection = new SQLiteConnection("Data Source=" + this.pathOfDatabase);
             this.sqliteConnection.Open();
 
             this.initTableDefs();
 
+            if (needToInitialize)
+            {
+                SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
 
-            SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
-
-            command.CommandText = this.tableDefinitions[Tables.MessageType];
-            command.ExecuteNonQuery();
-            Console.WriteLine("MessageType created!");
-
-
-            command.CommandText = this.tableDefinitions[Tables.Setting];
-            command.ExecuteNonQuery();
-            Console.WriteLine("Setting created!");
-
-            command.CommandText = this.tableDefinitions[Tables.Contact];
-            command.ExecuteNonQuery();
-            Console.WriteLine("Contact created!");
-
-            command.CommandText = this.tableDefinitions[Tables.SMSContact];
-            command.ExecuteNonQuery();
-            Console.WriteLine("SMSContact created!");
-
-            command.CommandText = this.tableDefinitions[Tables.EMailContact];
-            command.ExecuteNonQuery();
-            Console.WriteLine("EMailContact created!");
-
-            command.CommandText = this.tableDefinitions[Tables.SMS];
-            command.ExecuteNonQuery();
-            Console.WriteLine("SMS created!");
-
-            command.CommandText = this.tableDefinitions[Tables.EMail];
-            command.ExecuteNonQuery();
-        }
-
-        ~SQL()
-        {
-            this.sqliteConnection.Close();
+                foreach (string sqlCommand in this.tableDefinitions)
+                {
+                    command.CommandText = sqlCommand;
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("SQL executed: " + sqlCommand);
+                }
+            }
         }
 
         public static SQL getInstance()
@@ -125,7 +103,7 @@ namespace KomMee
             }
         }
 
-        public bool Update(DataTable data)
+        public void Update(DataTable data)
         {
             if (data.Rows.Count != 1)
             {
@@ -158,7 +136,6 @@ namespace KomMee
             update = string.Format("UPDATE {0} SET {1] WHERE {2} = {3}", data.TableName, set, tableID, data.Rows[0][tableID]);
             command.CommandText = update;
             command.ExecuteNonQuery();
-            return false;
         }
 
         public bool Delete(DataTable data)
@@ -222,15 +199,15 @@ namespace KomMee
                     row = data.NewRow();
                     foreach(DataColumn col in data.Columns)
                     {
-                        if(col.GetType().Equals(typeof(int)))
+                        if (col.DataType.Equals(typeof(int)))
                         {
                             row[col.ColumnName] = reader.GetInt32(reader.GetOrdinal(col.ColumnName));
                         }
-                        else if(col.GetType().Equals(typeof(string)))
+                        else if(col.DataType.Equals(typeof(string)))
                         {
                             row[col.ColumnName] = reader.GetString(reader.GetOrdinal(col.ColumnName));
                         }
-                        else if(col.GetType().Equals(typeof(bool)))
+                        else if (col.DataType.Equals(typeof(bool)))
                         {
                             row[col.ColumnName] = Convert.ToBoolean(reader.GetInt32(reader.GetOrdinal(col.ColumnName)));
                         }
@@ -251,17 +228,18 @@ namespace KomMee
 
         private void initTableDefs()
         {
-            this.tableDefinitions.Add(Tables.MessageType, "CREATE TABLE IF NOT EXISTS MessageType(" +
+            ////// CREATE TABLES \\\\\\
+            this.tableDefinitions.Add("CREATE TABLE IF NOT EXISTS MessageType(" +
                                                         "messageTypeID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                         "typeName TEXT NOT NULL, " +
                                                         "className TEXT NOT NULL);");
 
-
-            this.tableDefinitions.Add(Tables.Setting, "CREATE TABLE IF NOT EXISTS Setting(" +
-                                                    "key TEXT PRIMARY KEY, " +
+            this.tableDefinitions.Add("CREATE TABLE IF NOT EXISTS Setting(" +
+                                                    "settingID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                    "key TEXT NOT NULL, " +
                                                     "value TEXT NOT NULL);");
 
-            this.tableDefinitions.Add(Tables.Contact, "CREATE TABLE IF NOT EXISTS Contact(" +
+            this.tableDefinitions.Add("CREATE TABLE IF NOT EXISTS Contact(" +
                                                     "contactID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                     "firstName TEXT NOT NULL, " +
                                                     "lastName TEXT NOT NULL, " +
@@ -269,19 +247,19 @@ namespace KomMee
                                                     "messageTypeID INTEGER NOT NULL REFERENCES MessageType(messageTypeID) ON DELETE SET NULL ON UPDATE CASCADE, " +
                                                     "image BLOB DEFAULT NULL);");
 
-            this.tableDefinitions.Add(Tables.SMSContact, "CREATE TABLE IF NOT EXISTS SMSContact(" +
+            this.tableDefinitions.Add("CREATE TABLE IF NOT EXISTS SMSContact(" +
                                                         "smsContactID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                         "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE CASCADE ON UPDATE CASCADE, " +
                                                         "address TEXT NOT NULL," +
                                                         "deleteDate TEXT DEFAULT NULL);");
 
-            this.tableDefinitions.Add(Tables.EMailContact, "CREATE TABLE IF NOT EXISTS EMailContact(" +
+            this.tableDefinitions.Add("CREATE TABLE IF NOT EXISTS EMailContact(" +
                                                         "emailContactID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                         "contactID INTEGER NOT NULL REFERENCES Contact(contactID) ON DELETE CASCADE ON UPDATE CASCADE, " +
                                                         "address TEXT NOT NULL," +
                                                         "deleteDate TEXT DEFAULT NULL);");
 
-            this.tableDefinitions.Add(Tables.EMail, "CREATE TABLE IF NOT EXISTS EMail(" +
+            this.tableDefinitions.Add("CREATE TABLE IF NOT EXISTS EMail(" +
                                                 "emailID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                 "subject TEXT NOT NULL DEFAULT \"\", " +
                                                 "text TEXT NOT NULL, " +
@@ -292,7 +270,7 @@ namespace KomMee
                                                 "deleteDate TEXTs DEFAULT NULL," +
                                                 "creationDate TEXT NOT NULL);");
 
-            this.tableDefinitions.Add(Tables.SMS, "CREATE TABLE IF NOT EXISTS SMS(" +
+            this.tableDefinitions.Add("CREATE TABLE IF NOT EXISTS SMS(" +
                                                 "smsID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                 "text TEXT NOT NULL, " +
                                                 "senderAddress TEXT NOT NULL, " +
@@ -301,11 +279,14 @@ namespace KomMee
                                                 "isRead INTEGER NOT NULL DEFAULT 0, " +
                                                 "deleteDate TEXT DEFAULT NULL," +
                                                 "creationDate TEXT NOT NULL);");
-        }
 
-        private enum Tables
-        {
-            Contact, EMail, EMailContact, MessageType, Setting, SMS, SMSContact
+            ////// INSERT DEFAULT VALUES \\\\\\
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Up\", \"38\");");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Down\", \"40\");");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Left\", \"37\");");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Right\", \"39\");");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Apply\", \"13\");");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Cancel\", \"32\");");
         }
 
         private bool isDeletable(string tableName)

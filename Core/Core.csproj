@@ -39,7 +39,6 @@
     <Compile Include="Address.cs" />
     <Compile Include="AddressBook.cs" />
     <Compile Include="Contact.cs" />
-    <Compile Include="Input.cs" />
     <Compile Include="IViewContainer.cs" />
     <Compile Include="KeyboardButtons.cs" />
     <Compile Include="KeyboardViewEventArgs.cs" />
