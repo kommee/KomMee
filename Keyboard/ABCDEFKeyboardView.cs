@@ -9,7 +9,7 @@ using System.Windows.Forms;
 namespace KomMee
 {
     /// <summary>
-    /// Simple alphabetic ordered keyboard layout
+    /// Simple alphabetic ordered keyboard layout 
     /// </summary>
     public partial class ABCDEFKeyboardView : KomMee.KeyboardView
     {

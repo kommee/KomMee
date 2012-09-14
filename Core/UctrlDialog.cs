@@ -9,22 +9,21 @@ using System.Windows.Forms;
 
 namespace KomMee
 {
-    /// <summary>
-    /// Empty keyboardlayout for the input device. 
-    /// </summary>
-    public partial class KeyboardView : UserControl
+    public partial class UctrlDialog : UserControl
     {
-        /// <summary>
-        /// Matrix, in which all buttons are saved.
-        /// </summary>
-        protected Button[,] keyboardMatrix = null;
-        /// <summary>
-        /// Current focused button position in the matrix.
-        /// </summary>
-        protected Point focusPosition = new Point(0,0);
+
+        
+
+        public UctrlDialog()
+        {
+            InitializeComponent();
+            // Same size as the Usercontrol
+            this.lbChoice.Width = this.Width;
+            this.lbChoice.Height = this.Height;
+        }
 
         /// <summary>
-        /// Eventhandler for applying.
+        /// Eventhandler for applying. 
         /// </summary>
         public event EventHandler Applied;
         /// <summary>
@@ -32,12 +31,25 @@ namespace KomMee
         /// </summary>
         public event EventHandler Canceled;
 
+        public event EventHandler UpPressed;
+        
+        public event EventHandler DownPressed;
+        
+        public event EventHandler RightPressed;
+
+        public event EventHandler LeftPressed;
+
+        public virtual void OnUpPress(Button sender, KeyboardViewEventArgs e)
+        {
+            this.up();
+        }
+
         /// <summary>
         /// Is raised when the apply-button was pushed.
         /// </summary>
         /// <param name="sender">Button which was applied</param>
         /// <param name="e">The specific button which was applied</param>
-        protected virtual void OnApply(Button sender, KeyboardViewEventArgs e)
+        public virtual void OnApply(Button sender, KeyboardViewEventArgs e)
         {
             if (Applied != null)
             {
@@ -50,29 +62,18 @@ namespace KomMee
         /// </summary>
         /// <param name="sender">Button which was canceled</param>
         /// <param name="e">The specific button which was canceled</param>
-        protected virtual void OnCancel(Button sender, KeyboardViewEventArgs e)
+        public virtual void OnCancel(Button sender, KeyboardViewEventArgs e)
         {
             if (Canceled != null)
             {
                 Canceled(this, e);
             }
         }
-        
-
-        public KeyboardView()
-        {
-            InitializeComponent();
-        }
-
-        /// <summary>
-        /// This procedure should be called in the constructor of your class. In it you can set up attributes like the KeyboardMatrix.
-        /// </summary>
-        protected virtual void initKeyboardMatrix() { }
 
         /// <summary>
         /// This procedure is called when the user pressed the "up" button. You should update the selection.
         /// </summary>
-        public virtual void up(){}
+        public virtual void up() { }
 
         /// <summary>
         /// This procedure is called when the user pressed the "down" button. You should update the selection.
@@ -92,11 +93,16 @@ namespace KomMee
         /// <summary>
         /// This procedure is called when the user pressed the "Apply" button. You should raise here some events.
         /// </summary>
-        public virtual void apply() {  }
+        public virtual void apply() { }
 
         /// <summary>
         /// This procedure is called when the user pressed the "Cancel" button.
         /// </summary>
         public virtual void cancel() { }
+
+        private void lbChoice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
     }
 }

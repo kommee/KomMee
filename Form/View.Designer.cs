@@ -2,6 +2,9 @@
 {
     partial class View
     {
+
+
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -76,6 +79,7 @@
             this.abcdefKeyboardView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.abcdefKeyboardView1.Location = new System.Drawing.Point(3, 3);
             this.abcdefKeyboardView1.Location = new System.Drawing.Point(18, 3);
             this.abcdefKeyboardView1.Name = "abcdefKeyboardView1";
             this.abcdefKeyboardView1.Size = new System.Drawing.Size(760, 265);

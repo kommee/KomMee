@@ -44,7 +44,26 @@
     <Compile Include="KeyboardButtons.cs" />
     <Compile Include="KeyboardViewEventArgs.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="MessageList.cs" />
+    <Compile Include="MessageListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MessageListView.Designer.cs">
+      <DependentUpon>MessageListView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="UctrlDialog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UctrlDialog.Designer.cs">
+      <DependentUpon>UctrlDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdressBookView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdressBookView.Designer.cs">
+      <DependentUpon>AdressBookView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -61,6 +80,11 @@
       <Project>{386EB105-83CE-410D-B409-6E59B81794F5}</Project>
       <Name>Database</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UctrlDialog.resx">
+      <DependentUpon>UctrlDialog.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -33,16 +33,44 @@ namespace KomMee
 
         private AddressBook()
         {
+            this.listOfContacts = new Dictionary<int, Contact>();
             // connect to database
-            SQL sqlInstance = SQL.getInstance();
-            // Get all contacts
-            //List<Hashtable> data = sqlInstance.Read(Tables.Contact);
-
-            // fill the Addressbook
-          /*  foreach (Hashtable table in data)
+            try
             {
-                this.listOfContacts.Add((int)table["contactID"], new Contact((int)table["contactID"], (string)table["firstname"], (string)table["lastname"]));
-            }*/
+                SQL sqlInstance = SQL.getInstance();
+                // Get all contacts
+                System.Data.DataTable data = new System.Data.DataTable("Contact");
+                data.Columns.Add("contactID", typeof(int));
+                data.Columns.Add("firstname", typeof(string));
+                data.Columns.Add("lastname", typeof(string));
+                data.Columns.Add("messageTypeId", typeof(int));
+                if (sqlInstance.Read(data))
+                {
+                    for (int i = 0; i < data.Rows.Count; i++)
+                    {
+                        this.listOfContacts.Add(int.Parse(data.Rows[i]["contactID"].ToString()), new Contact(int.Parse(data.Rows[i]["contactID"].ToString()), data.Rows[i]["firstname"].ToString(), data.Rows[i]["lastname"].ToString()));
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            // fill the Addressbook
+            int j = 0;
+            do
+            {
+                try
+                {
+                    this.listOfContacts.Add(j, new Contact("Harald_" + j.ToString(), "Petersen"));
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
+                j++;
+            } while (j <= 3);
         }
 
         /// <summary>
@@ -69,7 +97,10 @@ namespace KomMee
         /// <returns>contact-object</returns>
         public Contact getContact(int contactID)
         {
-            return this.listOfContacts[contactID];
+            if (this.listOfContacts.ContainsKey(contactID))
+                return this.listOfContacts[contactID];
+            else
+                return null;
         }
 
         /// <summary>

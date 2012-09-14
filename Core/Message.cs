@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace KomMee
 {
     public abstract class Message
     {
+        protected int id;
+
+        public int Id
+        {
+            get { return id; }
+        }
+
         private string text;
 
         public string Text
@@ -28,12 +36,12 @@ namespace KomMee
         public string Sender
         {
             get { return sender; }
-            set { sender = value; }
+            set { sender = this.validateSender(value); }
         }
 
         private Contact contact;
 
-        internal Contact Contact
+        public Contact Contact
         {
             get { return contact; }
             set { contact = value; }
@@ -55,13 +63,31 @@ namespace KomMee
             set { sent = value; }
         }
 
+        private DateTime creationDate;
+
+        public DateTime CreationDate
+        {
+            get { return creationDate; }
+            set { creationDate = value; }
+        }
+
         public abstract bool send();
 
         // Muss vermutlich in ein Interface
-        //public abstract static List<Message> recieve();
+        //public virtual static List<Message> recieve()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public Message(object data)
         {
         }
+
+        public Message(DataTable data)
+        {
+
+        }
+
+        protected abstract string validateSender(string sender);
     }
 }

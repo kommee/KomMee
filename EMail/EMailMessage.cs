@@ -23,5 +23,10 @@ namespace KomMee
         {
             throw new NotImplementedException();
         }
+
+        protected override string validateSender(string sender)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

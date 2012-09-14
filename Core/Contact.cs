@@ -97,8 +97,8 @@ namespace KomMee
                 throw new Exception("The lastname is empty.");
             }
 
-            this.firstname = pFirstname.ToUpperInvariant();
-            this.lastname = pLastname.ToUpperInvariant();
+            this.firstname = pFirstname;
+            this.lastname = pLastname;
         }
 
         /// <summary>
@@ -179,6 +179,11 @@ namespace KomMee
 
             //return sqlInstance.Delete(Tables.Contact, this); ;
             return false;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}",this.Lastname, this.Firstname);
         }
     }
 }

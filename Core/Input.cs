@@ -2,41 +2,81 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace KomMee
 {
-    public class Input
+    public static class Input
     {
-        private Dictionary<int, int> keymapping;
+        private const int kmUp = 0;
+        private const int kmDown = 1;
+        private const int kmLeft = 2;
+        private const int kmRight = 3;
+        private const int kmApply = 4;
+        private const int kmCancel = 5;
 
-        public Dictionary<int, int> Keymapping
+        private static Dictionary<int, int> keymapping;
+
+        public static void init()
         {
-            get { return keymapping; }
-            set { keymapping = value; }
+            Input.keymapping = new Dictionary<int, int>();
+            
         }
 
-        public void up()
-        { 
-        }
-
-        public void down()
-        {
-        }
-
-        public void left()
-        {
-        }
-
-        public void right()
+        public static void up()
         {
         }
 
-        public void apply()
+        public static void down()
         {
         }
 
-        public void cancel()
+        public static void left()
         {
+        }
+
+        public static void right()
+        {
+        }
+
+        public static void apply()
+        {
+        }
+
+        public static void cancel()
+        {
+        }
+
+        public static void handleKeyboardEvent(int keyValue)
+        {
+            if (Input.keymapping.ContainsKey(keyValue))
+            {
+                int keymappingValue = Input.keymapping[keyValue];
+                switch (keymappingValue)
+                {
+                    case Input.kmUp:
+                        Input.up();
+                        break;
+                    case Input.kmDown:
+                        Input.down();
+                        break;
+                    case Input.kmLeft:
+                        Input.left();
+                        break;
+                    case Input.kmRight:
+                        Input.right();
+                        break;
+                    case Input.kmApply:
+                        Input.apply();
+                        break;
+                    case Input.kmCancel:
+                        Input.cancel();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }

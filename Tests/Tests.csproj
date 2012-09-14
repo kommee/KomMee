@@ -35,6 +35,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="MainClass.cs" />
+    <Compile Include="MessageListViewTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MessageListViewTest.Designer.cs">
+      <DependentUpon>MessageListViewTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="SQLTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -43,12 +49,16 @@
       <HintPath>..\Database\SQLite.Designer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite">
       <HintPath>..\Database\System.Data.SQLite.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.SQLite.Linq">
       <HintPath>..\Database\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -80,6 +90,11 @@
     <Content Include="nunit.framework.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MessageListViewTest.resx">
+      <DependentUpon>MessageListViewTest.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
