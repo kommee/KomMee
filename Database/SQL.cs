@@ -17,11 +17,12 @@ namespace KomMee
             get { return pathOfDatabase; }
         }
         private SQLiteConnection sqliteConnection;
-        private static SQL sqlInstance = new SQL();
+        private static SQL sqlInstance = null;
         private Dictionary<Tables, string> tableDefinitions = new Dictionary<Tables, string>();
         
         private SQL()
         {
+            Console.WriteLine("Im Konstruktor!");
             this.sqliteConnection = new SQLiteConnection("Data Source=" + this.pathOfDatabase);
             this.sqliteConnection.Open();
 
@@ -32,22 +33,28 @@ namespace KomMee
 
             command.CommandText = this.tableDefinitions[Tables.MessageType];
             command.ExecuteNonQuery();
+            Console.WriteLine("MessageType created!");
 
 
             command.CommandText = this.tableDefinitions[Tables.Setting];
             command.ExecuteNonQuery();
+            Console.WriteLine("Setting created!");
 
             command.CommandText = this.tableDefinitions[Tables.Contact];
             command.ExecuteNonQuery();
+            Console.WriteLine("Contact created!");
 
             command.CommandText = this.tableDefinitions[Tables.SMSContact];
             command.ExecuteNonQuery();
+            Console.WriteLine("SMSContact created!");
 
             command.CommandText = this.tableDefinitions[Tables.EMailContact];
             command.ExecuteNonQuery();
+            Console.WriteLine("EMailContact created!");
 
             command.CommandText = this.tableDefinitions[Tables.SMS];
             command.ExecuteNonQuery();
+            Console.WriteLine("SMS created!");
 
             command.CommandText = this.tableDefinitions[Tables.EMail];
             command.ExecuteNonQuery();
@@ -60,7 +67,11 @@ namespace KomMee
 
         public static SQL getInstance()
         {
-            return sqlInstance;
+            if(SQL.sqlInstance == null)
+            {
+                SQL.sqlInstance = new SQL();
+            }
+            return SQL.sqlInstance;
         }
 
         public int Insert(DataTable data)
