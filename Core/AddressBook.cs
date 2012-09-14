@@ -54,7 +54,7 @@ namespace KomMee
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                throw e;
             }
             // fill the Addressbook
             int j = 0;
