@@ -37,20 +37,20 @@ namespace KomMee
             // connect to database
             try
             {
-                SQL sqlInstance = SQL.getInstance();
-                // Get all contacts
-                System.Data.DataTable data = new System.Data.DataTable("Contact");
-                data.Columns.Add("contactID", typeof(int));
-                data.Columns.Add("firstname", typeof(string));
-                data.Columns.Add("lastname", typeof(string));
-                data.Columns.Add("messageTypeId", typeof(int));
-                if (sqlInstance.Read(data))
-                {
-                    for (int i = 0; i < data.Rows.Count; i++)
-                    {
-                        this.listOfContacts.Add(int.Parse(data.Rows[i]["contactID"].ToString()), new Contact(int.Parse(data.Rows[i]["contactID"].ToString()), data.Rows[i]["firstname"].ToString(), data.Rows[i]["lastname"].ToString()));
-                    }
-                }
+                //SQL sqlInstance = SQL.getInstance();
+                //// Get all contacts
+                //System.Data.DataTable data = new System.Data.DataTable("Contact");
+                //data.Columns.Add("contactID", typeof(int));
+                //data.Columns.Add("firstname", typeof(string));
+                //data.Columns.Add("lastname", typeof(string));
+                //data.Columns.Add("messageTypeId", typeof(int));
+                //if (sqlInstance.Read(data))
+                //{
+                //    for (int i = 0; i < data.Rows.Count; i++)
+                //    {
+                //        this.listOfContacts.Add(int.Parse(data.Rows[i]["contactID"].ToString()), new Contact(int.Parse(data.Rows[i]["contactID"].ToString()), data.Rows[i]["firstname"].ToString(), data.Rows[i]["lastname"].ToString()));
+                //    }
+                //}
             }
             catch (Exception e)
             {

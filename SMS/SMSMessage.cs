@@ -53,5 +53,10 @@ namespace KomMee
                 return "";
             }
         }
+
+        public static void receive()
+        {
+
+        }
     }
 }

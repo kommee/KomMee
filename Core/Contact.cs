@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using System.Data;
 
 namespace KomMee
 {
@@ -107,15 +108,24 @@ namespace KomMee
         /// <param name="pId">The contat-ID</param>
         /// <param name="pFirstname">The firstname of a contact</param>
         /// <param name="pLastname">The lastname of a contact</param>
-        public Contact(int pId, string pFirstname, string pLastname)
-            : this(pFirstname,pLastname)
+        public Contact(DataRow data)
         {
-            if (pId == 0)
+            this.id = int.Parse(data["contactID"].ToString());
+            this.Firstname = data["firstName"].ToString();
+            this.Lastname = data["lastName"].ToString();
+            SQL sqlInstance = SQL.getInstance();
+            DataTable messageTypeData = new DataTable("MessageType");
+            messageTypeData.Columns.Add("messageTypeID",typeof(int));
+            messageTypeData.Columns.Add("typeName", typeof(string));
+            messageTypeData.Columns.Add("className", typeof(string));
+            sqlInstance.Read(messageTypeData);
+            for (int i = 0; i < messageTypeData.Rows.Count; i++)
             {
-                throw new Exception("Contact-Id is empty.");
+                if (int.Parse(data["messageTypeID"].ToString()) == int.Parse(messageTypeData.Rows[i]["messageTypeID"].ToString()))
+                {
+                    
+                }
             }
-
-            this.id = pId;
         }
 
         /// <summary>
@@ -152,9 +162,14 @@ namespace KomMee
         private int Insert()
         {
             SQL sqlInstance = SQL.getInstance();
-            // BLA
-            //return sqlInstance.Insert(Tables.Contact,this);
-            return 0;
+            DataTable saveData = new DataTable("Contact");
+            saveData.Columns.Add("contactID", typeof(int));
+            saveData.Columns.Add("firstName", typeof(string));
+            saveData.Columns.Add("lastName", typeof(string));
+
+
+
+            return sqlInstance.Insert(saveData);
         }
 
         /// <summary>

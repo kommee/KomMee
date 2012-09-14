@@ -40,6 +40,10 @@
       <Project>{D7CEC472-4566-4A8E-9928-11034A8160F3}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Database\Database.csproj">
+      <Project>{386EB105-83CE-410D-B409-6E59B81794F5}</Project>
+      <Name>Database</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EMailAddress.cs" />
