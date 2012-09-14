@@ -35,8 +35,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(View));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.abcdefKeyboardView1 = new KomMee.ABCDEFKeyboardView();
             this.FocusResetTimer = new System.Windows.Forms.Timer(this.components);
+            this.abcdefKeyboardView1 = new KomMee.ABCDEFKeyboardView();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -74,22 +74,21 @@
             this.splitContainer2.TabIndex = 1;
             this.splitContainer2.TabStop = false;
             // 
+            // FocusResetTimer
+            // 
+            this.FocusResetTimer.Enabled = true;
+            this.FocusResetTimer.Tick += new System.EventHandler(this.FocusResetTimer_Tick);
+            // 
             // abcdefKeyboardView1
             // 
             this.abcdefKeyboardView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.abcdefKeyboardView1.Location = new System.Drawing.Point(3, 3);
             this.abcdefKeyboardView1.Location = new System.Drawing.Point(18, 3);
             this.abcdefKeyboardView1.Name = "abcdefKeyboardView1";
             this.abcdefKeyboardView1.Size = new System.Drawing.Size(760, 265);
             this.abcdefKeyboardView1.TabIndex = 0;
             this.abcdefKeyboardView1.TabStop = false;
-            // 
-            // FocusResetTimer
-            // 
-            this.FocusResetTimer.Enabled = true;
-            this.FocusResetTimer.Tick += new System.EventHandler(this.FocusResetTimer_Tick);
             // 
             // View
             // 

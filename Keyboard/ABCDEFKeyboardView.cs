@@ -270,7 +270,8 @@ namespace KomMee
                     newFocusPosition = new Point(newFocusPosition.X, ABCDEFKeyboardView.keyboardHeight - 1);
                 else
                     newFocusPosition = new Point(newFocusPosition.X, newFocusPosition.Y - 1);
-            } while (this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
+            } while (this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y] == null ||
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Enabled == false
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Visible == false);
 
@@ -289,7 +290,8 @@ namespace KomMee
                     newFocusPosition = new Point(newFocusPosition.X, 0);
                 else
                     newFocusPosition = new Point(newFocusPosition.X, newFocusPosition.Y + 1);
-            } while (this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
+            } while (this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y] == null ||
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Enabled == false
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Visible == false);
 
@@ -308,7 +310,8 @@ namespace KomMee
                     newFocusPosition = new Point(ABCDEFKeyboardView.keyboardWidth - 1, newFocusPosition.Y);
                 else
                     newFocusPosition = new Point(newFocusPosition.X - 1, newFocusPosition.Y);
-            } while (this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
+            } while (this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y] == null ||
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Enabled == false
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Visible == false);
 
@@ -327,7 +330,8 @@ namespace KomMee
                     newFocusPosition = new Point(0, newFocusPosition.Y);
                 else
                     newFocusPosition = new Point(newFocusPosition.X + 1, newFocusPosition.Y);
-            } while (this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
+            } while (this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y] == null ||
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Enabled == false
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Visible == false);
 

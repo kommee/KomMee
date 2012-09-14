@@ -20,7 +20,10 @@ namespace KomMee
             this.command = new SQLiteCommand();
 
             //Testdaten eintragen
-            command.CommandText = "";
+            command.CommandText = "CREATE TABLE testTable(testTableID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                                            "testName TEXT NOT NULL," +
+                                                            "testBool INTEGER NOT NULL)";
+            Assert.AreEqual(command.ExecuteNonQuery(), 1);
         }
 
         [TestFixtureTearDown]

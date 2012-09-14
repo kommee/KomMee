@@ -96,6 +96,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Input.cs" />
     <Compile Include="View.cs">
       <SubType>Form</SubType>
     </Compile>
