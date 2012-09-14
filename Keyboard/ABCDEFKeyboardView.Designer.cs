@@ -97,6 +97,7 @@
             this.BtMenuClose.Name = "BtMenuClose";
             this.BtMenuClose.Size = new System.Drawing.Size(50, 50);
             this.BtMenuClose.TabIndex = 255;
+            this.BtMenuClose.TabStop = false;
             this.BtMenuClose.UseVisualStyleBackColor = true;
             // 
             // BtMenuMessageSent
@@ -106,6 +107,7 @@
             this.BtMenuMessageSent.Name = "BtMenuMessageSent";
             this.BtMenuMessageSent.Size = new System.Drawing.Size(100, 50);
             this.BtMenuMessageSent.TabIndex = 254;
+            this.BtMenuMessageSent.TabStop = false;
             this.BtMenuMessageSent.Text = "Gesendete Nachrichten";
             this.BtMenuMessageSent.UseVisualStyleBackColor = true;
             this.BtMenuMessageSent.Visible = false;
@@ -118,6 +120,7 @@
             this.BtMenuFontSmaller.Name = "BtMenuFontSmaller";
             this.BtMenuFontSmaller.Size = new System.Drawing.Size(50, 50);
             this.BtMenuFontSmaller.TabIndex = 253;
+            this.BtMenuFontSmaller.TabStop = false;
             this.BtMenuFontSmaller.UseVisualStyleBackColor = true;
             // 
             // BtMenuFontBigger
@@ -128,6 +131,7 @@
             this.BtMenuFontBigger.Name = "BtMenuFontBigger";
             this.BtMenuFontBigger.Size = new System.Drawing.Size(50, 50);
             this.BtMenuFontBigger.TabIndex = 252;
+            this.BtMenuFontBigger.TabStop = false;
             this.BtMenuFontBigger.UseVisualStyleBackColor = true;
             // 
             // BtMenuTextToSpeech
@@ -138,6 +142,7 @@
             this.BtMenuTextToSpeech.Name = "BtMenuTextToSpeech";
             this.BtMenuTextToSpeech.Size = new System.Drawing.Size(50, 50);
             this.BtMenuTextToSpeech.TabIndex = 251;
+            this.BtMenuTextToSpeech.TabStop = false;
             this.BtMenuTextToSpeech.UseVisualStyleBackColor = true;
             // 
             // BtMenuSend
@@ -147,6 +152,7 @@
             this.BtMenuSend.Name = "BtMenuSend";
             this.BtMenuSend.Size = new System.Drawing.Size(100, 50);
             this.BtMenuSend.TabIndex = 250;
+            this.BtMenuSend.TabStop = false;
             this.BtMenuSend.Text = "Senden";
             this.BtMenuSend.UseVisualStyleBackColor = true;
             // 
@@ -157,6 +163,7 @@
             this.BtMenuMessageNew.Name = "BtMenuMessageNew";
             this.BtMenuMessageNew.Size = new System.Drawing.Size(100, 50);
             this.BtMenuMessageNew.TabIndex = 249;
+            this.BtMenuMessageNew.TabStop = false;
             this.BtMenuMessageNew.Text = "Neue Nachricht";
             this.BtMenuMessageNew.UseVisualStyleBackColor = true;
             // 
@@ -167,6 +174,7 @@
             this.BtMenuMessageRecv.Name = "BtMenuMessageRecv";
             this.BtMenuMessageRecv.Size = new System.Drawing.Size(100, 50);
             this.BtMenuMessageRecv.TabIndex = 248;
+            this.BtMenuMessageRecv.TabStop = false;
             this.BtMenuMessageRecv.Text = "Nachrichten lesen";
             this.BtMenuMessageRecv.UseVisualStyleBackColor = true;
             // 
@@ -177,6 +185,7 @@
             this.BtMenuContactDelete.Name = "BtMenuContactDelete";
             this.BtMenuContactDelete.Size = new System.Drawing.Size(100, 50);
             this.BtMenuContactDelete.TabIndex = 247;
+            this.BtMenuContactDelete.TabStop = false;
             this.BtMenuContactDelete.Text = "Kontakt löschen";
             this.BtMenuContactDelete.UseVisualStyleBackColor = true;
             // 
@@ -187,6 +196,7 @@
             this.BtMenuContactEdit.Name = "BtMenuContactEdit";
             this.BtMenuContactEdit.Size = new System.Drawing.Size(100, 50);
             this.BtMenuContactEdit.TabIndex = 246;
+            this.BtMenuContactEdit.TabStop = false;
             this.BtMenuContactEdit.Text = "Kontakt bearbeiten";
             this.BtMenuContactEdit.UseVisualStyleBackColor = true;
             // 
@@ -197,6 +207,7 @@
             this.BtMenuContactAdd.Name = "BtMenuContactAdd";
             this.BtMenuContactAdd.Size = new System.Drawing.Size(100, 50);
             this.BtMenuContactAdd.TabIndex = 245;
+            this.BtMenuContactAdd.TabStop = false;
             this.BtMenuContactAdd.Text = "Kontakt hinzufügen";
             this.BtMenuContactAdd.UseVisualStyleBackColor = true;
             // 
@@ -207,6 +218,7 @@
             this.BtPunctComma.Name = "BtPunctComma";
             this.BtPunctComma.Size = new System.Drawing.Size(50, 50);
             this.BtPunctComma.TabIndex = 244;
+            this.BtPunctComma.TabStop = false;
             this.BtPunctComma.Text = ",";
             this.BtPunctComma.UseVisualStyleBackColor = true;
             // 
@@ -217,6 +229,7 @@
             this.BtAlphaY.Name = "BtAlphaY";
             this.BtAlphaY.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaY.TabIndex = 243;
+            this.BtAlphaY.TabStop = false;
             this.BtAlphaY.Text = "Y";
             this.BtAlphaY.UseVisualStyleBackColor = true;
             // 
@@ -227,6 +240,7 @@
             this.BtUmlA.Name = "BtUmlA";
             this.BtUmlA.Size = new System.Drawing.Size(50, 50);
             this.BtUmlA.TabIndex = 242;
+            this.BtUmlA.TabStop = false;
             this.BtUmlA.Text = "Ä";
             this.BtUmlA.UseVisualStyleBackColor = true;
             // 
@@ -237,6 +251,7 @@
             this.BtAlphaN.Name = "BtAlphaN";
             this.BtAlphaN.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaN.TabIndex = 241;
+            this.BtAlphaN.TabStop = false;
             this.BtAlphaN.Text = "N";
             this.BtAlphaN.UseVisualStyleBackColor = true;
             // 
@@ -248,6 +263,7 @@
             this.BtSpecReturn.Name = "BtSpecReturn";
             this.BtSpecReturn.Size = new System.Drawing.Size(50, 100);
             this.BtSpecReturn.TabIndex = 240;
+            this.BtSpecReturn.TabStop = false;
             this.BtSpecReturn.UseVisualStyleBackColor = true;
             // 
             // BtSpecBackspace
@@ -258,6 +274,7 @@
             this.BtSpecBackspace.Name = "BtSpecBackspace";
             this.BtSpecBackspace.Size = new System.Drawing.Size(100, 50);
             this.BtSpecBackspace.TabIndex = 239;
+            this.BtSpecBackspace.TabStop = false;
             this.BtSpecBackspace.UseVisualStyleBackColor = true;
             // 
             // BtAlphaM
@@ -267,6 +284,7 @@
             this.BtAlphaM.Name = "BtAlphaM";
             this.BtAlphaM.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaM.TabIndex = 238;
+            this.BtAlphaM.TabStop = false;
             this.BtAlphaM.Text = "M";
             this.BtAlphaM.UseVisualStyleBackColor = true;
             // 
@@ -277,6 +295,7 @@
             this.BtPunctExclamation.Name = "BtPunctExclamation";
             this.BtPunctExclamation.Size = new System.Drawing.Size(50, 50);
             this.BtPunctExclamation.TabIndex = 237;
+            this.BtPunctExclamation.TabStop = false;
             this.BtPunctExclamation.Text = "!";
             this.BtPunctExclamation.UseVisualStyleBackColor = true;
             // 
@@ -287,6 +306,7 @@
             this.BtPunctQuestion.Name = "BtPunctQuestion";
             this.BtPunctQuestion.Size = new System.Drawing.Size(50, 50);
             this.BtPunctQuestion.TabIndex = 236;
+            this.BtPunctQuestion.TabStop = false;
             this.BtPunctQuestion.Text = "?";
             this.BtPunctQuestion.UseVisualStyleBackColor = true;
             // 
@@ -297,6 +317,7 @@
             this.BtAlphaZ.Name = "BtAlphaZ";
             this.BtAlphaZ.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaZ.TabIndex = 235;
+            this.BtAlphaZ.TabStop = false;
             this.BtAlphaZ.Text = "Z";
             this.BtAlphaZ.UseVisualStyleBackColor = true;
             // 
@@ -307,6 +328,7 @@
             this.BtAlphaL.Name = "BtAlphaL";
             this.BtAlphaL.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaL.TabIndex = 234;
+            this.BtAlphaL.TabStop = false;
             this.BtAlphaL.Text = "L";
             this.BtAlphaL.UseVisualStyleBackColor = true;
             // 
@@ -317,6 +339,7 @@
             this.BtAlphaK.Name = "BtAlphaK";
             this.BtAlphaK.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaK.TabIndex = 233;
+            this.BtAlphaK.TabStop = false;
             this.BtAlphaK.Text = "K";
             this.BtAlphaK.UseVisualStyleBackColor = true;
             // 
@@ -327,6 +350,7 @@
             this.BtSpecAt.Name = "BtSpecAt";
             this.BtSpecAt.Size = new System.Drawing.Size(50, 50);
             this.BtSpecAt.TabIndex = 232;
+            this.BtSpecAt.TabStop = false;
             this.BtSpecAt.Text = "@";
             this.BtSpecAt.UseVisualStyleBackColor = true;
             // 
@@ -337,6 +361,7 @@
             this.BtUmlS.Name = "BtUmlS";
             this.BtUmlS.Size = new System.Drawing.Size(50, 50);
             this.BtUmlS.TabIndex = 231;
+            this.BtUmlS.TabStop = false;
             this.BtUmlS.Text = "ß";
             this.BtUmlS.UseVisualStyleBackColor = false;
             // 
@@ -347,6 +372,7 @@
             this.BtAlphaJ.Name = "BtAlphaJ";
             this.BtAlphaJ.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaJ.TabIndex = 230;
+            this.BtAlphaJ.TabStop = false;
             this.BtAlphaJ.Text = "J";
             this.BtAlphaJ.UseVisualStyleBackColor = true;
             // 
@@ -357,6 +383,7 @@
             this.BtAlphaI.Name = "BtAlphaI";
             this.BtAlphaI.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaI.TabIndex = 229;
+            this.BtAlphaI.TabStop = false;
             this.BtAlphaI.Text = "I";
             this.BtAlphaI.UseVisualStyleBackColor = true;
             // 
@@ -367,6 +394,7 @@
             this.BtNum0.Name = "BtNum0";
             this.BtNum0.Size = new System.Drawing.Size(50, 50);
             this.BtNum0.TabIndex = 228;
+            this.BtNum0.TabStop = false;
             this.BtNum0.Text = "0";
             this.BtNum0.UseVisualStyleBackColor = true;
             // 
@@ -377,6 +405,7 @@
             this.BtNum9.Name = "BtNum9";
             this.BtNum9.Size = new System.Drawing.Size(50, 50);
             this.BtNum9.TabIndex = 227;
+            this.BtNum9.TabStop = false;
             this.BtNum9.Text = "9";
             this.BtNum9.UseVisualStyleBackColor = true;
             // 
@@ -387,6 +416,7 @@
             this.BtPunctDot.Name = "BtPunctDot";
             this.BtPunctDot.Size = new System.Drawing.Size(50, 50);
             this.BtPunctDot.TabIndex = 226;
+            this.BtPunctDot.TabStop = false;
             this.BtPunctDot.Text = ".";
             this.BtPunctDot.UseVisualStyleBackColor = true;
             // 
@@ -397,6 +427,7 @@
             this.BtAlphaX.Name = "BtAlphaX";
             this.BtAlphaX.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaX.TabIndex = 225;
+            this.BtAlphaX.TabStop = false;
             this.BtAlphaX.Text = "X";
             this.BtAlphaX.UseVisualStyleBackColor = true;
             // 
@@ -407,6 +438,7 @@
             this.BtAlphaW.Name = "BtAlphaW";
             this.BtAlphaW.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaW.TabIndex = 224;
+            this.BtAlphaW.TabStop = false;
             this.BtAlphaW.Text = "W";
             this.BtAlphaW.UseVisualStyleBackColor = true;
             // 
@@ -417,6 +449,7 @@
             this.BtAlphaV.Name = "BtAlphaV";
             this.BtAlphaV.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaV.TabIndex = 223;
+            this.BtAlphaV.TabStop = false;
             this.BtAlphaV.Text = "V";
             this.BtAlphaV.UseVisualStyleBackColor = true;
             // 
@@ -427,6 +460,7 @@
             this.BtAlphaU.Name = "BtAlphaU";
             this.BtAlphaU.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaU.TabIndex = 222;
+            this.BtAlphaU.TabStop = false;
             this.BtAlphaU.Text = "U";
             this.BtAlphaU.UseVisualStyleBackColor = true;
             // 
@@ -437,6 +471,7 @@
             this.BtAlphaH.Name = "BtAlphaH";
             this.BtAlphaH.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaH.TabIndex = 221;
+            this.BtAlphaH.TabStop = false;
             this.BtAlphaH.Text = "H";
             this.BtAlphaH.UseVisualStyleBackColor = true;
             // 
@@ -447,6 +482,7 @@
             this.BtAlphaG.Name = "BtAlphaG";
             this.BtAlphaG.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaG.TabIndex = 220;
+            this.BtAlphaG.TabStop = false;
             this.BtAlphaG.Text = "G";
             this.BtAlphaG.UseVisualStyleBackColor = true;
             // 
@@ -457,6 +493,7 @@
             this.BtNum8.Name = "BtNum8";
             this.BtNum8.Size = new System.Drawing.Size(50, 50);
             this.BtNum8.TabIndex = 219;
+            this.BtNum8.TabStop = false;
             this.BtNum8.Text = "8";
             this.BtNum8.UseVisualStyleBackColor = true;
             // 
@@ -467,6 +504,7 @@
             this.BtNum7.Name = "BtNum7";
             this.BtNum7.Size = new System.Drawing.Size(50, 50);
             this.BtNum7.TabIndex = 218;
+            this.BtNum7.TabStop = false;
             this.BtNum7.Text = "7";
             this.BtNum7.UseVisualStyleBackColor = true;
             // 
@@ -477,6 +515,7 @@
             this.BtAlphaF.Name = "BtAlphaF";
             this.BtAlphaF.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaF.TabIndex = 217;
+            this.BtAlphaF.TabStop = false;
             this.BtAlphaF.Text = "F";
             this.BtAlphaF.UseVisualStyleBackColor = true;
             // 
@@ -487,6 +526,7 @@
             this.BtAlphaE.Name = "BtAlphaE";
             this.BtAlphaE.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaE.TabIndex = 216;
+            this.BtAlphaE.TabStop = false;
             this.BtAlphaE.Text = "E";
             this.BtAlphaE.UseVisualStyleBackColor = true;
             // 
@@ -497,6 +537,7 @@
             this.BtNum6.Name = "BtNum6";
             this.BtNum6.Size = new System.Drawing.Size(50, 50);
             this.BtNum6.TabIndex = 215;
+            this.BtNum6.TabStop = false;
             this.BtNum6.Text = "6";
             this.BtNum6.UseVisualStyleBackColor = false;
             // 
@@ -507,6 +548,7 @@
             this.BtNum5.Name = "BtNum5";
             this.BtNum5.Size = new System.Drawing.Size(50, 50);
             this.BtNum5.TabIndex = 214;
+            this.BtNum5.TabStop = false;
             this.BtNum5.Text = "5";
             this.BtNum5.UseVisualStyleBackColor = true;
             // 
@@ -517,6 +559,7 @@
             this.BtAlphaT.Name = "BtAlphaT";
             this.BtAlphaT.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaT.TabIndex = 213;
+            this.BtAlphaT.TabStop = false;
             this.BtAlphaT.Text = "T";
             this.BtAlphaT.UseVisualStyleBackColor = true;
             // 
@@ -527,6 +570,7 @@
             this.BtAlphaS.Name = "BtAlphaS";
             this.BtAlphaS.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaS.TabIndex = 212;
+            this.BtAlphaS.TabStop = false;
             this.BtAlphaS.Text = "S";
             this.BtAlphaS.UseVisualStyleBackColor = true;
             // 
@@ -537,6 +581,7 @@
             this.BtSpecSpace.Name = "BtSpecSpace";
             this.BtSpecSpace.Size = new System.Drawing.Size(350, 50);
             this.BtSpecSpace.TabIndex = 211;
+            this.BtSpecSpace.TabStop = false;
             this.BtSpecSpace.Text = "Leertaste";
             this.BtSpecSpace.UseVisualStyleBackColor = true;
             // 
@@ -547,6 +592,7 @@
             this.BtAlphaR.Name = "BtAlphaR";
             this.BtAlphaR.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaR.TabIndex = 210;
+            this.BtAlphaR.TabStop = false;
             this.BtAlphaR.Text = "R";
             this.BtAlphaR.UseVisualStyleBackColor = true;
             // 
@@ -557,6 +603,7 @@
             this.BtAlphaQ.Name = "BtAlphaQ";
             this.BtAlphaQ.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaQ.TabIndex = 209;
+            this.BtAlphaQ.TabStop = false;
             this.BtAlphaQ.Text = "Q";
             this.BtAlphaQ.UseVisualStyleBackColor = true;
             // 
@@ -567,6 +614,7 @@
             this.BtAlphaD.Name = "BtAlphaD";
             this.BtAlphaD.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaD.TabIndex = 208;
+            this.BtAlphaD.TabStop = false;
             this.BtAlphaD.Text = "D";
             this.BtAlphaD.UseVisualStyleBackColor = true;
             // 
@@ -577,6 +625,7 @@
             this.BtAlphaC.Name = "BtAlphaC";
             this.BtAlphaC.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaC.TabIndex = 207;
+            this.BtAlphaC.TabStop = false;
             this.BtAlphaC.Text = "C";
             this.BtAlphaC.UseVisualStyleBackColor = true;
             // 
@@ -587,6 +636,7 @@
             this.BtNum4.Name = "BtNum4";
             this.BtNum4.Size = new System.Drawing.Size(50, 50);
             this.BtNum4.TabIndex = 206;
+            this.BtNum4.TabStop = false;
             this.BtNum4.Text = "4";
             this.BtNum4.UseVisualStyleBackColor = true;
             // 
@@ -597,6 +647,7 @@
             this.BtNum3.Name = "BtNum3";
             this.BtNum3.Size = new System.Drawing.Size(50, 50);
             this.BtNum3.TabIndex = 205;
+            this.BtNum3.TabStop = false;
             this.BtNum3.Text = "3";
             this.BtNum3.UseVisualStyleBackColor = true;
             // 
@@ -607,6 +658,7 @@
             this.BtUmlU.Name = "BtUmlU";
             this.BtUmlU.Size = new System.Drawing.Size(50, 50);
             this.BtUmlU.TabIndex = 204;
+            this.BtUmlU.TabStop = false;
             this.BtUmlU.Text = "Ü";
             this.BtUmlU.UseVisualStyleBackColor = true;
             // 
@@ -617,6 +669,7 @@
             this.BtUmlO.Name = "BtUmlO";
             this.BtUmlO.Size = new System.Drawing.Size(50, 50);
             this.BtUmlO.TabIndex = 203;
+            this.BtUmlO.TabStop = false;
             this.BtUmlO.Text = "Ö";
             this.BtUmlO.UseVisualStyleBackColor = true;
             // 
@@ -627,6 +680,7 @@
             this.BtAlphaP.Name = "BtAlphaP";
             this.BtAlphaP.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaP.TabIndex = 202;
+            this.BtAlphaP.TabStop = false;
             this.BtAlphaP.Text = "P";
             this.BtAlphaP.UseVisualStyleBackColor = true;
             // 
@@ -637,6 +691,7 @@
             this.BtAlphaO.Name = "BtAlphaO";
             this.BtAlphaO.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaO.TabIndex = 201;
+            this.BtAlphaO.TabStop = false;
             this.BtAlphaO.Text = "O";
             this.BtAlphaO.UseVisualStyleBackColor = true;
             // 
@@ -647,6 +702,7 @@
             this.BtAlphaB.Name = "BtAlphaB";
             this.BtAlphaB.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaB.TabIndex = 200;
+            this.BtAlphaB.TabStop = false;
             this.BtAlphaB.Text = "B";
             this.BtAlphaB.UseVisualStyleBackColor = false;
             // 
@@ -657,6 +713,7 @@
             this.BtAlphaA.Name = "BtAlphaA";
             this.BtAlphaA.Size = new System.Drawing.Size(50, 50);
             this.BtAlphaA.TabIndex = 199;
+            this.BtAlphaA.TabStop = false;
             this.BtAlphaA.Text = "A";
             this.BtAlphaA.UseVisualStyleBackColor = true;
             // 
@@ -667,6 +724,7 @@
             this.BtNum2.Name = "BtNum2";
             this.BtNum2.Size = new System.Drawing.Size(50, 50);
             this.BtNum2.TabIndex = 198;
+            this.BtNum2.TabStop = false;
             this.BtNum2.Text = "2";
             this.BtNum2.UseVisualStyleBackColor = true;
             // 
@@ -677,6 +735,7 @@
             this.BtNum1.Name = "BtNum1";
             this.BtNum1.Size = new System.Drawing.Size(50, 50);
             this.BtNum1.TabIndex = 197;
+            this.BtNum1.TabStop = false;
             this.BtNum1.Text = "1";
             this.BtNum1.UseVisualStyleBackColor = true;
             // 
@@ -743,7 +802,6 @@
             this.Controls.Add(this.BtNum2);
             this.Controls.Add(this.BtNum1);
             this.Name = "ABCDEFKeyboardView";
-            this.Size = new System.Drawing.Size(760, 260);
             this.ResumeLayout(false);
 
         }

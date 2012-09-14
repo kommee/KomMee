@@ -20,11 +20,11 @@ namespace KomMee
         /// <summary>
         /// Background color of the focused buttons
         /// </summary>
-        private Color FocusForegroundColor = System.Drawing.SystemColors.Control;
+        private Color FocusForegroundColor = Color.White; //System.Drawing.SystemColors.Control;
         /// <summary>
         /// Default text color of the buttons
         /// </summary>
-        private Color DefaultBackgroundColor = System.Drawing.SystemColors.Control;
+        private Color DefaultBackgroundColor = Color.White; //System.Drawing.SystemColors.Control;
         /// <summary>
         /// Default background color of the buttons
         /// </summary>
@@ -232,6 +232,15 @@ namespace KomMee
             this.keyboardMatrix[12, 4] = this.BtPunctQuestion;
             this.keyboardMatrix[13, 4] = this.BtPunctExclamation;
             this.keyboardMatrix[14, 4] = null;
+
+            foreach (Button button in this.keyboardMatrix)
+            {
+                if (button != null)
+                {
+                    button.ForeColor = this.DefaultForegroundColor;
+                    button.BackColor = this.DefaultBackgroundColor;
+                }
+            }
 
             // Select default focus (G)
             this.setNewFocus(new Point(6, 2));
