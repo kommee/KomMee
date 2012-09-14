@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace KomMee
 {
@@ -30,6 +31,9 @@ namespace KomMee
         public View()
         {
             InitializeComponent();
+
+            //init Input
+            Input.init();
         }
 
         [STAThread]
@@ -38,6 +42,16 @@ namespace KomMee
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new View());
+        }
+
+        private void View_KeyUp(object sender, KeyEventArgs e)
+        {
+            Input.handleKeyboardEvent(e.KeyValue);
+        }
+
+        private void FocusResetTimer_Tick(object sender, EventArgs e)
+        {
+            this.ActiveControl = null;
         }
     }
 }
