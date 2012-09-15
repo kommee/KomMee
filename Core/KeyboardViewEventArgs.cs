@@ -12,6 +12,7 @@ namespace KomMee
     public class KeyboardViewEventArgs : EventArgs
     {
         private KeyboardButtons specificValue;
+        private bool isMenu;
 
         /// <summary>
         /// Detailed information about the pressed button.
@@ -23,12 +24,22 @@ namespace KomMee
         }
 
         /// <summary>
+        /// Values if the argument is a printable char
+        /// </summary>
+        public bool IsMenu
+        {
+            get { return isMenu; }
+            set { isMenu = value; }
+        }
+
+        /// <summary>
         /// Creates a event argument with detailed information about the pressed button.
         /// </summary>
         /// <param name="value">Detailed information about the pressed button</param>
-        public KeyboardViewEventArgs(KeyboardButtons value)
+        public KeyboardViewEventArgs(KeyboardButtons value, bool isMenu)
         {
             this.specificValue = value;
+            this.isMenu = isMenu;
         }
     }
     

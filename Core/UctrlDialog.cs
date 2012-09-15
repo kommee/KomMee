@@ -18,8 +18,6 @@ namespace KomMee
         {
             InitializeComponent();
             // Same size as the Usercontrol
-            this.lbChoice.Width = this.Width;
-            this.lbChoice.Height = this.Height;
         }
 
         /// <summary>

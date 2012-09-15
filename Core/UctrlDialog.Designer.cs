@@ -33,10 +33,11 @@
             // 
             // lbChoice
             // 
+            this.lbChoice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbChoice.FormattingEnabled = true;
-            this.lbChoice.Location = new System.Drawing.Point(4, 4);
+            this.lbChoice.Location = new System.Drawing.Point(0, 0);
             this.lbChoice.Name = "lbChoice";
-            this.lbChoice.Size = new System.Drawing.Size(120, 95);
+            this.lbChoice.Size = new System.Drawing.Size(150, 300);
             this.lbChoice.TabIndex = 0;
             this.lbChoice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lbChoice_KeyPress);
             // 

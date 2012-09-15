@@ -122,6 +122,7 @@
             this.BtMenuFontSmaller.TabIndex = 253;
             this.BtMenuFontSmaller.TabStop = false;
             this.BtMenuFontSmaller.UseVisualStyleBackColor = true;
+            this.BtMenuFontSmaller.Visible = false;
             // 
             // BtMenuFontBigger
             // 
@@ -133,6 +134,7 @@
             this.BtMenuFontBigger.TabIndex = 252;
             this.BtMenuFontBigger.TabStop = false;
             this.BtMenuFontBigger.UseVisualStyleBackColor = true;
+            this.BtMenuFontBigger.Visible = false;
             // 
             // BtMenuTextToSpeech
             // 
@@ -144,6 +146,7 @@
             this.BtMenuTextToSpeech.TabIndex = 251;
             this.BtMenuTextToSpeech.TabStop = false;
             this.BtMenuTextToSpeech.UseVisualStyleBackColor = true;
+            this.BtMenuTextToSpeech.Visible = false;
             // 
             // BtMenuSend
             // 

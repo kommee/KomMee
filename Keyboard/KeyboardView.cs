@@ -98,5 +98,12 @@ namespace KomMee
         /// This procedure is called when the user pressed the "Cancel" button.
         /// </summary>
         public virtual void cancel() { }
+
+        public virtual void setAllowedButtons(KeyboardButtons[] allowedButtons)
+        {
+
+        }
+
+        public virtual void setDefaultFocus(){}
     }
 }

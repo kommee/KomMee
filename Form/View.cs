@@ -12,12 +12,14 @@ namespace KomMee
 {
     public partial class View : Form
     {
-        private IViewContainer ViewContainer;
-
-        internal IViewContainer ViewContainer1
+        public Panel MessageViewContainer
         {
-            get { return ViewContainer; }
-            set { ViewContainer = value; }
+            get { return this.TopPanel.Panel2; }
+        }
+
+        public UctrlDialog UpperLeftControl
+        {
+            get { return this.uctrlDialog1; }
         }
 
         private AddressBook addressBook;
@@ -40,6 +42,7 @@ namespace KomMee
             //init Input
             Settings.init();
             Input.init(this);
+            Input.setNewMenuState(MenuState.None);
         }
 
         [STAThread]
@@ -50,14 +53,27 @@ namespace KomMee
             Application.Run(new View());
         }
 
+        
+
         private void View_KeyUp(object sender, KeyEventArgs e)
         {
-            Input.handleKeyboardEvent(e.KeyValue);
+            Input.handleUserInput(e.KeyValue);
         }
 
         private void FocusResetTimer_Tick(object sender, EventArgs e)
         {
             this.ActiveControl = null;
         }
+
+        private void abcdefKeyboardView1_Applied(object sender, EventArgs e)
+        {
+            Input.handleKeyboardEvent((KeyboardViewEventArgs)e);
+        }
+
+        private void View_Shown(object sender, EventArgs e)
+        {
+            this.abcdefKeyboardView1.setDefaultFocus();
+        }
+
     }
 }

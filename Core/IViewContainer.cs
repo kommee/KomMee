@@ -11,6 +11,9 @@ namespace KomMee
         void createViewForReading(Panel parentPanel);
         void createViewForNew(Panel parentPanel);
         void createViewForAnswer(Panel parentPanel);
+        void addWriteInput(KeyboardViewEventArgs keyboardViewEventArgs);
+        void setWriteInput(string Text);
+        void setReadInput(string Text);
         object getData();
     }
 }

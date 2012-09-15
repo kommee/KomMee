@@ -57,7 +57,8 @@ namespace KomMee
         /// <summary>
         /// This procedure should be called in the constructor of your class. In it you can set up attributes like the KeyboardMatrix.
         /// </summary>
-        protected override void initKeyboardMatrix() {
+        protected override void initKeyboardMatrix()
+        {
             this.keyboardMatrix = new Button[ABCDEFKeyboardView.keyboardWidth, ABCDEFKeyboardView.keyboardHeight];
             this.valueMatrix = new KeyboardButtons[ABCDEFKeyboardView.keyboardWidth, ABCDEFKeyboardView.keyboardHeight];
 
@@ -164,7 +165,7 @@ namespace KomMee
             this.keyboardMatrix[12, 0] = this.BtMenuSend;
             this.keyboardMatrix[13, 0] = this.BtMenuSend;
             this.keyboardMatrix[14, 0] = this.BtMenuClose;
-            
+
             // Row 1
             this.keyboardMatrix[0, 1] = this.BtNum1;
             this.keyboardMatrix[1, 1] = this.BtNum2;
@@ -241,9 +242,6 @@ namespace KomMee
                     button.BackColor = this.DefaultBackgroundColor;
                 }
             }
-
-            // Select default focus (G)
-            this.setNewFocus(new Point(6, 2));
         }
 
         /// <summary>
@@ -262,7 +260,8 @@ namespace KomMee
         /// <summary>
         /// This procedure is called when the user pressed the "up" button. You should update the selection.
         /// </summary>
-        public override void up() {
+        public override void up()
+        {
             Point newFocusPosition = this.focusPosition;
             do
             {
@@ -270,6 +269,10 @@ namespace KomMee
                     newFocusPosition = new Point(newFocusPosition.X, ABCDEFKeyboardView.keyboardHeight - 1);
                 else
                     newFocusPosition = new Point(newFocusPosition.X, newFocusPosition.Y - 1);
+
+                if (newFocusPosition.X == this.focusPosition.X && newFocusPosition.Y == this.focusPosition.Y)
+                    return;
+
             } while (this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y] == null ||
                 this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Enabled == false
@@ -290,6 +293,10 @@ namespace KomMee
                     newFocusPosition = new Point(newFocusPosition.X, 0);
                 else
                     newFocusPosition = new Point(newFocusPosition.X, newFocusPosition.Y + 1);
+
+                if (newFocusPosition.X == this.focusPosition.X && newFocusPosition.Y == this.focusPosition.Y)
+                    return;
+
             } while (this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y] == null ||
                 this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Enabled == false
@@ -310,6 +317,10 @@ namespace KomMee
                     newFocusPosition = new Point(ABCDEFKeyboardView.keyboardWidth - 1, newFocusPosition.Y);
                 else
                     newFocusPosition = new Point(newFocusPosition.X - 1, newFocusPosition.Y);
+                
+                if (newFocusPosition.X == this.focusPosition.X && newFocusPosition.Y == this.focusPosition.Y)
+                    return;
+
             } while (this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y] == null ||
                 this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Enabled == false
@@ -330,6 +341,10 @@ namespace KomMee
                     newFocusPosition = new Point(0, newFocusPosition.Y);
                 else
                     newFocusPosition = new Point(newFocusPosition.X + 1, newFocusPosition.Y);
+
+                if (newFocusPosition.X == this.focusPosition.X && newFocusPosition.Y == this.focusPosition.Y)
+                    return;
+
             } while (this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y] == null ||
                 this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Equals(this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y])
                 || this.keyboardMatrix[newFocusPosition.X, newFocusPosition.Y].Enabled == false
@@ -341,17 +356,268 @@ namespace KomMee
         /// <summary>
         /// This procedure is called when the user pressed the "Apply" button. You should raise here some events.
         /// </summary>
-        public override void apply() {
+        public override void apply()
+        {
+            bool isPrintable = true;
+            if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.ApplicationClose ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuContactDelete ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuContactEdit ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuContactNew ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuMessageNew ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuMessageRecv ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuMessageSent ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.SpecialCharBackspace ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.SpecialCharReturn ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSend ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSizeDown ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSizeUp ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextToSpeech)
+            {
+                isPrintable = false;
+            }
             // Raise the OnApply-Event
-            this.OnApply(this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y], new KeyboardViewEventArgs(this.valueMatrix[this.focusPosition.X, this.focusPosition.Y]));
+            this.OnApply(this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y], new KeyboardViewEventArgs(this.valueMatrix[this.focusPosition.X, this.focusPosition.Y], isPrintable));
         }
 
         /// <summary>
         /// This procedure is called when the user pressed the "Cancel" button.
         /// </summary>
-        public override void cancel() {
+        public override void cancel()
+        {
+            bool isMenu = true;
+            if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.ApplicationClose ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuContactDelete ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuContactEdit ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuContactNew ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuMessageNew ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuMessageRecv ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.MenuMessageSent ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.SpecialCharBackspace ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.SpecialCharReturn ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSend ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSizeDown ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSizeUp ||
+                this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextToSpeech)
+            {
+                isMenu = false;
+            }
             // Raise the OnCancel-Event
-            this.OnCancel(this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y], new KeyboardViewEventArgs(this.valueMatrix[this.focusPosition.X, this.focusPosition.Y]));
+            this.OnCancel(this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y], new KeyboardViewEventArgs(this.valueMatrix[this.focusPosition.X, this.focusPosition.Y], isMenu));
+        }
+
+        public override void setAllowedButtons(KeyboardButtons[] allowedButtons)
+        {
+            foreach (Button button in this.keyboardMatrix)
+            {
+                if(button != null)
+                button.Enabled = false;
+            }
+
+            foreach (KeyboardButtons kb in allowedButtons)
+            {
+                switch (kb)
+                {
+                    case KeyboardButtons.AlphaA:
+                        this.BtAlphaA.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaB:
+                        this.BtAlphaB.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaC:
+                        this.BtAlphaC.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaD:
+                        this.BtAlphaD.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaE:
+                        this.BtAlphaE.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaF:
+                        this.BtAlphaF.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaG:
+                        this.BtAlphaG.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaH:
+                        this.BtAlphaH.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaI:
+                        this.BtAlphaI.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaJ:
+                        this.BtAlphaJ.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaK:
+                        this.BtAlphaK.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaL:
+                        this.BtAlphaL.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaM:
+                        this.BtAlphaM.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaN:
+                        this.BtAlphaN.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaO:
+                        this.BtAlphaO.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaP:
+                        this.BtAlphaP.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaQ:
+                        this.BtAlphaQ.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaR:
+                        this.BtAlphaR.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaS:
+                        this.BtAlphaS.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaT:
+                        this.BtAlphaT.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaU:
+                        this.BtAlphaU.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaV:
+                        this.BtAlphaV.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaW:
+                        this.BtAlphaW.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaX:
+                        this.BtAlphaX.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaY:
+                        this.BtAlphaY.Enabled = true;
+                        break;
+                    case KeyboardButtons.AlphaZ:
+                        this.BtAlphaZ.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericOne:
+                        this.BtNum1.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericTwo:
+                        this.BtNum2.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericThree:
+                        this.BtNum3.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericFour:
+                        this.BtNum4.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericFive:
+                        this.BtNum5.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericSix:
+                        this.BtNum6.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericSeven:
+                        this.BtNum7.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericEight:
+                        this.BtNum8.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericNine:
+                        this.BtNum9.Enabled = true;
+                        break;
+                    case KeyboardButtons.NumericZero:
+                        this.BtNum0.Enabled = true;
+                        break;
+                    case KeyboardButtons.SpecialCharAt:
+                        this.BtSpecAt.Enabled = true;
+                        break;
+                    case KeyboardButtons.SpecialCharSpace:
+                        this.BtSpecSpace.Enabled = true;
+                        break;
+                    case KeyboardButtons.SpecialCharReturn:
+                        this.BtSpecReturn.Enabled = true;
+                        break;
+                    case KeyboardButtons.SpecialCharBackspace:
+                        this.BtSpecBackspace.Enabled = true;
+                        break;
+                    case KeyboardButtons.PunctationDot:
+                        this.BtPunctDot.Enabled = true;
+                        break;
+                    case KeyboardButtons.PunctationComma:
+                        this.BtPunctComma.Enabled = true;
+                        break;
+                    case KeyboardButtons.PunctationQuestion:
+                        this.BtPunctQuestion.Enabled = true;
+                        break;
+                    case KeyboardButtons.PunctationExclamation:
+                        this.BtPunctExclamation.Enabled = true;
+                        break;
+                    case KeyboardButtons.UmlautA:
+                        this.BtUmlA.Enabled = true;
+                        break;
+                    case KeyboardButtons.UmlautO:
+                        this.BtUmlO.Enabled = true;
+                        break;
+                    case KeyboardButtons.UmlautU:
+                        this.BtUmlU.Enabled = true;
+                        break;
+                    case KeyboardButtons.UmlautS:
+                        this.BtUmlS.Enabled = true;
+                        break;
+                    case KeyboardButtons.MenuMessageNew:
+                        this.BtMenuMessageNew.Enabled = true;
+                        break;
+                    case KeyboardButtons.MenuMessageSent:
+                        this.BtMenuMessageSent.Enabled = true;
+                        break;
+                    case KeyboardButtons.MenuMessageRecv:
+                        this.BtMenuMessageRecv.Enabled = true;
+                        break;
+                    case KeyboardButtons.MenuContactNew:
+                        this.BtMenuContactAdd.Enabled = true;
+                        break;
+                    case KeyboardButtons.MenuContactEdit:
+                        this.BtMenuContactEdit.Enabled = true;
+                        break;
+                    case KeyboardButtons.MenuContactDelete:
+                        this.BtMenuContactDelete.Enabled = true;
+                        break;
+                    case KeyboardButtons.TextSizeUp:
+                        this.BtMenuFontBigger.Enabled = true;
+                        break;
+                    case KeyboardButtons.TextSizeDown:
+                        this.BtMenuFontSmaller.Enabled = true;
+                        break;
+                    case KeyboardButtons.TextToSpeech:
+                        this.BtMenuTextToSpeech.Enabled = true;
+                        break;
+                    case KeyboardButtons.TextSend:
+                        this.BtMenuSend.Enabled = true;
+                        break;
+                    case KeyboardButtons.ApplicationClose:
+                        this.BtMenuClose.Enabled = true;
+                        break;
+                    case KeyboardButtons.NotInUse:
+                        break;
+                    default:
+                        break;
+                }
+            }
+            this.setDefaultFocus();
+        }
+
+        public override void setDefaultFocus()
+        {
+            for (int x = 0; x < ABCDEFKeyboardView.keyboardWidth; x++)
+            {
+                for (int y = 0; y < ABCDEFKeyboardView.keyboardHeight; y++)
+                {
+                    if (this.keyboardMatrix[x, y] != null && this.keyboardMatrix[x, y].Enabled && this.keyboardMatrix[x, y].Visible)
+                    {
+                        this.setNewFocus(new Point(x, y));
+                        return;
+                    }
+                }
+            }
+            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = this.DefaultForegroundColor;
+            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = this.DefaultBackgroundColor;
         }
     }
 }

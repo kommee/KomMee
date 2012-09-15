@@ -5,13 +5,21 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Data;
+using System.Windows.Forms;
 
 namespace KomMee
 {
     public static class Input
     {
         private static Dictionary<int, string> keymapping;
+        private static MenuState menuState;
         private static View view;
+        private static IViewContainer currentIViewContaier;
+
+        public static MenuState MenuState
+        {
+            get { return Input.menuState; }
+        }
 
         public static void init(View view)
         {
@@ -23,45 +31,118 @@ namespace KomMee
             Input.keymapping.Add(Convert.ToInt16(Settings.getValue("Keymapping_Right")), "Keymapping_Right");
             Input.keymapping.Add(Convert.ToInt16(Settings.getValue("Keymapping_Apply")), "Keymapping_Apply");
             Input.keymapping.Add(Convert.ToInt16(Settings.getValue("Keymapping_Cancel")), "Keymapping_Cancel");
+            Input.menuState = MenuState.ViewMessage;
         }
 
-        public static void up()
+        public static void showMessage(Message message)
+        {
+            Input.currentIViewContaier = message.ViewContainer;
+            Input.currentIViewContaier.createViewForReading(Input.view.MessageViewContainer);
+        }
+
+        public static void setNewMenuState(MenuState menuState)
+        {
+            switch (menuState)
+            {
+                case MenuState.None:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { KeyboardButtons.ApplicationClose, KeyboardButtons.MenuContactDelete, KeyboardButtons.MenuContactEdit,
+                        KeyboardButtons.MenuContactNew, KeyboardButtons.MenuMessageNew, KeyboardButtons.MenuMessageRecv, KeyboardButtons.MenuMessageSent});
+                    break;
+                case MenuState.ViewMessage:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                case MenuState.AnswerMessage:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                case MenuState.DeleteMessage:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                case MenuState.NewMessage:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                case MenuState.ChoseReceiver:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                case MenuState.ChoseMessageType:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                case MenuState.AddNewContact:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                case MenuState.EditContact:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                case MenuState.DeleteContact:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                case MenuState.AddMessageTypeToContact:
+                    Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
+                    break;
+                default:
+                    break;
+            }
+            Input.menuState = menuState;
+        }
+
+        public static void setViewForAnswer(IViewContainer viewContainer)
+        {
+            Input.clearViewContainer();
+            viewContainer.createViewForAnswer(Input.view.MessageViewContainer);
+        }
+
+        public static void clearViewContainer()
+        {
+            Panel MessageViewContainer = Input.view.MessageViewContainer;
+            foreach (Control ctrl in MessageViewContainer.Controls)
+            {
+                MessageViewContainer.Controls.Remove(ctrl);
+                ctrl.Dispose();
+            }
+        }
+
+        public static void userInputUp()
         {
             Console.WriteLine("Input: Up-Event");
-            view.KeyboardView.up();
+            if (Input.MenuState == KomMee.MenuState.ViewMessage)
+                view.UpperLeftControl.up();
+            else
+                view.KeyboardView.up();
         }
 
-        public static void down()
+        public static void userInputDown()
         {
             Console.WriteLine("Input: Down-Event");
-            view.KeyboardView.down();
+            if (Input.MenuState == KomMee.MenuState.ViewMessage)
+                view.UpperLeftControl.down();
+            else
+                view.KeyboardView.down();
         }
 
-        public static void left()
+        public static void userInputLeft()
         {
             Console.WriteLine("Input: Left-Event");
             view.KeyboardView.left();
         }
 
-        public static void right()
+        public static void userInputRight()
         {
             Console.WriteLine("Input: Right-Event");
             view.KeyboardView.right();
         }
 
-        public static void apply()
+        public static void userInputApply()
         {
             Console.WriteLine("Input: Apply-Event");
             view.KeyboardView.apply();
         }
 
-        public static void cancel()
+        public static void userInputCancel()
         {
             Console.WriteLine("Input: Cancel-Event");
             view.KeyboardView.cancel();
         }
 
-        public static void handleKeyboardEvent(int keyValue)
+        public static void handleUserInput(int keyValue)
         {
             if (Input.keymapping.ContainsKey(keyValue))
             {
@@ -69,26 +150,55 @@ namespace KomMee
                 switch (keymappingValue)
                 {
                     case "Keymapping_Up":
-                        Input.up();
+                        Input.userInputUp();
                         break;
                     case "Keymapping_Down":
-                        Input.down();
+                        Input.userInputDown();
                         break;
                     case "Keymapping_Left":
-                        Input.left();
+                        Input.userInputLeft();
                         break;
                     case "Keymapping_Right":
-                        Input.right();
+                        Input.userInputRight();
                         break;
                     case "Keymapping_Apply":
-                        Input.apply();
+                        Input.userInputApply();
                         break;
                     case "Keymapping_Cancel":
-                        Input.cancel();
+                        Input.userInputCancel();
                         break;
                     default:
                         break;
                 }
+            }
+        }
+
+        internal static void handleKeyboardEvent(KeyboardViewEventArgs keyboardViewEventArgs)
+        {
+            switch (Input.MenuState)
+            {
+                case MenuState.ViewMessage:
+                    break;
+                case MenuState.AnswerMessage:
+                    break;
+                case MenuState.DeleteMessage:
+                    break;
+                case MenuState.NewMessage:
+                    break;
+                case MenuState.ChoseReceiver:
+                    break;
+                case MenuState.ChoseMessageType:
+                    break;
+                case MenuState.AddNewContact:
+                    break;
+                case MenuState.EditContact:
+                    break;
+                case MenuState.DeleteContact:
+                    break;
+                case MenuState.AddMessageTypeToContact:
+                    break;
+                default:
+                    break;
             }
         }
     }

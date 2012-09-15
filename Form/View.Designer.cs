@@ -33,51 +33,60 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(View));
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.FocusResetTimer = new System.Windows.Forms.Timer(this.components);
+            this.KyboardAndViewContainer = new System.Windows.Forms.SplitContainer();
+            this.TopPanel = new System.Windows.Forms.SplitContainer();
+            this.uctrlDialog1 = new KomMee.UctrlDialog();
             this.abcdefKeyboardView1 = new KomMee.ABCDEFKeyboardView();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
+            this.FocusResetTimer = new System.Windows.Forms.Timer(this.components);
+            this.KyboardAndViewContainer.Panel1.SuspendLayout();
+            this.KyboardAndViewContainer.Panel2.SuspendLayout();
+            this.KyboardAndViewContainer.SuspendLayout();
+            this.TopPanel.Panel1.SuspendLayout();
+            this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // splitContainer1
+            // KyboardAndViewContainer
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.KyboardAndViewContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KyboardAndViewContainer.IsSplitterFixed = true;
+            this.KyboardAndViewContainer.Location = new System.Drawing.Point(0, 0);
+            this.KyboardAndViewContainer.Name = "KyboardAndViewContainer";
+            this.KyboardAndViewContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
-            // splitContainer1.Panel1
+            // KyboardAndViewContainer.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.KyboardAndViewContainer.Panel1.Controls.Add(this.TopPanel);
             // 
-            // splitContainer1.Panel2
+            // KyboardAndViewContainer.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.abcdefKeyboardView1);
-            this.splitContainer1.Size = new System.Drawing.Size(792, 573);
-            this.splitContainer1.SplitterDistance = 305;
-            this.splitContainer1.TabIndex = 0;
-            this.splitContainer1.TabStop = false;
+            this.KyboardAndViewContainer.Panel2.Controls.Add(this.abcdefKeyboardView1);
+            this.KyboardAndViewContainer.Size = new System.Drawing.Size(792, 573);
+            this.KyboardAndViewContainer.SplitterDistance = 305;
+            this.KyboardAndViewContainer.TabIndex = 0;
+            this.KyboardAndViewContainer.TabStop = false;
             // 
-            // splitContainer2
+            // TopPanel
             // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.IsSplitterFixed = true;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Size = new System.Drawing.Size(792, 305);
-            this.splitContainer2.SplitterDistance = 296;
-            this.splitContainer2.TabIndex = 1;
-            this.splitContainer2.TabStop = false;
+            this.TopPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TopPanel.IsSplitterFixed = true;
+            this.TopPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopPanel.Name = "TopPanel";
             // 
-            // FocusResetTimer
+            // TopPanel.Panel1
             // 
-            this.FocusResetTimer.Enabled = true;
-            this.FocusResetTimer.Tick += new System.EventHandler(this.FocusResetTimer_Tick);
+            this.TopPanel.Panel1.Controls.Add(this.uctrlDialog1);
+            this.TopPanel.Size = new System.Drawing.Size(792, 305);
+            this.TopPanel.SplitterDistance = 296;
+            this.TopPanel.TabIndex = 1;
+            this.TopPanel.TabStop = false;
+            // 
+            // uctrlDialog1
+            // 
+            this.uctrlDialog1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uctrlDialog1.Location = new System.Drawing.Point(0, 0);
+            this.uctrlDialog1.Name = "uctrlDialog1";
+            this.uctrlDialog1.Size = new System.Drawing.Size(296, 305);
+            this.uctrlDialog1.TabIndex = 0;
             // 
             // abcdefKeyboardView1
             // 
@@ -89,31 +98,40 @@
             this.abcdefKeyboardView1.Size = new System.Drawing.Size(760, 265);
             this.abcdefKeyboardView1.TabIndex = 0;
             this.abcdefKeyboardView1.TabStop = false;
+            this.abcdefKeyboardView1.Applied += new System.EventHandler(this.abcdefKeyboardView1_Applied);
+            // 
+            // FocusResetTimer
+            // 
+            this.FocusResetTimer.Enabled = true;
+            this.FocusResetTimer.Tick += new System.EventHandler(this.FocusResetTimer_Tick);
             // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(792, 573);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.KyboardAndViewContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "View";
             this.Text = "KomMee";
+            this.Shown += new System.EventHandler(this.View_Shown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.View_KeyUp);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.ResumeLayout(false);
+            this.KyboardAndViewContainer.Panel1.ResumeLayout(false);
+            this.KyboardAndViewContainer.Panel2.ResumeLayout(false);
+            this.KyboardAndViewContainer.ResumeLayout(false);
+            this.TopPanel.Panel1.ResumeLayout(false);
+            this.TopPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer KyboardAndViewContainer;
         private ABCDEFKeyboardView abcdefKeyboardView1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer TopPanel;
         private System.Windows.Forms.Timer FocusResetTimer;
+        private UctrlDialog uctrlDialog1;
     }
 }

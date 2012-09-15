@@ -25,7 +25,7 @@ namespace KomMee
 
         private IViewContainer viewContainer;
 
-        internal IViewContainer ViewContainer
+        public IViewContainer ViewContainer
         {
             get { return viewContainer; }
             set { viewContainer = value; }

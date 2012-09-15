@@ -42,6 +42,7 @@
     <Compile Include="IViewContainer.cs" />
     <Compile Include="KeyboardButtons.cs" />
     <Compile Include="KeyboardViewEventArgs.cs" />
+    <Compile Include="MenuState.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="MessageList.cs" />
     <Compile Include="MessageListView.cs">
