@@ -28,5 +28,15 @@ namespace KomMee
         {
             throw new NotImplementedException();
         }
+
+        public override void save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void delete()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

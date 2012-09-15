@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using System.Data;
+using System.Reflection;
+
 
 namespace KomMee
 {
@@ -10,7 +13,7 @@ namespace KomMee
     /// 
     /// </summary>
     public class Contact
-    {   
+    {
         /// <summary>
         /// The Contact id
         /// </summary>
@@ -66,6 +69,13 @@ namespace KomMee
             set { defaultAddress = value; }
         }
 
+        private int messageTypeID;
+
+        public int MessageTypeID
+        {
+            get { return messageTypeID; }
+            set { messageTypeID = value; }
+        }
 
         /// <summary>
         /// The type of a contact
@@ -97,8 +107,12 @@ namespace KomMee
                 throw new Exception("The lastname is empty.");
             }
 
+            this.id = 0;
+            this.messageTypeID = 0;
             this.firstname = pFirstname;
             this.lastname = pLastname;
+            this.ContactTypes = new Dictionary<string, Address>();
+
         }
 
         /// <summary>
@@ -107,15 +121,69 @@ namespace KomMee
         /// <param name="pId">The contat-ID</param>
         /// <param name="pFirstname">The firstname of a contact</param>
         /// <param name="pLastname">The lastname of a contact</param>
-        public Contact(int pId, string pFirstname, string pLastname)
-            : this(pFirstname,pLastname)
+        public Contact(DataRow data, List<DataTable> tableList)
         {
-            if (pId == 0)
+            this.id = int.Parse(data["contactID"].ToString());
+            this.Firstname = data["firstName"].ToString();
+            this.Lastname = data["lastName"].ToString();
+            this.messageTypeID = int.Parse(data["messageTypeID"].ToString());
+
+            // set Addresses
+            this.contactTypes = new Dictionary<string, Address>();
+            foreach (DataTable dt in tableList)
             {
-                throw new Exception("Contact-Id is empty.");
+                switch(dt.TableName)
+                {
+                    case "SMSContact": // set SMSAdresse
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            if (this.Id == int.Parse(dt.Rows[i]["contactID"].ToString()))
+                            {
+                                //this.contactTypes.Add(dt.Rows[i]["address"].ToString(), new SMSAddress(dt.Rows[i]));
+                            }
+                        }
+                        break;
+                    case "EMailContact":
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            if (this.Id == int.Parse(dt.Rows[i]["contactID"].ToString()))
+                            {
+                                //this.contactTypes.Add(dt.Rows[i]["address"].ToString(), new EMailAddress(dt.Rows[i]));
+                            }
+                        }
+                        break;
+                    case "messageType": // has to be done later
+                        break;
+                    default:
+                        throw new Exception("Unknown tablename.");
+                }
             }
 
-            this.id = pId;
+            foreach (DataTable dt in tableList)
+            {
+                switch (dt.TableName)
+                {
+                    case "messageType":
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            if (int.Parse(data["messageTypeID"].ToString()) == int.Parse(dt.Rows[i]["messageTypeID"].ToString()))
+                            {
+                                foreach (var addr in this.contactTypes)
+                                {
+                                    if (addr.Value.GetType().Equals(Type.GetType(dt.Rows[i]["className"].ToString())))
+                                    {
+                                        this.defaultAddress = addr.Value;
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                    case "SMSContact":
+                    case "EMailContact":
+                    default:
+                        break;
+                }
+            }
         }
 
         /// <summary>
@@ -126,7 +194,8 @@ namespace KomMee
             bool error = false;
             if (this.Id == 0)
             {
-                this.id = this.Insert();
+                this.Insert();
+                error = true;
             }
             else
             {
@@ -152,8 +221,23 @@ namespace KomMee
         private int Insert()
         {
             SQL sqlInstance = SQL.getInstance();
-            // BLA
-            //return sqlInstance.Insert(Tables.Contact,this);
+            DataTable saveContactData = new DataTable("Contact");
+            saveContactData.Columns.Add("firstName", typeof(string));
+            saveContactData.Columns.Add("lastName", typeof(string));
+            saveContactData.Columns.Add("messageTypeID", typeof(int));
+
+            saveContactData.Rows.Add(this.Firstname,this.Lastname,this.messageTypeID);
+            this.id = sqlInstance.Insert(saveContactData);
+            
+            // save the Adresses
+            if(this.contactTypes.Count > 0)
+            {
+                foreach(var addr in this.ContactTypes)
+                {
+                    addr.Value.save();
+                }
+            }
+
             return 0;
         }
 
@@ -164,9 +248,22 @@ namespace KomMee
         private bool Update()
         {
             SQL sqlInstance = SQL.getInstance();
-
-            //return sqlInstance.Update(Tables.Contact, this);
-            return false;
+            DataTable saveContactData = new DataTable("Contact");
+            saveContactData.Columns.Add("contactID", typeof(int));
+            saveContactData.Columns.Add("firstName", typeof(string));
+            saveContactData.Columns.Add("lastName", typeof(string));
+            saveContactData.Columns.Add("messageTypeID", typeof(int));
+            saveContactData.Rows.Add(this.Id, this.Firstname, this.Lastname, this.messageTypeID);
+            this.id = sqlInstance.Insert(saveContactData);
+            // save the Adresses
+            if (this.contactTypes.Count > 0)
+            {
+                foreach (var addr in this.ContactTypes)
+                {
+                    addr.Value.save();
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -176,14 +273,36 @@ namespace KomMee
         private bool Delete()
         {
             SQL sqlInstance = SQL.getInstance();
+            DataTable saveContactData = new DataTable("Contact");
+            saveContactData.Columns.Add("contactID", typeof(int));
+            saveContactData.Rows.Add(this.Id);
 
-            //return sqlInstance.Delete(Tables.Contact, this); ;
-            return false;
+            // first delete  the Adresses
+            if (this.contactTypes.Count > 0)
+            {
+                foreach (var addr in this.ContactTypes)
+                {
+                    addr.Value.delete();
+                }
+            }
+
+            sqlInstance.Delete(saveContactData);
+            
+            return true;
         }
 
         public override string ToString()
         {
-            return string.Format("{0}, {1}",this.Lastname, this.Firstname);
+            return string.Format("{0}, {1}", this.Lastname, this.Firstname);
+        }
+
+        public void removeAddresFromList(string listIndex)
+        {
+            if(this.contactTypes.ContainsKey(listIndex))
+            {
+                this.contactTypes[listIndex].delete();
+                this.contactTypes.Remove(listIndex);
+            }
         }
     }
 }

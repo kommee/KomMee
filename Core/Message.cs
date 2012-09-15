@@ -73,12 +73,6 @@ namespace KomMee
 
         public abstract bool send();
 
-        // Muss vermutlich in ein Interface
-        //public virtual static List<Message> recieve()
-        //{
-        //    throw new NotImplementedException();
-        //}
-
         public Message(object data)
         {
         }
@@ -89,5 +83,9 @@ namespace KomMee
         }
 
         protected abstract string validateSender(string sender);
+
+        public abstract void save();
+
+        public abstract void delete();
     }
 }

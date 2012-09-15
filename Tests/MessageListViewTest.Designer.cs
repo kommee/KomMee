@@ -28,19 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.messageListView1 = new KomMee.MessageListView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.messageListView1 = new KomMee.MessageListView();
             this.SuspendLayout();
-            // 
-            // messageListView1
-            // 
-            this.messageListView1.Location = new System.Drawing.Point(1, 2);
-            this.messageListView1.Name = "messageListView1";
-            this.messageListView1.Size = new System.Drawing.Size(150, 300);
-            this.messageListView1.TabIndex = 0;
             // 
             // button1
             // 
@@ -82,11 +75,18 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // messageListView1
+            // 
+            this.messageListView1.Location = new System.Drawing.Point(1, 2);
+            this.messageListView1.Name = "messageListView1";
+            this.messageListView1.Size = new System.Drawing.Size(150, 300);
+            this.messageListView1.TabIndex = 0;
+            // 
             // MessageListViewTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(238, 315);
+            this.ClientSize = new System.Drawing.Size(237, 315);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);

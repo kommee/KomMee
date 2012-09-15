@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 
 namespace KomMee
@@ -35,40 +36,42 @@ namespace KomMee
         {
             this.listOfContacts = new Dictionary<int, Contact>();
             // connect to database
-            try
+
+            SQL sqlInstance = SQL.getInstance();
+            
+            // Get all contacts
+            DataTable data = new DataTable("Contact");
+            data.Columns.Add("contactID", typeof(int));
+            data.Columns.Add("firstname", typeof(string));
+            data.Columns.Add("lastname", typeof(string));
+            data.Columns.Add("messageTypeId", typeof(int));
+            if (sqlInstance.Read(data))
             {
-                SQL sqlInstance = SQL.getInstance();
-                // Get all contacts
-                System.Data.DataTable data = new System.Data.DataTable("Contact");
-                data.Columns.Add("contactID", typeof(int));
-                data.Columns.Add("firstname", typeof(string));
-                data.Columns.Add("lastname", typeof(string));
-                data.Columns.Add("messageTypeId", typeof(int));
-                if (sqlInstance.Read(data))
+                List<DataTable> dataList = new List<DataTable>();
+                DataTable messageType = new DataTable("MessageType");
+                messageType.Columns.Add("mesageTypeID",typeof(int));
+                messageType.Columns.Add("typeName",typeof(string));
+                messageType.Columns.Add("className",typeof(string));
+                sqlInstance.Read(messageType);
+                dataList.Add(messageType);
+
+                DataTable smsContact = new DataTable("SMSContact");
+                smsContact.Columns.Add("smsContactID",typeof(int));
+                smsContact.Columns.Add("contactID",typeof(int));
+                smsContact.Columns.Add("address",typeof(string));
+                sqlInstance.Read(smsContact);
+                dataList.Add(smsContact);
+
+                for (int i = 0; i < data.Rows.Count; i++)
                 {
-                    for (int i = 0; i < data.Rows.Count; i++)
-                    {
-                        this.listOfContacts.Add(int.Parse(data.Rows[i]["contactID"].ToString()), new Contact(int.Parse(data.Rows[i]["contactID"].ToString()), data.Rows[i]["firstname"].ToString(), data.Rows[i]["lastname"].ToString()));
-                    }
+                    this.listOfContacts.Add(int.Parse(data.Rows[i]["contactID"].ToString()), new Contact(data.Rows[i],dataList));
                 }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
             }
             // fill the Addressbook
             int j = 0;
             do
             {
-                try
-                {
-                    this.listOfContacts.Add(j, new Contact("Harald_" + j.ToString(), "Petersen"));
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                
+                this.listOfContacts.Add(j, new Contact("Harald_" + j.ToString(), "Petersen"));
                 j++;
             } while (j <= 3);
         }
