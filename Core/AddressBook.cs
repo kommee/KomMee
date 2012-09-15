@@ -123,5 +123,22 @@ namespace KomMee
             }
             return false;
         }
+
+        /// <summary>
+        /// Returns a Datatable with 2 Columns.
+        /// </summary>
+        /// <returns>2 Colums. First Column has index "contactID" which is the Contact-Id. Second Column is the return of Contact.TooString()-Method</returns>
+        public DataTable getDatasource()
+        {
+            DataTable data = new DataTable("Contacts");
+            data.Columns.Add("contactID", typeof(int));
+            data.Columns.Add("name", typeof(string));
+
+            foreach (var contact in this.listOfContacts)
+            {
+                data.Rows.Add(contact.Value.Id, contact.Value.ToString());
+            }
+            return data;
+        }
     }
 }
