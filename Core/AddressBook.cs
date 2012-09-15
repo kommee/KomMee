@@ -82,7 +82,7 @@ namespace KomMee
         /// <returns>The actually Instance of AddressBook</returns>
         public static AddressBook getInstance()
         {
-            return addressBookInstance;
+            return AddressBook.addressBookInstance;
         }
         /// <summary>
         /// Adds a Contact to the list.
