@@ -20,7 +20,7 @@ namespace KomMee_Tests
                 // AddressbookView Test
                 //Application.Run(new AdressBookUCtrl());
                 // MessageListView Test
-                Application.Run(new MessageListViewTest());
+                //Application.Run(new MessageListViewTest());
             }
             catch (Exception e)
             {

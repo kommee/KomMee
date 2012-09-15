@@ -51,12 +51,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="MainClass.cs" />
-    <Compile Include="MessageListViewTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MessageListViewTest.Designer.cs">
-      <DependentUpon>MessageListViewTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="SQLTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,10 +79,6 @@
       <Project>{386EB105-83CE-410D-B409-6E59B81794F5}</Project>
       <Name>Database</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EMail\EMail.csproj">
-      <Project>{FCCA003E-748B-4ADC-8CFD-535D0045C6F7}</Project>
-      <Name>EMail</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Form\Form.csproj">
       <Project>{643ACD3E-F9A5-4EA6-9A77-C7895BBAB327}</Project>
       <Name>Form</Name>
@@ -97,20 +87,11 @@
       <Project>{25AC93A4-1D07-4088-B7C8-B168845563E2}</Project>
       <Name>Keyboard</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SMS\SMS.csproj">
-      <Project>{1EC218FF-64B9-463C-A64F-86D2943CFCE5}</Project>
-      <Name>SMS</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="nunit.framework.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="MessageListViewTest.resx">
-      <DependentUpon>MessageListViewTest.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

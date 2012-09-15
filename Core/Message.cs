@@ -6,7 +6,7 @@ using System.Data;
 
 namespace KomMee
 {
-    public class Message
+    public abstract class Message
     {
         protected int id;
 
@@ -87,5 +87,15 @@ namespace KomMee
         public abstract void save();
 
         public abstract void delete();
+
+        public override string ToString()
+        {
+            string shown_text = "";
+            if(this.Contact == null)
+                shown_text = string.Format("{0} - {1}", this.CreationDate.ToString("dd-MM-yyyy HH:mm"), this.Sender);
+            else
+                shown_text = string.Format("{0} - {1}", this.CreationDate.ToString("dd-MM-yyyy HH:mm"), this.Contact.ToString());
+            return shown_text;
+        }
     }
 }

@@ -37,32 +37,32 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
-    <Compile Include="AddressBook.cs" />
-    <Compile Include="Contact.cs" />
+    <Compile Include="AddressBook.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="EMailAddress.cs" />
+    <Compile Include="EMailMessage.cs" />
+    <Compile Include="EMailViewContainer.cs" />
     <Compile Include="IViewContainer.cs" />
     <Compile Include="KeyboardButtons.cs" />
     <Compile Include="KeyboardViewEventArgs.cs" />
     <Compile Include="MenuState.cs" />
     <Compile Include="Message.cs" />
-    <Compile Include="MessageList.cs" />
-    <Compile Include="MessageListView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MessageListView.Designer.cs">
-      <DependentUpon>MessageListView.cs</DependentUpon>
+    <Compile Include="MessageList.cs">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="SMSAddress.cs" />
+    <Compile Include="SMSMessage.cs" />
+    <Compile Include="SMSViewContainer.cs" />
     <Compile Include="UctrlDialog.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UctrlDialog.Designer.cs">
       <DependentUpon>UctrlDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AdressBookView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="AdressBookView.Designer.cs">
-      <DependentUpon>AdressBookView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

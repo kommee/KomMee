@@ -26,7 +26,7 @@ namespace KomMee
             {
                 for (int i = 0; i < data.Rows.Count; i++)
                 {
-                    this.Add(new Message(data.Rows[i]));
+                    this.Add(new SMSMessage(data.Rows[i]));
                 }
             }
         }
