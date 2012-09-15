@@ -30,15 +30,14 @@ namespace KomMee
         /// <summary>
         /// The instance of a Adressbook
         /// </summary>
-        private static AddressBook addressBookInstance = new AddressBook();
+        private static AddressBook addressBookInstance;
 
         private AddressBook()
         {
-            this.listOfContacts = new Dictionary<int, Contact>();
             // connect to database
 
             SQL sqlInstance = SQL.getInstance();
-            
+            this.listOfContacts = new Dictionary<int, Contact>();
             // Get all contacts
             DataTable data = new DataTable("Contact");
             data.Columns.Add("contactID", typeof(int));
@@ -49,22 +48,22 @@ namespace KomMee
             {
                 List<DataTable> dataList = new List<DataTable>();
                 DataTable messageType = new DataTable("MessageType");
-                messageType.Columns.Add("mesageTypeID",typeof(int));
-                messageType.Columns.Add("typeName",typeof(string));
-                messageType.Columns.Add("className",typeof(string));
+                messageType.Columns.Add("mesageTypeID", typeof(int));
+                messageType.Columns.Add("typeName", typeof(string));
+                messageType.Columns.Add("className", typeof(string));
                 sqlInstance.Read(messageType);
                 dataList.Add(messageType);
 
                 DataTable smsContact = new DataTable("SMSContact");
-                smsContact.Columns.Add("smsContactID",typeof(int));
-                smsContact.Columns.Add("contactID",typeof(int));
-                smsContact.Columns.Add("address",typeof(string));
+                smsContact.Columns.Add("smsContactID", typeof(int));
+                smsContact.Columns.Add("contactID", typeof(int));
+                smsContact.Columns.Add("address", typeof(string));
                 sqlInstance.Read(smsContact);
                 dataList.Add(smsContact);
 
                 for (int i = 0; i < data.Rows.Count; i++)
                 {
-                    this.listOfContacts.Add(int.Parse(data.Rows[i]["contactID"].ToString()), new Contact(data.Rows[i],dataList));
+                    this.listOfContacts.Add(int.Parse(data.Rows[i]["contactID"].ToString()), new Contact(data.Rows[i], dataList));
                 }
             }
             // fill the Addressbook

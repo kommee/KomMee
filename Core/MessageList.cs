@@ -8,7 +8,7 @@ namespace KomMee
 {
     public class MessageList : List<Message>
     {
-        private static MessageList msgListInstance = new MessageList();
+        private static MessageList msgListInstance;
 
         private MessageList()
         {
