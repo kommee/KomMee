@@ -82,6 +82,8 @@ namespace KomMee
         /// <returns>The actually Instance of AddressBook</returns>
         public static AddressBook getInstance()
         {
+            if (AddressBook.addressBookInstance == null)
+                AddressBook.addressBookInstance = new AddressBook();
             return AddressBook.addressBookInstance;
         }
         /// <summary>
