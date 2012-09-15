@@ -139,7 +139,7 @@ namespace KomMee
                         {
                             if (this.Id == int.Parse(dt.Rows[i]["contactID"].ToString()))
                             {
-                                //this.contactTypes.Add(dt.Rows[i]["address"].ToString(), new SMSAddress(dt.Rows[i]));
+                                this.contactTypes.Add(dt.Rows[i]["address"].ToString(), new Address(dt.Rows[i]));
                             }
                         }
                         break;
@@ -148,7 +148,7 @@ namespace KomMee
                         {
                             if (this.Id == int.Parse(dt.Rows[i]["contactID"].ToString()))
                             {
-                                //this.contactTypes.Add(dt.Rows[i]["address"].ToString(), new EMailAddress(dt.Rows[i]));
+                                this.contactTypes.Add(dt.Rows[i]["address"].ToString(), new Address(dt.Rows[i]));
                             }
                         }
                         break;

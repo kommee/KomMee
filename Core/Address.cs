@@ -6,7 +6,7 @@ using System.Data;
 
 namespace KomMee
 {
-    public abstract class Address
+    public class Address
     {
         protected int id;
 
