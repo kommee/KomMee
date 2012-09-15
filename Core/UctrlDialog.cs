@@ -12,7 +12,25 @@ namespace KomMee
     public partial class UctrlDialog : UserControl
     {
 
-        
+
+
+        public object DataSource
+        {
+            get { return this.lbChoice.DataSource; }
+            set { this.lbChoice.DataSource = value; }
+        }
+
+        public string ValueMember
+        {
+            get { return this.lbChoice.ValueMember; }
+            set { this.lbChoice.ValueMember = value; }
+        }
+
+        public string DisplayMember
+        {
+            get { return this.lbChoice.DisplayMember; }
+            set { this.lbChoice.DisplayMember = value; }
+        }
 
         public UctrlDialog()
         {

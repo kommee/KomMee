@@ -22,14 +22,6 @@ namespace KomMee
             get { return this.uctrlDialog1; }
         }
 
-        private AddressBook addressBook;
-
-        internal AddressBook AddressBook
-        {
-            get { return addressBook; }
-            set { addressBook = value; }
-        }
-
         internal KeyboardView KeyboardView
         {
             get { return (KeyboardView)this.abcdefKeyboardView1;  }
@@ -43,6 +35,10 @@ namespace KomMee
             Settings.init();
             Input.init(this);
             Input.setNewMenuState(MenuState.None);
+            AddressBook addressBook = AddressBook.getInstance();
+            this.uctrlDialog1.DataSource = addressBook.getDatasource();
+            this.uctrlDialog1.ValueMember = "ContactID";
+            this.uctrlDialog1.DisplayMember = "Name";
         }
 
         [STAThread]
