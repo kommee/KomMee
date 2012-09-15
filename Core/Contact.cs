@@ -111,6 +111,7 @@ namespace KomMee
             this.messageTypeID = 0;
             this.firstname = pFirstname;
             this.lastname = pLastname;
+            this.ContactTypes = new Dictionary<string, Address>();
 
         }
 
