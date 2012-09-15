@@ -21,13 +21,20 @@ namespace KomMee
             data.Columns.Add("isSent", typeof(int));
             data.Columns.Add("isRead", typeof(int));
             data.Columns.Add("creationDate", typeof(string));
-            sqlInstance.Read(data);
-            if (data.Rows.Count > 0)
+            try
             {
-                for (int i = 0; i < data.Rows.Count; i++)
+                sqlInstance.Read(data);
+                if (data.Rows.Count > 0)
                 {
-                    this.Add(new SMSMessage(data.Rows[i]));
+                    for (int i = 0; i < data.Rows.Count; i++)
+                    {
+                        this.Add(new SMSMessage(data.Rows[i]));
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+
             }
         }
 
