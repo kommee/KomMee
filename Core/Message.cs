@@ -83,5 +83,9 @@ namespace KomMee
         }
 
         protected abstract string validateSender(string sender);
+
+        public abstract void save();
+
+        public abstract void delete();
     }
 }
