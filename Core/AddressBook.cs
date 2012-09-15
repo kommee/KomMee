@@ -21,7 +21,7 @@ namespace KomMee
         /// <summary>
         /// List of Contacts the user has.
         /// </summary>
-        internal Dictionary<int, Contact> ListOfContacts
+        public Dictionary<int, Contact> ListOfContacts
         {
             get { return listOfContacts; }
             set { listOfContacts = value; }
