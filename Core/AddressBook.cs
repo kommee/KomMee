@@ -46,7 +46,8 @@ namespace KomMee
             data.Columns.Add("messageTypeId", typeof(int));
             try
             {
-                if (sqlInstance.Read(data))
+                sqlInstance.Read(data);
+                if (data.Rows.Count > 0)
                 {
                     List<DataTable> dataList = new List<DataTable>();
                     DataTable messageType = new DataTable("MessageType");

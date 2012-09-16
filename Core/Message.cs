@@ -77,7 +77,7 @@ namespace KomMee
         {
         }
 
-        public Message(DataTable data)
+        public Message(DataRow data)
         {
 
         }

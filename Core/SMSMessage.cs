@@ -14,18 +14,18 @@ namespace KomMee
         {
         }
 
-        public SMSMessage(DataTable data)
+        public SMSMessage(DataRow data)
             : base(data)
         {
             AddressBook adr = AddressBook.getInstance();
-            this.id = int.Parse(data.Rows[0]["smsID"].ToString());
-            this.Text = data.Rows[0]["text"].ToString();
-            this.Read = Convert.ToBoolean(data.Rows[0]["isRead"]);
-            this.Sent = Convert.ToBoolean(data.Rows[0]["isSent"]);
-            this.Sender = data.Rows[0]["senderAddress"].ToString();
+            this.id = int.Parse(data["smsID"].ToString());
+            this.Text = data["text"].ToString();
+            this.Read = Convert.ToBoolean(data["isRead"]);
+            this.Sent = Convert.ToBoolean(data["isSent"]);
+            this.Sender = data["senderAddress"].ToString();
             this.CreationDate = new DateTime();
-            CreationDate = DateTime.ParseExact(data.Rows[0]["creationDate"].ToString(), "dd-MM-yyyy HH:mm", null);
-            this.Contact = adr.getContact((int)data.Rows[0]["contactID"]);
+            CreationDate = DateTime.ParseExact(data["creationDate"].ToString(), "dd-MM-yyyy HH:mm", null);
+            this.Contact = adr.getContact((int)data["contactID"]);
 
             // TODO 
             // Implement the IViewContainer
@@ -33,17 +33,9 @@ namespace KomMee
 
         public override bool send()
         {
-            DataTable saveData = new DataTable("SMS");
-            SQL sqlInstance = SQL.getInstance();
-            saveData.Columns.Add("text", typeof(string));
-            saveData.Columns.Add("senderAddress", typeof(string));
-            saveData.Columns.Add("contactID", typeof(int));
-            saveData.Columns.Add("isSent", typeof(int));
-            saveData.Columns.Add("isRead", typeof(int));
-            saveData.Rows.Add(this.Text, this.Sender, this.Contact.Id, this.Sent, this.Read);
-            sqlInstance.Insert(saveData);
-
-            return true;
+            this.save();
+            SIM card = SIM.getInstance();
+            return card.sendMessage(this.Sender.ToString(), this.Text.ToString());
         }
 
         protected override string validateSender(string sender)
@@ -60,6 +52,18 @@ namespace KomMee
 
         public static void receive()
         {
+            DataTable receivedMessages = new DataTable();
+            SIM card = SIM.getInstance();
+            MessageList msgList = MessageList.getInstance();
+
+            if (receivedMessages.Rows.Count > 0)
+            {
+                for (int i = 0; i < receivedMessages.Rows.Count; i++)
+                {
+                    msgList.Add(new SMSMessage(receivedMessages.Rows[i]));
+                }
+            }
+            receivedMessages = card.readMessages();
 
         }
 

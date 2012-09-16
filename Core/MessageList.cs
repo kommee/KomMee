@@ -39,7 +39,7 @@ namespace KomMee
             }
 
             data.Rows.Add(1, "test eintragf mdmcocclödcmdklsdlklklsd", "0176442228", 8, 0, 1, DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
-            this.Add(new SMSMessage(data));
+            this.Add(new SMSMessage(data.Rows[0]));
         }
 
         public static MessageList getInstance()
