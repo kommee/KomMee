@@ -120,10 +120,15 @@ namespace KomMee
 
         public DataTable readMessages()
         {
+            DataTable messages = new DataTable("Messages");
+            messages.Columns.Add("sender", typeof(string));
+            messages.Columns.Add("receiveTime", typeof(string));
+            messages.Columns.Add("message", typeof(string));
+
             this.executeATCommand("AT+CMGF=1", 300);
             string unreadMessages = this.executeATCommand("AT+CMGL=\"REC UNREAD\"", 3000);
             Console.WriteLine(unreadMessages);
-            return true;
+            return messages;
         }
     }
 }

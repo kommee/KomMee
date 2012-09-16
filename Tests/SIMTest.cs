@@ -14,9 +14,9 @@ namespace KomMee_Tests
         public void test()
         {
             SIM sim = SIM.getInstance();
-            Console.WriteLine(sim.sendSMS("015223003651", "Hello World!\nTest =)"));
-            //Console.WriteLine(sim.sendSMS("017678243093", "Hello World!"));
-            //sim.readSMSs();
+            Console.WriteLine(sim.sendMessage("017678243093", "Hello World!\r\nTest =)"));
+            Console.WriteLine(sim.sendMessage("017678243093", "Hello World!"));
+            sim.readMessages();
             Console.ReadKey();
         }
     }

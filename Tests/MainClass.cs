@@ -21,6 +21,8 @@ namespace KomMee_Tests
                 //Application.Run(new AdressBookUCtrl());
                 // MessageListView Test
                 //Application.Run(new MessageListViewTest());
+                SIMTest simTest = new SIMTest();
+                simTest.test();
             }
             catch (Exception e)
             {
