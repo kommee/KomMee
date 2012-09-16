@@ -55,6 +55,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="SIM.cs" />
     <Compile Include="SMSAddress.cs" />
     <Compile Include="SMSMessage.cs" />
     <Compile Include="SMSViewContainer.cs" />

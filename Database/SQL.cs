@@ -24,7 +24,6 @@ namespace KomMee
         private SQL()
         {
             bool needToInitialize = !File.Exists(this.pathOfDatabase);
-            Console.WriteLine("Im Konstruktor!");
             this.sqliteConnection = new SQLiteConnection("Data Source=" + this.pathOfDatabase);
             this.sqliteConnection.Open();
 
@@ -38,8 +37,7 @@ namespace KomMee
                 {
                     command.CommandText = sqlCommand;
                     command.ExecuteNonQuery();
-                    Console.WriteLine("SQL executed: " + sqlCommand);
-                }
+                  }
             }
         }
 
@@ -63,7 +61,7 @@ namespace KomMee
 
             foreach (DataColumn col in data.Columns)
             {
-                if (data.Rows[0][col.ColumnName] != null)
+                if (data.Rows[0][col.ColumnName].ToString().Length > 0)
                 {
                     cols += col.ColumnName + ", ";
                     if (col.DataType.Equals(typeof(int)))
@@ -114,7 +112,7 @@ namespace KomMee
 
             foreach (DataColumn col in data.Columns)
             {
-                if (data.Rows[0][col.ColumnName] != null)
+                if (data.Rows[0][col.ColumnName].ToString().Length > 0 && !col.ColumnName.ToLower().Equals((data.TableName + "ID").ToLower()))
                 {
                     set += col.ColumnName + " = ";
                     if (col.DataType.Equals(typeof(int)))
@@ -132,17 +130,16 @@ namespace KomMee
                 }
             }
             set = set.Substring(0, (set.Length - 2));
-
-            update = string.Format("UPDATE {0} SET {1] WHERE {2} = {3}", data.TableName, set, tableID, data.Rows[0][tableID]);
+            update = string.Format("UPDATE {0} SET {1} WHERE {2} = {3}", data.TableName, set, tableID, data.Rows[0][tableID]);
             command.CommandText = update;
             command.ExecuteNonQuery();
         }
 
-        public bool Delete(DataTable data)
+        public void Delete(DataTable data)
         {
             if (!isDeletable(data.TableName))
             {
-                throw new Exception(string.Format("You are not allowed to delete datasets in table {}", data.TableName));
+                throw new Exception(string.Format("You are not allowed to delete datasets in table {0}", data.TableName));
             }
             else if (data.Rows.Count != 1)
             {
@@ -150,9 +147,10 @@ namespace KomMee
             }
             SQLiteCommand command = new SQLiteCommand(this.sqliteConnection);
             string tableID = data.TableName + "ID", delete = null, currDate = null ;
-            currDate = DateTime.Now.ToString("yyyyMMDD");
+            currDate = DateTime.Now.ToString("yyyyMMdd");
 
             delete = string.Format("UPDATE {0} SET deleteDate = {1} WHERE {2} = {3}", data.TableName, currDate, tableID, data.Rows[0][tableID]);
+            Console.WriteLine(delete);
             command.CommandText = delete;
             switch (command.ExecuteNonQuery())
             {
@@ -163,10 +161,9 @@ namespace KomMee
                 default:
                     throw new Exception(string.Format("Error deleting entry in table {0}! More than one row affected!", data.TableName));
             }
-            return false;
         }
 
-        public bool Read(DataTable data)
+        public void Read(DataTable data)
         {
             if (data.Rows.Count != 0)
             { 
@@ -223,7 +220,6 @@ namespace KomMee
             {
                 throw new Exception(string.Format("Table {} is empty, or doesn't exist!", data.TableName));
             }
-           return true;
         }
 
         private void initTableDefs()
@@ -287,6 +283,12 @@ namespace KomMee
             this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Right\", \"39\");");
             this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Apply\", \"13\");");
             this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Cancel\", \"32\");");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simPortName\", \"COM256\")");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simParity\", \"9600\")");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simStopBits\", \"None\")");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simBaudRate\", \"8\")");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simDataBits\", \"One\")");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simPin\", \"9876\")");
         }
 
         private bool isDeletable(string tableName)
@@ -297,7 +299,7 @@ namespace KomMee
             { 
                 while (reader.Read())
                 {
-                    if (reader.GetString(reader.GetOrdinal("name")) == "deletDate")
+                    if (reader.GetString(reader.GetOrdinal("name")) == "deleteDate")
                     {
                         return true;
                     }
