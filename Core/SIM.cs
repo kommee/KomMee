@@ -158,6 +158,7 @@ namespace KomMee
             {
                 if (extractedMessages[index].StartsWith("+CMGL: "))
                 {
+                    extractedMessages[index] += ",";
                     index++;
                 }
                 else
@@ -181,10 +182,10 @@ namespace KomMee
             foreach (string messageString in extractedMessages)
             {
                 DataRow row = messages.NewRow();
-                string[] splittedMessageString = messageString.Split(',');
-                row["sender"] = parseSenderNumber(splittedMessageString[2]);
-                row["receiveTime"] = parseReceiveTime(splittedMessageString[4], splittedMessageString[5]);
-                row["message"] = splittedMessageString[6];
+                string[] splittedMessageString = splitMessageString(messageString);
+                row["sender"] = parseSenderNumber(splittedMessageString[0]);
+                row["receiveTime"] = parseReceiveTime(splittedMessageString[1], splittedMessageString[2]);
+                row["message"] = splittedMessageString[3];
                 messages.Rows.Add(row);
             }
 
@@ -224,9 +225,26 @@ namespace KomMee
                                 splittedReceiveDate[1] + "-20" +
                                 splittedReceiveDate[0] + " " +
                                 splittedReceiveTime[0] + ":" +
-                                splittedReceiveTime[1];
+                                splittedReceiveTime[1];  
 
             return parsedReceiveTime;
+        }
+
+        private string[] splitMessageString(string messageString)
+        {
+            string[] splittedMessageString = new string[4];
+            Console.WriteLine(messageString);
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            splittedMessageString[0] = messageString.Substring(0, messageString.IndexOf(","));
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            splittedMessageString[1] = messageString.Substring(0, messageString.IndexOf(","));
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            splittedMessageString[2] = messageString.Substring(0, messageString.IndexOf(","));
+            splittedMessageString[3] = messageString.Remove(0, messageString.IndexOf(",") + 1);
+
+            return splittedMessageString;
         }
     }
 }
