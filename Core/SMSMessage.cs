@@ -26,7 +26,7 @@ namespace KomMee
             this.CreationDate = new DateTime();
             CreationDate = DateTime.ParseExact(data["creationDate"].ToString(), "dd-MM-yyyy HH:mm", null);
             this.Contact = adr.getContact((int)data["contactID"]);
-
+            this.ViewContainer = null;
             // TODO 
             // Implement the IViewContainer
         }
