@@ -139,8 +139,8 @@ namespace KomMee
         public DataTable getDatasource()
         {
             DataTable data = new DataTable("Contacts");
-            data.Columns.Add("contactID", typeof(int));
-            data.Columns.Add("name", typeof(string));
+            data.Columns.Add("ContactID", typeof(int));
+            data.Columns.Add("Name", typeof(string));
 
             foreach (var contact in this.listOfContacts)
             {

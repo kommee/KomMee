@@ -21,6 +21,7 @@ namespace KomMee
             data.Columns.Add("isSent", typeof(int));
             data.Columns.Add("isRead", typeof(int));
             data.Columns.Add("creationDate", typeof(string));
+            
             try
             {
                 sqlInstance.Read(data);
@@ -36,6 +37,9 @@ namespace KomMee
             {
 
             }
+
+            data.Rows.Add(1, "test eintragf mdmcocclödcmdklsdlklklsd", "0176442228", 8, 0, 1, DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
+            this.Add(new SMSMessage(data));
         }
 
         public static MessageList getInstance()
@@ -48,8 +52,8 @@ namespace KomMee
         public DataTable getDatasource()
         {
             DataTable data = new DataTable("Messages");
-            data.Columns.Add("messageID", typeof(int));
-            data.Columns.Add("name", typeof(string));
+            data.Columns.Add("MessageID", typeof(int));
+            data.Columns.Add("Name", typeof(string));
             if (this.Count > 0)
             {
                 foreach (Message msg in this)
