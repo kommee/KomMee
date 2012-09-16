@@ -58,28 +58,28 @@ namespace KomMee
 
             parentPanel.SuspendLayout();
 
-            SMSViewContainer.RecvLabel = new Label();
-            SMSViewContainer.RecvLabel.SuspendLayout();
-            SMSViewContainer.RecvLabel.Width = 490;
-            SMSViewContainer.RecvLabel.Height = 25;
-            SMSViewContainer.RecvLabel.Left = 0;
-            SMSViewContainer.RecvLabel.Top = 0;
-            SMSViewContainer.RecvLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
-            SMSViewContainer.RecvLabel.Text = "Neue Nachricht:";
+            SMSViewContainer.SendLabel = new Label();
+            SMSViewContainer.SendLabel.SuspendLayout();
+            SMSViewContainer.SendLabel.Width = 490;
+            SMSViewContainer.SendLabel.Height = 25;
+            SMSViewContainer.SendLabel.Left = 0;
+            SMSViewContainer.SendLabel.Top = 0;
+            SMSViewContainer.SendLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
+            SMSViewContainer.SendLabel.Text = "Neue Nachricht:";
 
-            SMSViewContainer.RecvTextbox = new TextBox();
-            SMSViewContainer.RecvTextbox.SuspendLayout();
-            SMSViewContainer.RecvTextbox.Width = 490;
-            SMSViewContainer.RecvTextbox.Height = 268;
-            SMSViewContainer.RecvTextbox.Left = 0;
-            SMSViewContainer.RecvTextbox.Top = 35;
-            SMSViewContainer.RecvTextbox.Multiline = true;
+            SMSViewContainer.SendTextbox = new TextBox();
+            SMSViewContainer.SendTextbox.SuspendLayout();
+            SMSViewContainer.SendTextbox.Width = 490;
+            SMSViewContainer.SendTextbox.Height = 268;
+            SMSViewContainer.SendTextbox.Left = 0;
+            SMSViewContainer.SendTextbox.Top = 35;
+            SMSViewContainer.SendTextbox.Multiline = true;
 
-            parentPanel.Controls.Add(SMSViewContainer.RecvLabel);
-            parentPanel.Controls.Add(SMSViewContainer.RecvTextbox);
+            parentPanel.Controls.Add(SMSViewContainer.SendLabel);
+            parentPanel.Controls.Add(SMSViewContainer.SendTextbox);
 
-            SMSViewContainer.RecvLabel.ResumeLayout(false);
-            SMSViewContainer.RecvTextbox.ResumeLayout(false);
+            SMSViewContainer.SendLabel.ResumeLayout(false);
+            SMSViewContainer.SendTextbox.ResumeLayout(false);
             parentPanel.ResumeLayout(false);
         }
 
@@ -145,82 +145,82 @@ namespace KomMee
             switch (keyboardViewEventArgs.Value)
             {
                 case KeyboardButtons.AlphaA:
-                    SMSViewContainer.SendTextbox.Text += "a";
+                    SMSViewContainer.SendTextbox.Text += "A";
                     break;
                 case KeyboardButtons.AlphaB:
-                    SMSViewContainer.SendTextbox.Text += "b";
+                    SMSViewContainer.SendTextbox.Text += "B";
                     break;
                 case KeyboardButtons.AlphaC:
-                    SMSViewContainer.SendTextbox.Text += "c";
+                    SMSViewContainer.SendTextbox.Text += "C";
                     break;
                 case KeyboardButtons.AlphaD:
-                    SMSViewContainer.SendTextbox.Text += "d";
+                    SMSViewContainer.SendTextbox.Text += "D";
                     break;
                 case KeyboardButtons.AlphaE:
-                    SMSViewContainer.SendTextbox.Text += "e";
+                    SMSViewContainer.SendTextbox.Text += "E";
                     break;
                 case KeyboardButtons.AlphaF:
-                    SMSViewContainer.SendTextbox.Text += "f";
+                    SMSViewContainer.SendTextbox.Text += "F";
                     break;
                 case KeyboardButtons.AlphaG:
-                    SMSViewContainer.SendTextbox.Text += "g";
+                    SMSViewContainer.SendTextbox.Text += "G";
                     break;
                 case KeyboardButtons.AlphaH:
-                    SMSViewContainer.SendTextbox.Text += "h";
+                    SMSViewContainer.SendTextbox.Text += "H";
                     break;
                 case KeyboardButtons.AlphaI:
-                    SMSViewContainer.SendTextbox.Text += "i";
+                    SMSViewContainer.SendTextbox.Text += "I";
                     break;
                 case KeyboardButtons.AlphaJ:
-                    SMSViewContainer.SendTextbox.Text += "j";
+                    SMSViewContainer.SendTextbox.Text += "J";
                     break;
                 case KeyboardButtons.AlphaK:
-                    SMSViewContainer.SendTextbox.Text += "k";
+                    SMSViewContainer.SendTextbox.Text += "K";
                     break;
                 case KeyboardButtons.AlphaL:
-                    SMSViewContainer.SendTextbox.Text += "l";
+                    SMSViewContainer.SendTextbox.Text += "L";
                     break;
                 case KeyboardButtons.AlphaM:
-                    SMSViewContainer.SendTextbox.Text += "m";
+                    SMSViewContainer.SendTextbox.Text += "M";
                     break;
                 case KeyboardButtons.AlphaN:
-                    SMSViewContainer.SendTextbox.Text += "n";
+                    SMSViewContainer.SendTextbox.Text += "N";
                     break;
                 case KeyboardButtons.AlphaO:
-                    SMSViewContainer.SendTextbox.Text += "o";
+                    SMSViewContainer.SendTextbox.Text += "O";
                     break;
                 case KeyboardButtons.AlphaP:
-                    SMSViewContainer.SendTextbox.Text += "p";
+                    SMSViewContainer.SendTextbox.Text += "P";
                     break;
                 case KeyboardButtons.AlphaQ:
-                    SMSViewContainer.SendTextbox.Text += "q";
+                    SMSViewContainer.SendTextbox.Text += "Q";
                     break;
                 case KeyboardButtons.AlphaR:
-                    SMSViewContainer.SendTextbox.Text += "r";
+                    SMSViewContainer.SendTextbox.Text += "R";
                     break;
                 case KeyboardButtons.AlphaS:
-                    SMSViewContainer.SendTextbox.Text += "s";
+                    SMSViewContainer.SendTextbox.Text += "S";
                     break;
                 case KeyboardButtons.AlphaT:
-                    SMSViewContainer.SendTextbox.Text += "t";
+                    SMSViewContainer.SendTextbox.Text += "T";
                     break;
                 case KeyboardButtons.AlphaU:
-                    SMSViewContainer.SendTextbox.Text += "u";
+                    SMSViewContainer.SendTextbox.Text += "U";
                     break;
                 case KeyboardButtons.AlphaV:
-                    SMSViewContainer.SendTextbox.Text += "v";
+                    SMSViewContainer.SendTextbox.Text += "V";
                     break;
                 case KeyboardButtons.AlphaW:
-                    SMSViewContainer.SendTextbox.Text += "w";
+                    SMSViewContainer.SendTextbox.Text += "W";
                     break;
                 case KeyboardButtons.AlphaX:
-                    SMSViewContainer.SendTextbox.Text += "x";
+                    SMSViewContainer.SendTextbox.Text += "X";
                     break;
                 case KeyboardButtons.AlphaY:
-                    SMSViewContainer.SendTextbox.Text += "y";
+                    SMSViewContainer.SendTextbox.Text += "Y";
                     break;
                 case KeyboardButtons.AlphaZ:
-                    SMSViewContainer.SendTextbox.Text += "z";
+                    SMSViewContainer.SendTextbox.Text += "Z";
                     break;
                 case KeyboardButtons.NumericOne:
                     SMSViewContainer.SendTextbox.Text += "1";
@@ -259,10 +259,11 @@ namespace KomMee
                     SMSViewContainer.SendTextbox.Text += " ";
                     break;
                 case KeyboardButtons.SpecialCharReturn:
-                    SMSViewContainer.SendTextbox.Text += "\n\r";
+                    SMSViewContainer.SendTextbox.Text += "\r\n";
                     break;
                 case KeyboardButtons.SpecialCharBackspace:
-                    SMSViewContainer.SendTextbox.Text = SMSViewContainer.SendTextbox.Text.Substring(0, SMSViewContainer.SendTextbox.Text.Length-1);
+                    if(SMSViewContainer.SendTextbox.Text.Length > 0)
+                        SMSViewContainer.SendTextbox.Text = SMSViewContainer.SendTextbox.Text.Substring(0, SMSViewContainer.SendTextbox.Text.Length-1);
                     break;
                 case KeyboardButtons.PunctationDot:
                     SMSViewContainer.SendTextbox.Text += ".";
@@ -277,13 +278,13 @@ namespace KomMee
                     SMSViewContainer.SendTextbox.Text += "!";
                     break;
                 case KeyboardButtons.UmlautA:
-                    SMSViewContainer.SendTextbox.Text += "ä";
+                    SMSViewContainer.SendTextbox.Text += "Ä";
                     break;
                 case KeyboardButtons.UmlautO:
-                    SMSViewContainer.SendTextbox.Text += "ö";
+                    SMSViewContainer.SendTextbox.Text += "Ö";
                     break;
                 case KeyboardButtons.UmlautU:
-                    SMSViewContainer.SendTextbox.Text += "ü";
+                    SMSViewContainer.SendTextbox.Text += "Ü";
                     break;
                 case KeyboardButtons.UmlautS:
                     SMSViewContainer.SendTextbox.Text += "ß";
@@ -305,7 +306,7 @@ namespace KomMee
 
         public object getData()
         {
-            throw new NotImplementedException();
+            return SMSViewContainer.SendTextbox.Text;
         }
     }
 }
