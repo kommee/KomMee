@@ -75,15 +75,15 @@ namespace KomMee
 
             }
             // fill the Addressbook
-            int j = 0;
-            Contact temp = null;
-            do
-            {
-                temp = new Contact("Harald_" + j.ToString(), "Petersen");
-                temp.ContactTypes.Add("12345567" + j.ToString(), new SMSAddress("12345567" + j.ToString()));
-                this.listOfContacts.Add(j, temp);
-                j++;
-            } while (j <= 3);
+            //int j = 0;
+            //Contact temp = null;
+            //do
+            //{
+            //    temp = new Contact("Harald_" + j.ToString(), "Petersen");
+            //    temp.ContactTypes.Add("12345567" + j.ToString(), new SMSAddress("12345567" + j.ToString()));
+            //    this.listOfContacts.Add(j, temp);
+            //    j++;
+            //} while (j <= 3);
         }
 
         /// <summary>

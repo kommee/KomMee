@@ -38,16 +38,16 @@ namespace KomMee
 
             }
 
-            data.Rows.Add(1, "test eintragf mdmcocclödcmdklsdlklklsd", "0176442228", 8, 0, 1, DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
-            data.Rows.Add(2, "test eintragf mdmcocclödcmdklsdlklklsd", "0176442228", 1, 0, 1, DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
+            //data.Rows.Add(1, "test eintragf mdmcocclödcmdklsdlklklsd", "0176442228", 8, 0, 1, DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
+            //data.Rows.Add(2, "test eintragf mdmcocclödcmdklsdlklklsd", "0176442228", 1, 0, 1, DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
 
-            if (data.Rows.Count > 0)
-            {
-                for (int i = 0; i < data.Rows.Count; i++)
-                {
-                    this.Add(new SMSMessage(data.Rows[i]));
-                }
-            }
+            //if (data.Rows.Count > 0)
+            //{
+            //    for (int i = 0; i < data.Rows.Count; i++)
+            //    {
+            //        this.Add(new SMSMessage(data.Rows[i]));
+            //    }
+            //}
         }
 
         public static MessageList getInstance()
