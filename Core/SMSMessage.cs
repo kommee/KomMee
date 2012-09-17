@@ -87,7 +87,8 @@ namespace KomMee
                 saveData.Columns.Add("contactID", typeof(int));
                 saveData.Columns.Add("isSent", typeof(int));
                 saveData.Columns.Add("isRead", typeof(int));
-                saveData.Rows.Add(this.Id, this.Text, this.Sender, this.Contact.Id, this.Sent, this.Read);
+                saveData.Columns.Add("creationDate", typeof(string));
+                saveData.Rows.Add(this.Id, this.Text, this.Sender, this.Contact.Id, this.Sent, this.Read,DateTime.Now.ToString("dd-MM-yyyy HH:mm"));
                 sqlInstance.Insert(saveData);
             }
             else
@@ -97,7 +98,8 @@ namespace KomMee
                 saveData.Columns.Add("contactID", typeof(int));
                 saveData.Columns.Add("isSent", typeof(int));
                 saveData.Columns.Add("isRead", typeof(int));
-                saveData.Rows.Add(this.Text, this.Sender, this.Contact.Id, this.Sent, this.Read);
+                saveData.Columns.Add("creationDate", typeof(string));
+                saveData.Rows.Add(this.Text, this.Sender, this.Contact.Id, this.Sent, this.Read,this.CreationDate.ToString("dd-MM-yyyy HH:mm"));
                 sqlInstance.Insert(saveData);
             }
         }
