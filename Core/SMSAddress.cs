@@ -7,12 +7,26 @@ namespace KomMee
 {
     public class SMSAddress : Address
     {
+        public SMSAddress(string address)
+            :base(address)
+        {
+            DataTable data = new DataTable("SMS");
+            data.Columns.Add("smsContactId", typeof(int));
+            data.Columns.Add("address", typeof(string));
+            data.Columns.Add("contactId", typeof(int));
+
+            data.Rows.Add(0, address, 0);
+            this.id = (data.Rows[0]["smsContactId"].ToString() == "") ? -1 : int.Parse(data.Rows[0]["smsContactId"].ToString());
+            this.Address1 = data.Rows[0]["address"].ToString();
+            this.ContactId = int.Parse(data.Rows[0]["contactId"].ToString());
+        }
+
         public SMSAddress(DataRow data)
             :base(data)
         {
             this.id = (data["smsContactId"].ToString() == "")? -1 : int.Parse(data["smsContactId"].ToString());
             this.Address1 = data["address"].ToString();
-            this.contactId = int.Parse(data["contactId"].ToString());
+            this.ContactId = int.Parse(data["contactId"].ToString());
         }
 
         public override void save()
@@ -24,14 +38,14 @@ namespace KomMee
                 saveData.Columns.Add("smsContactId", typeof(int));
                 saveData.Columns.Add("address", typeof(string));
                 saveData.Columns.Add("contactId", typeof(int));
-                saveData.Rows.Add(this.Id, this.Address1, this.contactId);
+                saveData.Rows.Add(this.Id, this.Address1, this.ContactId);
                 this.id = sqlInstance.Insert(saveData);
             }
             else
             {
                 saveData.Columns.Add("address", typeof(string));
                 saveData.Columns.Add("contactId", typeof(int));
-                saveData.Rows.Add(this.Address1, this.contactId);
+                saveData.Rows.Add(this.Address1, this.ContactId);
                 sqlInstance.Update(saveData);
             }
         }

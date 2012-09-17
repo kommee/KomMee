@@ -22,10 +22,21 @@ namespace KomMee
             get { return address; }
             set { address = value; }
         }
-        
-        protected int contactId;
+
+        private int contactId;
+
+        public int ContactId
+        {
+            get { return contactId; }
+            set { contactId = value; }
+        }
 
         public Address(DataRow data)
+        {
+
+        }
+
+        public Address(string address)
         {
 
         }

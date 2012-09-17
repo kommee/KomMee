@@ -63,7 +63,7 @@ namespace KomMee
         /// <summary>
         /// The default address
         /// </summary>
-        internal Address DefaultAddress
+        public Address DefaultAddress
         {
             get { return defaultAddress; }
             set { defaultAddress = value; }
@@ -85,7 +85,7 @@ namespace KomMee
         /// <summary>
         /// The type of a contact
         /// /// </summary>
-        internal Dictionary<string, Address> ContactTypes
+        public Dictionary<string, Address> ContactTypes
         {
             get { return contactTypes; }
             set { contactTypes = value; }
@@ -234,7 +234,11 @@ namespace KomMee
             {
                 foreach(var addr in this.ContactTypes)
                 {
-                    addr.Value.save();
+                    if (this.ContactTypes[addr.Key].ContactId == 0)
+                    {
+                        this.ContactTypes[addr.Key].ContactId = this.id;
+                    }
+                    this.ContactTypes[addr.Key].save();
                 }
             }
 
