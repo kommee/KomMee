@@ -264,7 +264,11 @@ namespace KomMee
             {
                 foreach (var addr in this.ContactTypes)
                 {
-                    addr.Value.save();
+                    if (this.ContactTypes[addr.Key].ContactId == 0)
+                    {
+                        this.ContactTypes[addr.Key].ContactId = this.id;
+                    }
+                    this.ContactTypes[addr.Key].save();
                 }
             }
             return true;
