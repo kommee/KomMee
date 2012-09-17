@@ -35,6 +35,7 @@ namespace KomMee
             Settings.init();
             Input.init(this);
             Input.setNewMenuState(MenuState.None);
+            AddressBook.getInstance();
         }
 
         [STAThread]

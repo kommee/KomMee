@@ -202,6 +202,7 @@
             this.BtMenuContactEdit.TabStop = false;
             this.BtMenuContactEdit.Text = "Kontakt bearbeiten";
             this.BtMenuContactEdit.UseVisualStyleBackColor = true;
+            this.BtMenuContactEdit.Visible = false;
             // 
             // BtMenuContactAdd
             // 

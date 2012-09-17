@@ -26,14 +26,28 @@ namespace KomMee
             : base(data)
         {
             AddressBook adr = AddressBook.getInstance();
-            this.id = int.Parse(data["smsID"].ToString());
-            this.Text = data["text"].ToString();
-            this.Read = Convert.ToBoolean(data["isRead"]);
-            this.Sent = Convert.ToBoolean(data["isSent"]);
-            this.Sender = data["senderAddress"].ToString();
-            this.CreationDate = new DateTime();
-            CreationDate = DateTime.ParseExact(data["creationDate"].ToString(), "dd-MM-yyyy HH:mm", null);
-            this.Contact = adr.getContact((int)data["contactID"]);
+
+            if (data.Table.Columns.Count == 3)
+            {
+                this.id = -1;
+                this.Text = data["text"].ToString();
+                this.Sender = data["senderAddress"].ToString();
+                this.CreationDate = new DateTime();
+                CreationDate = DateTime.ParseExact(data["creationDate"].ToString(), "dd-MM-yyyy HH:mm", null);
+            }
+            else
+            {
+                this.id = int.Parse(data["smsID"].ToString());
+                this.Text = data["text"].ToString();
+                this.Read = Convert.ToBoolean(data["isRead"]);
+                this.Sent = Convert.ToBoolean(data["isSent"]);
+                this.Sender = data["senderAddress"].ToString();
+                this.CreationDate = new DateTime();
+                CreationDate = DateTime.ParseExact(data["creationDate"].ToString(), "dd-MM-yyyy HH:mm", null);
+                this.Contact = adr.getContact((int)data["contactID"]);
+            }
+
+            
             this.ViewContainer = null;
             // TODO 
             // Implement the IViewContainer
@@ -42,8 +56,15 @@ namespace KomMee
         public override bool send()
         {
             this.save();
+            try
+            {
             SIM card = SIM.getInstance();
             return card.sendMessage(this.Sender.ToString(), this.Text.ToString());
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         protected override string validateSender(string sender)
@@ -64,6 +85,7 @@ namespace KomMee
             SIM card = SIM.getInstance();
             MessageList msgList = MessageList.getInstance();
 
+            receivedMessages = card.readMessages();
             if (receivedMessages.Rows.Count > 0)
             {
                 for (int i = 0; i < receivedMessages.Rows.Count; i++)
@@ -71,7 +93,6 @@ namespace KomMee
                     msgList.Add(new SMSMessage(receivedMessages.Rows[i]));
                 }
             }
-            receivedMessages = card.readMessages();
 
         }
 
@@ -83,7 +104,7 @@ namespace KomMee
             {
                 saveData.Columns.Add("smsID", typeof(int));
                 saveData.Columns.Add("text", typeof(string));
-                saveData.Columns.Add("senderAddress", typeof(int));
+                saveData.Columns.Add("senderAddress", typeof(string));
                 saveData.Columns.Add("contactID", typeof(int));
                 saveData.Columns.Add("isSent", typeof(int));
                 saveData.Columns.Add("isRead", typeof(int));
@@ -94,7 +115,7 @@ namespace KomMee
             else
             {
                 saveData.Columns.Add("text", typeof(string));
-                saveData.Columns.Add("senderAddress", typeof(int));
+                saveData.Columns.Add("senderAddress", typeof(string));
                 saveData.Columns.Add("contactID", typeof(int));
                 saveData.Columns.Add("isSent", typeof(int));
                 saveData.Columns.Add("isRead", typeof(int));

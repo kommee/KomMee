@@ -182,7 +182,7 @@ namespace KomMee
             query = string.Format("SELECT {0} FROM {1}", cols, table);
             if (deleteDate)
             {
-                query += "WHERE deleteDate ISNULL";
+                query += " WHERE deleteDate ISNULL";
             }
             
             command.CommandText = query;
@@ -215,10 +215,6 @@ namespace KomMee
                     }
                     data.Rows.Add(row);
                 }
-            }
-            else
-            {
-                throw new Exception(string.Format("Table {} is empty, or doesn't exist!", data.TableName));
             }
         }
 
@@ -289,6 +285,7 @@ namespace KomMee
             this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simBaudRate\", \"8\")");
             this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simDataBits\", \"One\")");
             this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simPin\", \"9876\")");
+            this.tableDefinitions.Add("INSERT INTO MessageType (typeName, className) VALUES (\"SMS\", \"KomMee.SMSMessage\")");
         }
 
         private bool isDeletable(string tableName)

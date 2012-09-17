@@ -152,7 +152,7 @@ namespace KomMee
                             }
                         }
                         break;
-                    case "messageType": // has to be done later
+                    case "MessageType": // has to be done later
                         break;
                     default:
                         throw new Exception("Unknown tablename.");
@@ -163,7 +163,7 @@ namespace KomMee
             {
                 switch (dt.TableName)
                 {
-                    case "messageType":
+                    case "MessageType":
                         for (int i = 0; i < dt.Rows.Count; i++)
                         {
                             if (int.Parse(data["messageTypeID"].ToString()) == int.Parse(dt.Rows[i]["messageTypeID"].ToString()))

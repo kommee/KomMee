@@ -39,7 +39,7 @@ namespace KomMee
             SMSViewContainer.RecvTextbox.Top = 35;
             SMSViewContainer.RecvTextbox.Multiline = true;
             SMSViewContainer.RecvTextbox.ReadOnly = true;
-            SMSViewContainer.RecvTextbox.BackColor = System.Drawing.Color.White;
+            SMSViewContainer.RecvTextbox.BackColor = System.Drawing.Color.MistyRose;
 
             parentPanel.Controls.Add(SMSViewContainer.RecvLabel);
             parentPanel.Controls.Add(SMSViewContainer.RecvTextbox);
@@ -74,6 +74,7 @@ namespace KomMee
             SMSViewContainer.SendTextbox.Left = 0;
             SMSViewContainer.SendTextbox.Top = 35;
             SMSViewContainer.SendTextbox.Multiline = true;
+            SMSViewContainer.SendTextbox.BackColor = System.Drawing.Color.MistyRose;
 
             parentPanel.Controls.Add(SMSViewContainer.SendLabel);
             parentPanel.Controls.Add(SMSViewContainer.SendTextbox);
@@ -81,6 +82,14 @@ namespace KomMee
             SMSViewContainer.SendLabel.ResumeLayout(false);
             SMSViewContainer.SendTextbox.ResumeLayout(false);
             parentPanel.ResumeLayout(false);
+        }
+
+        public void setColor(System.Drawing.Color color)
+        {
+            if (SMSViewContainer.SendTextbox != null)
+                SMSViewContainer.SendTextbox.BackColor = color;
+            if (SMSViewContainer.RecvTextbox != null)
+                SMSViewContainer.RecvTextbox.BackColor = color;
         }
 
         public void createViewForAnswer(System.Windows.Forms.Panel parentPanel)

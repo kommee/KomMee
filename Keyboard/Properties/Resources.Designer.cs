@@ -67,9 +67,23 @@ namespace KomMee.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap BackspaceHover {
+            get {
+                object obj = ResourceManager.GetObject("BackspaceHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Close {
             get {
                 object obj = ResourceManager.GetObject("Close", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap CloseHover {
+            get {
+                object obj = ResourceManager.GetObject("CloseHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -81,9 +95,23 @@ namespace KomMee.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap FontSizeDownHover {
+            get {
+                object obj = ResourceManager.GetObject("FontSizeDownHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap FontSizeUp {
             get {
                 object obj = ResourceManager.GetObject("FontSizeUp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap FontSizeUpHover {
+            get {
+                object obj = ResourceManager.GetObject("FontSizeUpHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,9 +123,23 @@ namespace KomMee.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap ReturnHover {
+            get {
+                object obj = ResourceManager.GetObject("ReturnHover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap TextToSpeech {
             get {
                 object obj = ResourceManager.GetObject("TextToSpeech", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap TextToSpeechHover {
+            get {
+                object obj = ResourceManager.GetObject("TextToSpeechHover", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

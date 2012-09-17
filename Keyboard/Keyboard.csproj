@@ -100,6 +100,24 @@
   <ItemGroup>
     <None Include="Resources\TextToSpeech.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TextToSpeechHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BackspaceHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CloseHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FontSizeDownHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FontSizeUpHover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ReturnHover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

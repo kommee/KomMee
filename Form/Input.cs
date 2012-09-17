@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Data;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace KomMee
 {
@@ -15,7 +16,7 @@ namespace KomMee
 		private static MenuState menuState;
 		private static View view;
 		private static IViewContainer currentIViewContaier;
-        private static Message message;
+		private static Message message;
 
 		public static MenuState MenuState
 		{
@@ -50,16 +51,18 @@ namespace KomMee
 						KeyboardButtons.MenuContactNew, KeyboardButtons.MenuMessageNew, KeyboardButtons.MenuMessageRecv, KeyboardButtons.MenuMessageSent});
 					break;
 				case MenuState.ViewMessage:
+                    SMSMessage.receive();
 					Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
-					MessageList addressBook = MessageList.getInstance();
-					Input.view.UpperLeftControl.DataSource = addressBook.getDatasource();
+					MessageList messageList = MessageList.getInstance();
+					Input.view.UpperLeftControl.DataSource = messageList.getDatasource();
 					Input.view.UpperLeftControl.ValueMember = "MessageID";
 					Input.view.UpperLeftControl.DisplayMember = "Name";
-                    Input.clearViewContainer();
-                    Input.currentIViewContaier = new SMSViewContainer();
+					Input.clearViewContainer();
+					Input.currentIViewContaier = new SMSViewContainer();
 					Input.currentIViewContaier.createViewForReading(Input.view.MessageViewContainer);
-                    MessageList messages = MessageList.getInstance();
-                    Input.currentIViewContaier.setReadInput(messages[0].Text);
+					MessageList messages = MessageList.getInstance();
+					Input.currentIViewContaier.setReadInput(messages[0].Text);
+					Input.view.UpperLeftControl.LbChoice.BackColor = Color.MistyRose;
 					break;
 				case MenuState.AnswerMessage:
 					Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
@@ -67,8 +70,8 @@ namespace KomMee
 					break;
 				case MenuState.DeleteMessage:
 					Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
-					addressBook = MessageList.getInstance();
-					Input.view.UpperLeftControl.DataSource = addressBook.getDatasource();
+					messageList = MessageList.getInstance();
+					Input.view.UpperLeftControl.DataSource = messageList.getDatasource();
 					Input.view.UpperLeftControl.ValueMember = "MessageID";
 					Input.view.UpperLeftControl.DisplayMember = "Name";
 					break;
@@ -82,16 +85,17 @@ namespace KomMee
 					KeyboardButtons.PunctationDot, KeyboardButtons.PunctationExclamation, KeyboardButtons.PunctationQuestion, KeyboardButtons.SpecialCharAt, KeyboardButtons.SpecialCharAt,
 					KeyboardButtons.SpecialCharBackspace,KeyboardButtons.SpecialCharReturn,KeyboardButtons.SpecialCharSpace,KeyboardButtons.TextSend, KeyboardButtons.UmlautA, 
 					KeyboardButtons.UmlautO, KeyboardButtons.UmlautU, KeyboardButtons.UmlautS,});
-                    Input.clearViewContainer();
-                    Input.currentIViewContaier = new SMSViewContainer();
+					Input.clearViewContainer();
+					Input.currentIViewContaier = new SMSViewContainer();
 					Input.currentIViewContaier.createViewForNew(Input.view.MessageViewContainer);
 					break;
 				case MenuState.ChoseReceiver:
 					Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
-					addressBook = MessageList.getInstance();
+					AddressBook addressBook = AddressBook.getInstance();
 					Input.view.UpperLeftControl.DataSource = addressBook.getDatasource();
-					Input.view.UpperLeftControl.ValueMember = "MessageID";
+					Input.view.UpperLeftControl.ValueMember = "ContactID";
 					Input.view.UpperLeftControl.DisplayMember = "Name";
+					Input.view.UpperLeftControl.LbChoice.BackColor = Color.MistyRose;
 					break;
 				case MenuState.ChoseMessageType:
 					Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
@@ -106,23 +110,25 @@ namespace KomMee
 					KeyboardButtons.PunctationDot, KeyboardButtons.PunctationExclamation, KeyboardButtons.PunctationQuestion, KeyboardButtons.SpecialCharAt, KeyboardButtons.SpecialCharAt,
 					KeyboardButtons.SpecialCharBackspace,KeyboardButtons.SpecialCharReturn,KeyboardButtons.SpecialCharSpace, KeyboardButtons.UmlautA, 
 					KeyboardButtons.UmlautO, KeyboardButtons.UmlautU, KeyboardButtons.UmlautS, });
-                    Input.clearViewContainer();
-                    Input.currentIViewContaier = new ContactViewContainer();
+					Input.clearViewContainer();
+					Input.currentIViewContaier = new ContactViewContainer();
 					Input.currentIViewContaier.createViewForNew(Input.view.MessageViewContainer);
 					break;
 				case MenuState.EditContact:
 					Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
-					addressBook = MessageList.getInstance();
+					addressBook = AddressBook.getInstance();
 					Input.view.UpperLeftControl.DataSource = addressBook.getDatasource();
 					Input.view.UpperLeftControl.ValueMember = "MessageID";
 					Input.view.UpperLeftControl.DisplayMember = "Name";
+					Input.view.UpperLeftControl.LbChoice.BackColor = Color.MistyRose;
 					break;
 				case MenuState.DeleteContact:
 					Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
-					addressBook = MessageList.getInstance();
+					addressBook = AddressBook.getInstance();
 					Input.view.UpperLeftControl.DataSource = addressBook.getDatasource();
-					Input.view.UpperLeftControl.ValueMember = "MessageID";
+					Input.view.UpperLeftControl.ValueMember = "ContactID";
 					Input.view.UpperLeftControl.DisplayMember = "Name";
+					Input.view.UpperLeftControl.LbChoice.BackColor = Color.MistyRose;
 					break;
 				case MenuState.AddMessageTypeToContact:
 					Input.view.KeyboardView.setAllowedButtons(new KeyboardButtons[] { });
@@ -136,48 +142,48 @@ namespace KomMee
 		public static void clearViewContainer()
 		{
 			Panel MessageViewContainer = Input.view.MessageViewContainer;
-            while (MessageViewContainer.Controls.Count > 0)
-            {
-                Control ctrl = MessageViewContainer.Controls[0];
-                MessageViewContainer.Controls.Remove(ctrl);
-                ctrl.Dispose();
-            }
-            MessageViewContainer.Refresh();
+			while (MessageViewContainer.Controls.Count > 0)
+			{
+				Control ctrl = MessageViewContainer.Controls[0];
+				MessageViewContainer.Controls.Remove(ctrl);
+				ctrl.Dispose();
+			}
+			MessageViewContainer.Refresh();
 		}
 
 		public static void userInputUp()
 		{
 			Console.WriteLine("Input: Up-Event");
-            if (Input.MenuState == KomMee.MenuState.ViewMessage)
-            {
-                int index = view.UpperLeftControl.up();
-                MessageList messages = MessageList.getInstance();
-                Input.currentIViewContaier.setReadInput(messages[index].Text);
-            }
-            else if (Input.MenuState == KomMee.MenuState.ChoseReceiver || Input.MenuState == KomMee.MenuState.DeleteContact)
-            {
-                view.UpperLeftControl.up();
-            }
-            else
-                view.KeyboardView.up();
+			if (Input.MenuState == KomMee.MenuState.ViewMessage)
+			{
+				int index = view.UpperLeftControl.up();
+				MessageList messages = MessageList.getInstance();
+				Input.currentIViewContaier.setReadInput(messages[index].Text);
+			}
+			else if (Input.MenuState == KomMee.MenuState.ChoseReceiver || Input.MenuState == KomMee.MenuState.DeleteContact)
+			{
+				view.UpperLeftControl.up();
+			}
+			else
+				view.KeyboardView.up();
 		}
 
 		public static void userInputDown()
 		{
 			Console.WriteLine("Input: Down-Event");
-            if (Input.MenuState == KomMee.MenuState.ViewMessage)
-            {
-                int index = view.UpperLeftControl.down();
-                MessageList messages = MessageList.getInstance();
-                Input.currentIViewContaier.setReadInput(messages[index].Text);
-            }
-            else if (Input.MenuState == KomMee.MenuState.ChoseReceiver || Input.MenuState == KomMee.MenuState.DeleteContact)
-            {
-                view.UpperLeftControl.down();
-            }
-            
-            else
-                view.KeyboardView.down();
+			if (Input.MenuState == KomMee.MenuState.ViewMessage)
+			{
+				int index = view.UpperLeftControl.down();
+				MessageList messages = MessageList.getInstance();
+				Input.currentIViewContaier.setReadInput(messages[index].Text);
+			}
+			else if (Input.MenuState == KomMee.MenuState.ChoseReceiver || Input.MenuState == KomMee.MenuState.DeleteContact)
+			{
+				view.UpperLeftControl.down();
+			}
+			
+			else
+				view.KeyboardView.down();
 		}
 
 		public static void userInputLeft()
@@ -195,30 +201,48 @@ namespace KomMee
 		public static void userInputApply()
 		{
 			Console.WriteLine("Input: Apply-Event");
+			AddressBook addressbook = null;
+			int index, id;
 			switch (Input.menuState)
 			{
-                case MenuState.None:
-                case MenuState.NewMessage:
-                case MenuState.AddNewContact:
+				case MenuState.None:
+				case MenuState.NewMessage:
+				case MenuState.AddNewContact:
 					view.KeyboardView.apply();
-                    break;
-                case MenuState.ChoseReceiver:
-                    int index = view.UpperLeftControl.apply();
-                    AddressBook addressbook = AddressBook.getInstance();
-                    int id = (int)addressbook.getDatasource().Rows[index]["ContactID"];
-                    Input.message.Contact = addressbook.ListOfContacts[id];
-                    Input.message.send();
-                    break;
+					break;
+				case MenuState.ChoseReceiver:
+					index = view.UpperLeftControl.apply();
+					addressbook = AddressBook.getInstance();
+					id = (int)addressbook.getDatasource().Rows[index]["ContactID"];
+					Input.message.Contact = addressbook.ListOfContacts[id];
+					List<string> list = new List<string>(addressbook.ListOfContacts[id].ContactTypes.Keys);
+					Input.message.Sender = list[0];
+					if (!Input.message.send())
+					{
+						System.Windows.Forms.MessageBox.Show("FEHLER!");
+					}
+					Input.view.UpperLeftControl.LbChoice.BackColor = Color.White;
+					Input.view.UpperLeftControl.DataSource = null;
+					Input.view.UpperLeftControl.ValueMember = "";
+					Input.view.UpperLeftControl.DisplayMember = "";
+					Input.clearViewContainer();
+					Input.setNewMenuState(MenuState.None);
+					break;
 				case MenuState.ViewMessage:
 					// Do Nothing
-                    break;
-                case MenuState.DeleteContact:
-                    // ToDo: Eintrag löschen
-                    Input.view.UpperLeftControl.DataSource = null;
-                    Input.view.UpperLeftControl.ValueMember = "";
-                    Input.view.UpperLeftControl.DisplayMember = "";
-                    Input.setNewMenuState(MenuState.None);
-                    break;
+					break;
+				case MenuState.DeleteContact:
+					addressbook = AddressBook.getInstance();
+					DataTable dt = (DataTable)Input.view.UpperLeftControl.DataSource;
+					index = view.UpperLeftControl.apply();
+					id = (int)dt.Rows[index]["ContactID"];
+					addressbook.removeContact(id);
+
+					Input.view.UpperLeftControl.DataSource = null;
+					Input.view.UpperLeftControl.ValueMember = "";
+					Input.view.UpperLeftControl.DisplayMember = "";
+					Input.setNewMenuState(MenuState.None);
+					break;
 				case MenuState.AnswerMessage:
 				case MenuState.DeleteMessage:
 				case MenuState.ChoseMessageType:
@@ -239,25 +263,30 @@ namespace KomMee
 				case MenuState.None:
 					break;
 				case MenuState.ViewMessage:
-                    Input.view.UpperLeftControl.DataSource = null;
-                    Input.view.UpperLeftControl.ValueMember = "";
-                    Input.view.UpperLeftControl.DisplayMember = "";
-                    Input.clearViewContainer();
-                    Input.setNewMenuState(MenuState.None);
-                    break;
-                case MenuState.NewMessage:
-                case MenuState.DeleteContact:
-                case MenuState.ChoseReceiver:
-                    Input.clearViewContainer();
-                    Input.setNewMenuState(MenuState.None);
-                    break;
-                case MenuState.AddNewContact:
-                    if (((ContactViewContainer)Input.currentIViewContaier).cancel())
-                    {
-                        Input.clearViewContainer();
-                        Input.setNewMenuState(MenuState.None);
-                    }
-                    break;
+				case MenuState.DeleteContact:
+					Input.view.UpperLeftControl.DataSource = null;
+					Input.view.UpperLeftControl.ValueMember = "";
+					Input.view.UpperLeftControl.DisplayMember = "";
+					Input.clearViewContainer();
+					Input.view.UpperLeftControl.LbChoice.BackColor = Color.White;
+					Input.setNewMenuState(MenuState.None);
+					break;
+				case MenuState.NewMessage:
+					Input.clearViewContainer();
+					Input.setNewMenuState(MenuState.None);
+					break;
+				case MenuState.ChoseReceiver:
+					Input.view.UpperLeftControl.LbChoice.BackColor = Color.White;
+					Input.clearViewContainer();
+					Input.setNewMenuState(MenuState.None);
+					break;
+				case MenuState.AddNewContact:
+					if (((ContactViewContainer)Input.currentIViewContaier).cancel())
+					{
+						Input.clearViewContainer();
+						Input.setNewMenuState(MenuState.None);
+					}
+					break;
 				case MenuState.AnswerMessage:
 				case MenuState.DeleteMessage:
 				case MenuState.ChoseMessageType:
@@ -335,36 +364,45 @@ namespace KomMee
 				case MenuState.DeleteMessage:
 					break;
 				case MenuState.NewMessage:
-                    if (keyboardViewEventArgs.Value == KeyboardButtons.TextSend)
-                    {
-                        object data = Input.currentIViewContaier.getData();
-                        Input.message = new SMSMessage(data);
-                        Input.setNewMenuState(MenuState.ChoseReceiver);
-                    }
-                    else
-                        Input.currentIViewContaier.addWriteInput(keyboardViewEventArgs);
+					if (keyboardViewEventArgs.Value == KeyboardButtons.TextSend)
+					{
+						object data = Input.currentIViewContaier.getData();
+						Input.message = new SMSMessage(data);
+						((SMSViewContainer)(Input.currentIViewContaier)).setColor(Color.White);
+						Input.setNewMenuState(MenuState.ChoseReceiver);
+					}
+					else
+						Input.currentIViewContaier.addWriteInput(keyboardViewEventArgs);
 					break;
 				case MenuState.ChoseReceiver:
 					break;
 				case MenuState.ChoseMessageType:
 					break;
 				case MenuState.AddNewContact:
-                    if (keyboardViewEventArgs.Value == KeyboardButtons.SpecialCharReturn)
-                    {
-                        if (((ContactViewContainer)Input.currentIViewContaier).apply())
-                        {
-                            String[] data = (String[])Input.currentIViewContaier.getData();
-                            String firstname, lastname, phonenumber;
-                            firstname = data[0];
-                            lastname= data[0];
-                            phonenumber = data[0];
-                            // ToDo: Neuen Kontakt speichern
-                            Input.clearViewContainer();
-                            Input.setNewMenuState(MenuState.None);
-                        }
-                    }
-                    else
-                        Input.currentIViewContaier.addWriteInput(keyboardViewEventArgs);
+					if (keyboardViewEventArgs.Value == KeyboardButtons.SpecialCharReturn)
+					{
+						if (((ContactViewContainer)Input.currentIViewContaier).apply())
+						{
+							String[] data = (String[])Input.currentIViewContaier.getData();
+							String firstname, lastname, phonenumber;
+							firstname = data[0];
+							lastname= data[1];
+							phonenumber = data[2];
+
+							Contact newContact = new Contact(firstname, lastname);
+							SMSAddress newAddress = new SMSAddress(phonenumber);
+							newContact.ContactTypes.Add(phonenumber, newAddress);
+							newContact.DefaultAddress = newAddress;
+							newContact.saveContact();
+                            AddressBook addressBook = AddressBook.getInstance();
+                            addressBook.addContact(newContact);
+
+							Input.clearViewContainer();
+							Input.setNewMenuState(MenuState.None);
+						}
+					}
+					else
+						Input.currentIViewContaier.addWriteInput(keyboardViewEventArgs);
 					break;
 				case MenuState.EditContact:
 					break;

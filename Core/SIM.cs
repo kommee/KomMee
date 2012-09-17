@@ -175,17 +175,17 @@ namespace KomMee
         private DataTable parseMessages(List<string> extractedMessages)
         {
             DataTable messages = new DataTable("Messages");
-            messages.Columns.Add("sender", typeof(string));
-            messages.Columns.Add("receiveTime", typeof(string));
-            messages.Columns.Add("message", typeof(string));
+            messages.Columns.Add("senderAddress", typeof(string));
+            messages.Columns.Add("creationDate", typeof(string));
+            messages.Columns.Add("text", typeof(string));
 
             foreach (string messageString in extractedMessages)
             {
                 DataRow row = messages.NewRow();
                 string[] splittedMessageString = splitMessageString(messageString);
-                row["sender"] = parseSenderNumber(splittedMessageString[0]);
-                row["receiveTime"] = parseReceiveTime(splittedMessageString[1], splittedMessageString[2]);
-                row["message"] = splittedMessageString[3];
+                row["senderAddress"] = parseSenderNumber(splittedMessageString[0]);
+                row["creationDate"] = parseReceiveTime(splittedMessageString[1], splittedMessageString[2]);
+                row["text"] = splittedMessageString[3];
                 messages.Rows.Add(row);
             }
 

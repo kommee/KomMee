@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace KomMee
 {
@@ -39,11 +40,12 @@ namespace KomMee
             ContactViewContainer.firstNameTextbox = new TextBox();
             ContactViewContainer.firstNameTextbox.SuspendLayout();
             ContactViewContainer.firstNameTextbox.Width = 490;
-            ContactViewContainer.firstNameTextbox.Height = 30;
+            ContactViewContainer.firstNameTextbox.Height = 50;
+            ContactViewContainer.firstNameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
             ContactViewContainer.firstNameTextbox.Left = 0;
             ContactViewContainer.firstNameTextbox.Top = 35;
             ContactViewContainer.firstNameTextbox.ReadOnly = true;
-            ContactViewContainer.firstNameTextbox.BackColor = System.Drawing.Color.White;
+            ContactViewContainer.firstNameTextbox.BackColor = Color.MistyRose;
 
             ContactViewContainer.lastNameLabel = new Label();
             ContactViewContainer.lastNameLabel.SuspendLayout();
@@ -57,7 +59,8 @@ namespace KomMee
             ContactViewContainer.lastNameTextbox = new TextBox();
             ContactViewContainer.lastNameTextbox.SuspendLayout();
             ContactViewContainer.lastNameTextbox.Width = 490;
-            ContactViewContainer.lastNameTextbox.Height = 30;
+            ContactViewContainer.lastNameTextbox.Height = 50;
+            ContactViewContainer.lastNameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
             ContactViewContainer.lastNameTextbox.Left = 0;
             ContactViewContainer.lastNameTextbox.Top = 105;
             ContactViewContainer.lastNameTextbox.ReadOnly = true;
@@ -75,7 +78,8 @@ namespace KomMee
             ContactViewContainer.mobileNumberTextbox = new TextBox();
             ContactViewContainer.mobileNumberTextbox.SuspendLayout();
             ContactViewContainer.mobileNumberTextbox.Width = 490;
-            ContactViewContainer.mobileNumberTextbox.Height = 30;
+            ContactViewContainer.mobileNumberTextbox.Height = 50;
+            ContactViewContainer.mobileNumberTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
             ContactViewContainer.mobileNumberTextbox.Left = 0;
             ContactViewContainer.mobileNumberTextbox.Top = 175;
             ContactViewContainer.mobileNumberTextbox.ReadOnly = true;
@@ -121,10 +125,11 @@ namespace KomMee
             ContactViewContainer.firstNameTextbox = new TextBox();
             ContactViewContainer.firstNameTextbox.SuspendLayout();
             ContactViewContainer.firstNameTextbox.Width = 490;
-            ContactViewContainer.firstNameTextbox.Height = 30;
+            ContactViewContainer.firstNameTextbox.Height = 50;
+            ContactViewContainer.firstNameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
             ContactViewContainer.firstNameTextbox.Left = 0;
             ContactViewContainer.firstNameTextbox.Top = 35;
-            ContactViewContainer.firstNameTextbox.BackColor = System.Drawing.Color.White;
+            ContactViewContainer.firstNameTextbox.BackColor = System.Drawing.Color.MistyRose;
 
             ContactViewContainer.lastNameLabel = new Label();
             ContactViewContainer.lastNameLabel.SuspendLayout();
@@ -138,7 +143,8 @@ namespace KomMee
             ContactViewContainer.lastNameTextbox = new TextBox();
             ContactViewContainer.lastNameTextbox.SuspendLayout();
             ContactViewContainer.lastNameTextbox.Width = 490;
-            ContactViewContainer.lastNameTextbox.Height = 30;
+            ContactViewContainer.lastNameTextbox.Height = 50;
+            ContactViewContainer.lastNameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
             ContactViewContainer.lastNameTextbox.Left = 0;
             ContactViewContainer.lastNameTextbox.Top = 105;
             ContactViewContainer.lastNameTextbox.BackColor = System.Drawing.Color.White;
@@ -155,7 +161,8 @@ namespace KomMee
             ContactViewContainer.mobileNumberTextbox = new TextBox();
             ContactViewContainer.mobileNumberTextbox.SuspendLayout();
             ContactViewContainer.mobileNumberTextbox.Width = 490;
-            ContactViewContainer.mobileNumberTextbox.Height = 30;
+            ContactViewContainer.mobileNumberTextbox.Height = 50;
+            ContactViewContainer.mobileNumberTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
             ContactViewContainer.mobileNumberTextbox.Left = 0;
             ContactViewContainer.mobileNumberTextbox.Top = 175;
             ContactViewContainer.mobileNumberTextbox.BackColor = System.Drawing.Color.White;
@@ -332,13 +339,20 @@ namespace KomMee
 
         public bool apply()
         {
+            if (ContactViewContainer.activeControl.Text.Length == 0)
+                return false;
+
             if (ContactViewContainer.activeControl == ContactViewContainer.firstNameTextbox)
             {
+                ContactViewContainer.firstNameTextbox.BackColor = Color.White;
+                ContactViewContainer.lastNameTextbox.BackColor = Color.MistyRose;
                 ContactViewContainer.activeControl = ContactViewContainer.lastNameTextbox;
                 return false;
             }
             else if (ContactViewContainer.activeControl == ContactViewContainer.lastNameTextbox)
             {
+                ContactViewContainer.lastNameTextbox.BackColor = Color.White;
+                ContactViewContainer.mobileNumberTextbox.BackColor = Color.MistyRose;
                 ContactViewContainer.activeControl = ContactViewContainer.mobileNumberTextbox;
                 return false;
             }
@@ -356,12 +370,16 @@ namespace KomMee
             }
             else if (ContactViewContainer.activeControl == ContactViewContainer.lastNameTextbox)
             {
+                ContactViewContainer.lastNameTextbox.BackColor = Color.White;
+                ContactViewContainer.firstNameTextbox.BackColor = Color.MistyRose;
                 ContactViewContainer.activeControl.Text = "";
                 ContactViewContainer.activeControl = ContactViewContainer.firstNameTextbox;
                 return false;
             }
             else
             {
+                ContactViewContainer.mobileNumberTextbox.BackColor = Color.White;
+                ContactViewContainer.lastNameTextbox.BackColor = Color.MistyRose;
                 ContactViewContainer.activeControl.Text = "";
                 ContactViewContainer.activeControl = ContactViewContainer.lastNameTextbox;
                 return false;

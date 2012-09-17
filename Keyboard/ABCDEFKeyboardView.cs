@@ -250,11 +250,49 @@ namespace KomMee
         /// <param name="newFocusPosition">The position in the matrix of the new focus</param>
         private void setNewFocus(Point newFocusPosition)
         {
-            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = this.DefaultForegroundColor;
-            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = this.DefaultBackgroundColor;
+            if (this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image != null)
+            {
+                if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.ApplicationClose)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.Close;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.SpecialCharBackspace)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.Backspace;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSizeDown)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.FontSizeDown;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSizeUp)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.FontSizeUp;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.SpecialCharReturn)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.Return;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextToSpeech)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.TextToSpeech;
+            }
+            else
+            {
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = this.DefaultForegroundColor;
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = this.DefaultBackgroundColor;
+            }
+
             this.focusPosition = newFocusPosition;
-            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = this.FocusForegroundColor;
-            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = this.FocusBackgroundColor;
+
+            if (this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image != null)
+            {
+                if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.ApplicationClose)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.CloseHover;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.SpecialCharBackspace)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.BackspaceHover;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSizeDown)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.FontSizeDownHover;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextSizeUp)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.FontSizeUpHover;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.SpecialCharReturn)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.ReturnHover;
+                else if (this.valueMatrix[this.focusPosition.X, this.focusPosition.Y] == KeyboardButtons.TextToSpeech)
+                    this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].Image = global::KomMee.Properties.Resources.TextToSpeechHover;
+            }
+            else
+            {
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = this.FocusForegroundColor;
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = this.FocusBackgroundColor;
+            }
         }
 
         /// <summary>
