@@ -12,6 +12,14 @@ namespace KomMee
         public SMSMessage(object data)
             : base(data)
         {
+            this.id = -1;
+            this.Text = (string)data;
+            this.Read = false;
+            this.Sent = true;
+            this.Sender = "";
+            this.CreationDate = new DateTime();
+            this.Contact = null;
+            this.ViewContainer = null;
         }
 
         public SMSMessage(DataRow data)

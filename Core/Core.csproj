@@ -43,6 +43,7 @@
     <Compile Include="Contact.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ContactViewContainer.cs" />
     <Compile Include="EMailAddress.cs" />
     <Compile Include="EMailMessage.cs" />
     <Compile Include="EMailViewContainer.cs" />

@@ -120,15 +120,131 @@ namespace KomMee
 
         public DataTable readMessages()
         {
+            this.executeATCommand("AT+CMGF=1", 300);
+            string unreadMessages = this.executeATCommand("AT+CMGL=\"REC UNREAD\"", 3000);
+            List<string> extractedMessages = this.extractMessages(unreadMessages);
+            DataTable messages = this.parseMessages(extractedMessages);
+            return messages;
+        }
+
+        private List<string> extractMessages(string messageString)
+        {
+            messageString = messageString.Replace("\r", "");
+            string[] withoutLineFeeds = messageString.Split('\n');
+            List<string> extractedMessages = new List<string>();
+            foreach (string item in withoutLineFeeds)
+            {
+                extractedMessages.Add(item);
+            }
+
+            extractedMessages.RemoveAt(0);
+            extractedMessages.RemoveAt(extractedMessages.Count - 1);
+            extractedMessages.RemoveAt(extractedMessages.Count - 1);
+            bool abort = extractedMessages.Count > 0 ? false : true;
+            while (!abort)
+            {
+                if (extractedMessages[extractedMessages.Count - 1] == "")
+                {
+                    extractedMessages.RemoveAt(extractedMessages.Count - 1);
+                }
+                else
+                {
+                    abort = true;
+                }
+            }
+
+            int index = 0;
+            while (extractedMessages.Count > index)
+            {
+                if (extractedMessages[index].StartsWith("+CMGL: "))
+                {
+                    extractedMessages[index] += ",";
+                    index++;
+                }
+                else
+                {
+                    extractedMessages[index - 1] += extractedMessages[index];
+                    extractedMessages.RemoveAt(index);
+                }
+            }
+
+
+            return extractedMessages;
+        }
+
+        private DataTable parseMessages(List<string> extractedMessages)
+        {
             DataTable messages = new DataTable("Messages");
             messages.Columns.Add("sender", typeof(string));
             messages.Columns.Add("receiveTime", typeof(string));
             messages.Columns.Add("message", typeof(string));
 
-            this.executeATCommand("AT+CMGF=1", 300);
-            string unreadMessages = this.executeATCommand("AT+CMGL=\"REC UNREAD\"", 3000);
-            Console.WriteLine(unreadMessages);
+            foreach (string messageString in extractedMessages)
+            {
+                DataRow row = messages.NewRow();
+                string[] splittedMessageString = splitMessageString(messageString);
+                row["sender"] = parseSenderNumber(splittedMessageString[0]);
+                row["receiveTime"] = parseReceiveTime(splittedMessageString[1], splittedMessageString[2]);
+                row["message"] = splittedMessageString[3];
+                messages.Rows.Add(row);
+            }
+
             return messages;
+        }
+
+        private string parseSenderNumber(string unparsedNumber)
+        {
+            string parsedNumber = string.Empty;
+            unparsedNumber = unparsedNumber.Replace("\"", "");
+            if (unparsedNumber.StartsWith("+49"))
+            {
+                parsedNumber = unparsedNumber.Replace("+49", "0");
+            }
+            else if (unparsedNumber.StartsWith("0049"))
+            {
+                parsedNumber = unparsedNumber.Replace("0049", "0");
+            }
+            else
+            {
+                parsedNumber = unparsedNumber;
+            }
+
+            return parsedNumber;
+        }
+
+        private string parseReceiveTime(string unparsedReceiveDate, string unparsedReceiveTime)
+        {
+            string parsedReceiveTime = string.Empty;
+            unparsedReceiveDate = unparsedReceiveDate.Replace("\"", "");
+            unparsedReceiveTime = unparsedReceiveTime.Replace("\"", "");
+            unparsedReceiveTime = unparsedReceiveTime.Remove(5);
+            string[] splittedReceiveDate = unparsedReceiveDate.Split('/');
+            string[] splittedReceiveTime = unparsedReceiveTime.Split(':');
+
+            parsedReceiveTime = splittedReceiveDate[2] + "-" +
+                                splittedReceiveDate[1] + "-20" +
+                                splittedReceiveDate[0] + " " +
+                                splittedReceiveTime[0] + ":" +
+                                splittedReceiveTime[1];  
+
+            return parsedReceiveTime;
+        }
+
+        private string[] splitMessageString(string messageString)
+        {
+            string[] splittedMessageString = new string[4];
+            Console.WriteLine(messageString);
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            splittedMessageString[0] = messageString.Substring(0, messageString.IndexOf(","));
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            splittedMessageString[1] = messageString.Substring(0, messageString.IndexOf(","));
+            messageString = messageString.Remove(0, messageString.IndexOf(",") + 1);
+            splittedMessageString[2] = messageString.Substring(0, messageString.IndexOf(","));
+            splittedMessageString[3] = messageString.Remove(0, messageString.IndexOf(",") + 1);
+
+            return splittedMessageString;
         }
     }
 }

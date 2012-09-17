@@ -35,10 +35,6 @@ namespace KomMee
             Settings.init();
             Input.init(this);
             Input.setNewMenuState(MenuState.None);
-            AddressBook addressBook = AddressBook.getInstance();
-            this.uctrlDialog1.DataSource = addressBook.getDatasource();
-            this.uctrlDialog1.ValueMember = "ContactID";
-            this.uctrlDialog1.DisplayMember = "Name";
         }
 
         [STAThread]

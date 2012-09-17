@@ -89,12 +89,22 @@ namespace KomMee
         /// <summary>
         /// This procedure is called when the user pressed the "up" button. You should update the selection.
         /// </summary>
-        public virtual void up() { }
+        public virtual int up()
+        {
+            if (this.lbChoice.SelectedIndex != 0)
+                this.lbChoice.SelectedIndex--;
+            return this.lbChoice.SelectedIndex;
+        }
 
         /// <summary>
         /// This procedure is called when the user pressed the "down" button. You should update the selection.
         /// </summary>
-        public virtual void down() { }
+        public virtual int down()
+        {
+            if (this.lbChoice.SelectedIndex != this.lbChoice.Items.Count - 1)
+                this.lbChoice.SelectedIndex++;
+            return this.lbChoice.SelectedIndex;
+        }
 
         /// <summary>
         /// This procedure is called when the user pressed the "left" button. You should update the selection.
@@ -109,7 +119,9 @@ namespace KomMee
         /// <summary>
         /// This procedure is called when the user pressed the "Apply" button. You should raise here some events.
         /// </summary>
-        public virtual void apply() { }
+        public virtual int apply() {
+            return this.lbChoice.SelectedIndex;
+        }
 
         /// <summary>
         /// This procedure is called when the user pressed the "Cancel" button.
