@@ -16,19 +16,35 @@ namespace KomMee
         /// <summary>
         /// Text color of the focused buttons
         /// </summary>
-        private Color FocusBackgroundColor = Color.Black;
+        private static Color focusBackgroundColor = Color.Black;
+        public static Color FocusBackgroundColor
+        {
+            get { return ABCDEFKeyboardView.focusBackgroundColor; }
+        }
         /// <summary>
         /// Background color of the focused buttons
         /// </summary>
-        private Color FocusForegroundColor = Color.White; //System.Drawing.SystemColors.Control;
+        private static Color focusForegroundColor = Color.White; //System.Drawing.SystemColors.Control;
+        public static Color FocusForegroundColor
+        {
+            get { return ABCDEFKeyboardView.focusForegroundColor; }
+        }
         /// <summary>
         /// Default text color of the buttons
         /// </summary>
-        private Color DefaultBackgroundColor = Color.White; //System.Drawing.SystemColors.Control;
+        private static Color defaultBackgroundColor = Color.White; //System.Drawing.SystemColors.Control;
+        public static Color DefaultBackgroundColor
+        {
+            get { return ABCDEFKeyboardView.defaultBackgroundColor; }
+        }
         /// <summary>
         /// Default background color of the buttons
         /// </summary>
-        private Color DefaultForegroundColor = Color.Black;
+        private static Color defaultForegroundColor = Color.Black;
+        public static Color DefaultForegroundColor
+        {
+            get { return ABCDEFKeyboardView.defaultForegroundColor; }
+        }
 
         /// <summary>
         /// Number of buttons in a column (1 button equals 50px height)
@@ -238,8 +254,8 @@ namespace KomMee
             {
                 if (button != null)
                 {
-                    button.ForeColor = this.DefaultForegroundColor;
-                    button.BackColor = this.DefaultBackgroundColor;
+                    button.ForeColor = ABCDEFKeyboardView.defaultForegroundColor;
+                    button.BackColor = ABCDEFKeyboardView.defaultBackgroundColor;
                 }
             }
         }
@@ -267,8 +283,8 @@ namespace KomMee
             }
             else
             {
-                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = this.DefaultForegroundColor;
-                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = this.DefaultBackgroundColor;
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = ABCDEFKeyboardView.defaultForegroundColor;
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = ABCDEFKeyboardView.defaultBackgroundColor;
             }
 
             this.focusPosition = newFocusPosition;
@@ -290,8 +306,8 @@ namespace KomMee
             }
             else
             {
-                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = this.FocusForegroundColor;
-                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = this.FocusBackgroundColor;
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = ABCDEFKeyboardView.focusForegroundColor;
+                this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = ABCDEFKeyboardView.focusBackgroundColor;
             }
         }
 
@@ -654,8 +670,8 @@ namespace KomMee
                     }
                 }
             }
-            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = this.DefaultForegroundColor;
-            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = this.DefaultBackgroundColor;
+            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].ForeColor = ABCDEFKeyboardView.defaultForegroundColor;
+            this.keyboardMatrix[this.focusPosition.X, this.focusPosition.Y].BackColor = ABCDEFKeyboardView.defaultBackgroundColor;
         }
     }
 }

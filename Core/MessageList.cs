@@ -66,7 +66,8 @@ namespace KomMee
             {
                 foreach (Message msg in this)
                 {
-                    data.Rows.Add(msg.Id, msg.ToString());
+                    if(!msg.Sent || true)
+                        data.Rows.Add(msg.Id, msg.ToString());
                 }
             }
             return data;

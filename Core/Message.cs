@@ -92,9 +92,9 @@ namespace KomMee
         {
             string shown_text = "";
             if(this.Contact == null)
-                shown_text = string.Format("{0} - {1}", this.CreationDate.ToString("dd-MM-yyyy HH:mm"), this.Sender);
+                shown_text = string.Format("{0} - {1}", this.CreationDate.ToString("dd.MM HH:mm"), this.Sender);
             else
-                shown_text = string.Format("{0} - {1}", this.CreationDate.ToString("dd-MM-yyyy HH:mm"), this.Contact.ToString());
+                shown_text = string.Format("{0} - {1}", this.CreationDate.ToString("dd.MM HH:mm"), this.Contact.ToString());
             return shown_text;
         }
     }

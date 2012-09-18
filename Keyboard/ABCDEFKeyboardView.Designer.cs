@@ -102,7 +102,7 @@
             // 
             // BtMenuMessageSent
             // 
-            this.BtMenuMessageSent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtMenuMessageSent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtMenuMessageSent.Location = new System.Drawing.Point(200, 0);
             this.BtMenuMessageSent.Name = "BtMenuMessageSent";
             this.BtMenuMessageSent.Size = new System.Drawing.Size(100, 50);
@@ -146,7 +146,6 @@
             this.BtMenuTextToSpeech.TabIndex = 251;
             this.BtMenuTextToSpeech.TabStop = false;
             this.BtMenuTextToSpeech.UseVisualStyleBackColor = true;
-            this.BtMenuTextToSpeech.Visible = false;
             // 
             // BtMenuSend
             // 
@@ -172,13 +171,13 @@
             // 
             // BtMenuMessageRecv
             // 
-            this.BtMenuMessageRecv.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtMenuMessageRecv.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtMenuMessageRecv.Location = new System.Drawing.Point(100, 0);
             this.BtMenuMessageRecv.Name = "BtMenuMessageRecv";
             this.BtMenuMessageRecv.Size = new System.Drawing.Size(100, 50);
             this.BtMenuMessageRecv.TabIndex = 248;
             this.BtMenuMessageRecv.TabStop = false;
-            this.BtMenuMessageRecv.Text = "Nachrichten lesen";
+            this.BtMenuMessageRecv.Text = "Nachricht lesen";
             this.BtMenuMessageRecv.UseVisualStyleBackColor = true;
             // 
             // BtMenuContactDelete
@@ -194,7 +193,7 @@
             // 
             // BtMenuContactEdit
             // 
-            this.BtMenuContactEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtMenuContactEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtMenuContactEdit.Location = new System.Drawing.Point(400, 0);
             this.BtMenuContactEdit.Name = "BtMenuContactEdit";
             this.BtMenuContactEdit.Size = new System.Drawing.Size(100, 50);
@@ -206,7 +205,7 @@
             // 
             // BtMenuContactAdd
             // 
-            this.BtMenuContactAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtMenuContactAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtMenuContactAdd.Location = new System.Drawing.Point(300, 0);
             this.BtMenuContactAdd.Name = "BtMenuContactAdd";
             this.BtMenuContactAdd.Size = new System.Drawing.Size(100, 50);

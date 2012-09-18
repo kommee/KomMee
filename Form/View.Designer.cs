@@ -82,11 +82,14 @@
             // 
             // uctrlDialog1
             // 
+            this.uctrlDialog1.DataSource = null;
+            this.uctrlDialog1.DisplayMember = "";
             this.uctrlDialog1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uctrlDialog1.Location = new System.Drawing.Point(0, 0);
             this.uctrlDialog1.Name = "uctrlDialog1";
             this.uctrlDialog1.Size = new System.Drawing.Size(296, 305);
             this.uctrlDialog1.TabIndex = 0;
+            this.uctrlDialog1.ValueMember = "";
             // 
             // abcdefKeyboardView1
             // 
@@ -114,7 +117,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "View";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KomMee";
+            this.Load += new System.EventHandler(this.View_Load);
             this.Shown += new System.EventHandler(this.View_Shown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.View_KeyUp);
             this.KyboardAndViewContainer.Panel1.ResumeLayout(false);

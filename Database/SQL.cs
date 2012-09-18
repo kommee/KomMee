@@ -273,12 +273,12 @@ namespace KomMee
                                                 "creationDate TEXT NOT NULL);");
 
             ////// INSERT DEFAULT VALUES \\\\\\
-            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Up\", \"38\");");
-            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Down\", \"40\");");
-            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Left\", \"37\");");
-            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Right\", \"39\");");
-            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Apply\", \"13\");");
-            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Cancel\", \"32\");");
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Up\", \"38\");"); // Up
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Down\", \"40\");"); // Down
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Left\", \"37\");"); // Left
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Right\", \"39\");"); // Right
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Apply\", \"87\");"); // W
+            this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"Keymapping_Cancel\", \"32\");"); // Space
             this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simPortName\", \"COM256\")");
             this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simParity\", \"9600\")");
             this.tableDefinitions.Add("INSERT INTO Setting (key, value) VALUES (\"simStopBits\", \"None\")");

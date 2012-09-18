@@ -17,7 +17,7 @@ namespace KomMee
             this.Read = false;
             this.Sent = true;
             this.Sender = "";
-            this.CreationDate = new DateTime();
+            this.CreationDate = DateTime.Now;
             this.Contact = null;
             this.ViewContainer = null;
         }
@@ -32,6 +32,7 @@ namespace KomMee
                 this.id = -1;
                 this.Text = data["text"].ToString();
                 this.Sender = data["senderAddress"].ToString();
+                this.Sent = false;
                 this.CreationDate = new DateTime();
                 CreationDate = DateTime.ParseExact(data["creationDate"].ToString(), "dd-MM-yyyy HH:mm", null);
             }
@@ -55,11 +56,16 @@ namespace KomMee
 
         public override bool send()
         {
-            this.save();
             try
             {
-            SIM card = SIM.getInstance();
-            return card.sendMessage(this.Sender.ToString(), this.Text.ToString());
+                SIM card = SIM.getInstance();
+                if (card.sendMessage(this.Sender.ToString(), this.Text.ToString()))
+                {
+                    this.save();
+                    return true;
+                }
+                else
+                    return false;
             }
             catch (Exception)
             {

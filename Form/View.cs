@@ -68,5 +68,9 @@ namespace KomMee
             this.abcdefKeyboardView1.setDefaultFocus();
         }
 
+        private void View_Load(object sender, EventArgs e)
+        {
+        }
+
     }
 }

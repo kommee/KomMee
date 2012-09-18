@@ -55,7 +55,7 @@ namespace KomMee
             if (this.Id >= 0)
             {
                 SQL sqlInstance = SQL.getInstance();
-                DataTable saveData = new DataTable("SMS");
+                DataTable saveData = new DataTable("SMSContact");
                 saveData.Columns.Add("smsContactId", typeof(int));
                 saveData.Rows.Add(this.Id);
                 sqlInstance.Delete(saveData);

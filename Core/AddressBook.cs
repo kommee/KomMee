@@ -122,10 +122,10 @@ namespace KomMee
         /// <returns>true if the delete of the Contact was successful else false</returns>
         public bool removeContact(int contactID)
         {
-            if (this.listOfContacts.Remove(contactID) == true)
+            Contact contact = this.listOfContacts[contactID];
+            if (contact.deleteContact() == true) 
             {
-                Contact contact = this.listOfContacts[contactID];
-                if (contact.deleteContact() == true)
+                if (this.listOfContacts.Remove(contactID) == true)
                 {
                     return true;
                 }

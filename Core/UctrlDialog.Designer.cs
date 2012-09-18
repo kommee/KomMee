@@ -34,7 +34,9 @@
             // lbChoice
             // 
             this.lbChoice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbChoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold);
             this.lbChoice.FormattingEnabled = true;
+            this.lbChoice.ItemHeight = 25;
             this.lbChoice.Location = new System.Drawing.Point(0, 0);
             this.lbChoice.Name = "lbChoice";
             this.lbChoice.Size = new System.Drawing.Size(150, 300);

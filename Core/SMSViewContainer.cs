@@ -37,6 +37,7 @@ namespace KomMee
             SMSViewContainer.RecvTextbox.Height = 268;
             SMSViewContainer.RecvTextbox.Left = 0;
             SMSViewContainer.RecvTextbox.Top = 35;
+            SMSViewContainer.RecvTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
             SMSViewContainer.RecvTextbox.Multiline = true;
             SMSViewContainer.RecvTextbox.ReadOnly = true;
             SMSViewContainer.RecvTextbox.BackColor = System.Drawing.Color.MistyRose;
@@ -73,6 +74,7 @@ namespace KomMee
             SMSViewContainer.SendTextbox.Height = 268;
             SMSViewContainer.SendTextbox.Left = 0;
             SMSViewContainer.SendTextbox.Top = 35;
+            SMSViewContainer.SendTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
             SMSViewContainer.SendTextbox.Multiline = true;
             SMSViewContainer.SendTextbox.BackColor = System.Drawing.Color.MistyRose;
 
@@ -116,6 +118,7 @@ namespace KomMee
             SMSViewContainer.RecvTextbox.Height = 121;
             SMSViewContainer.RecvTextbox.Left = 0;
             SMSViewContainer.RecvTextbox.Top = 35;
+            SMSViewContainer.RecvTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75f, System.Drawing.FontStyle.Bold);
             SMSViewContainer.RecvTextbox.ReadOnly = true;
             SMSViewContainer.RecvTextbox.Multiline = true;
             SMSViewContainer.RecvTextbox.BackColor = System.Drawing.Color.White;
@@ -151,6 +154,7 @@ namespace KomMee
 
         public void addWriteInput(KeyboardViewEventArgs keyboardViewEventArgs)
         {
+            SMSViewContainer.SendTextbox.Text = SMSViewContainer.SendTextbox.Text.Substring(0, SMSViewContainer.SendTextbox.Text.Length - 1);
             switch (keyboardViewEventArgs.Value)
             {
                 case KeyboardButtons.AlphaA:
@@ -301,6 +305,7 @@ namespace KomMee
                 default:
                     break;
             }
+            SMSViewContainer.SendTextbox.Text += "|";
         }
 
         public void setWriteInput(string Text)
@@ -311,6 +316,11 @@ namespace KomMee
         public void setReadInput(string Text)
         {
             SMSViewContainer.RecvTextbox.Text = Text;
+        }
+
+        public string getReadData()
+        {
+            return SMSViewContainer.RecvTextbox.Text;
         }
 
         public object getData()

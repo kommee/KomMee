@@ -14,6 +14,12 @@ namespace KomMee
         public static SIM simInstance = null;
         private SerialPort port = null;
         private string dataToRecieve = string.Empty;
+        private bool connected = false;
+
+        public bool isConnected()
+        {
+            return this.port.IsOpen;
+        }
 
         private SIM(string pPortName, int pBaudRate, string pParity, int pDataBits, string pStopBits, string pPin)
         {
@@ -57,23 +63,8 @@ namespace KomMee
                     throw new Exception("Unknown StopBits");
             }
             this.port = new SerialPort(pPortName, pBaudRate, parity, pDataBits, stopBits);
-            port.Open();
 
-            port.DiscardOutBuffer();
-            port.DiscardInBuffer();
-
-            if (this.executeATCommand("AT", 300).Contains("OK"))
-            {
-                string phoneUnlocked = this.executeATCommand(("AT+CPIN=" + pPin), 300);
-                if(phoneUnlocked.Contains("CME ERROR: incorrect password"))
-                {
-                    throw new Exception("Phone still locked. Wrong PIN!");
-                }
-            }
-            else
-            {
-                throw new Exception("Phone not connected or AT-Commands not allowed.");
-            }
+            this.connect(pPin);
 
 
         }
@@ -82,17 +73,21 @@ namespace KomMee
         {
             if (SIM.simInstance == null)
             {
-                //string portName, parity, stopBits, pin;
-                //int baudRate, dataBits;
+                string portName, parity, stopBits, pin;
+                int baudRate, dataBits;
 
-                /*portName = Settings.getValue("simPortName");
+                portName = Settings.getValue("simPortName");
                 parity = Settings.getValue("simParity");
                 stopBits = Settings.getValue("simStopBits");
                 baudRate = Convert.ToInt32(Settings.getValue("simBaudRate"));
                 dataBits = Convert.ToInt32(Settings.getValue("simDataBits"));
                 pin = Settings.getValue("simPin");
-                SIM.simInstance = new SIM(portName, baudRate, parity, dataBits, stopBits, pin);*/
-                SIM.simInstance = new SIM("COM256", 9600, "None", 8, "One", "9876");
+                SIM.simInstance = new SIM(portName, baudRate, parity, dataBits, stopBits, pin);
+            }
+            else if (!SIM.simInstance.isConnected())
+            {
+                string pin = Settings.getValue("simPin");
+                SIM.simInstance.connect(pin);
             }
             return SIM.simInstance;
         }
@@ -245,6 +240,28 @@ namespace KomMee
             splittedMessageString[3] = messageString.Remove(0, messageString.IndexOf(",") + 1);
 
             return splittedMessageString;
+        }
+
+        private bool connect(string pPin)
+        {
+            port.Open();
+
+            port.DiscardOutBuffer();
+            port.DiscardInBuffer();
+
+            if (this.executeATCommand("AT", 300).Contains("OK"))
+            {
+                string phoneUnlocked = this.executeATCommand(("AT+CPIN=" + pPin), 300);
+                if (phoneUnlocked.Contains("CME ERROR: incorrect password"))
+                {
+                    throw new Exception("Phone still locked. Wrong PIN!");
+                }
+            }
+            else
+            {
+                throw new Exception("Phone not connected or AT-Commands not allowed.");
+            }
+            return true;
         }
     }
 }
